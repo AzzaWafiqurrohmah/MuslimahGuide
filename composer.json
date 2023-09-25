@@ -1,0 +1,12 @@
+{
+    "name": "muslimah-guide/kelompok-6",
+    "description": "Aplikasi Website Muslimah Guide",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Azza Wafiqurrohmah",
+            "email": "wafiqurrohmahazza@gmail.com"
+        }
+    ],
+    "require": {}
+}
