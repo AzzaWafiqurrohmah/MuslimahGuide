@@ -8,9 +8,20 @@
             "email": "wafiqurrohmahazza@gmail.com"
         }
     ],
-    "require": {},
-
+    "require": {
+        "php": ">=8.0"
+    },
+    
     "require-dev": {
         "phpunit/phpunit" : "10.3.5"
+    },
+
+    "autoload": {
+        "MuslimahGuide\\": "src"
+    },
+
+    "autoload-dev": {
+        "MuslimahGuide\\": "tests"
     }
+
 }
