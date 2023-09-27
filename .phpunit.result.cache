@@ -1,0 +1,1 @@
+{"version":1,"defects":{"MuslimahGuide\\config\\database::testConnection":8,"MuslimahGuide\\Config\\database::testConnection":8,"MuslimahGuide\\Config\\databaseTest::testConnection":7},"times":{"MuslimahGuide\\config\\database::testConnection":0.026,"MuslimahGuide\\Config\\database::testConnection":0.022,"MuslimahGuide\\Config\\databaseTest::testConnection":0.016}}
