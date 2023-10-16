@@ -10,9 +10,6 @@ class database{
         if(self::$pdo == null){
             require_once __DIR__ . "/../config/database.php";
             $config = getdatabaseconfig();
-            echo $config['database']['url'];
-            echo $config['database']['username'];
-            echo $config['database']['password'];
             self::$pdo = new \PDO(
                 $config['database']['url'],
                 $config['database']['username'],
