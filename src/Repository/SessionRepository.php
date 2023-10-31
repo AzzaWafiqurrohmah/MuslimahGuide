@@ -22,18 +22,15 @@ class SessionRepository
     }
 
     public function findById(string $id) : ?session {
-        $statement = $this->connection->prepare("SELECT * FROM sessions WHERE session_id = ?");
-        $statement->execute([$id]);
+        $sql = "SELECT * FROM sessions WHERE session_id = ?";
+        $statement = $this->connection->prepare($sql);
 
-        try {
-            if($row = $statement->fetch()){
-                $session = new session($row['session_id'], $row['user_id']);
-                return $session;
+        if($statement->execute([$id])){
+            foreach ($statement as $row){
+                return $this->mapToDomain($row);
             }
-            return null;
-        } finally {
-            $statement->closeCursor();
         }
+        return null;
     }
 
     public function deleteById(string $id) : bool{

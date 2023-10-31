@@ -57,6 +57,7 @@ class ReminderRepository
                 return $this->mapToDomain($row);
             }
         }
+        return null;
     }
 
     public function mapToDomain($row) : reminder{
