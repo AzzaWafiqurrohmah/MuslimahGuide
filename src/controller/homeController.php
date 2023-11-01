@@ -7,6 +7,11 @@ use MuslimahGuide\app\view;
 class homeController
 {
     function landingPage(){
-        view::render('landingPage', ["title" => "Landing page"]);
+        view::render('landingPage');
     }
+
+    function postLandingPage(){
+        view::redirect('login');
+    }
+
 }
