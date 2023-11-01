@@ -24,8 +24,8 @@ class sessionService
         $this->userRepo = $userRepo;
     }
 
-    public function create(String $userID) : session{
-        $session = new session(uniqid(), $userID);
+    public function create(user $user) : session{
+        $session = new session(uniqid(), $user);
 
         $this->sessionRepo->save($session);
 

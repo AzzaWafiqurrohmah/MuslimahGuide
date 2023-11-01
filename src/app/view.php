@@ -4,7 +4,7 @@ namespace MuslimahGuide\app;
 
 class view
 {
-    public static function render(string $view, $model){
+    public static function render(string $view){
         require __DIR__ . '/../view/header.php';
         require __DIR__ . '/../view/' . $view . '.php';
         require __DIR__ . '/../view/footer.php';

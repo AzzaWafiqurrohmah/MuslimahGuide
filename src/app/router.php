@@ -32,6 +32,7 @@ class router
 
         $method = $_SERVER['REQUEST_METHOD'];
 
+
         foreach (self::$routes as $route){
             if($path == $route['path'] && $method == $route['method']){
                 foreach ($route['middleware'] as $middleware){
