@@ -52,7 +52,7 @@
 }
 
 .articleIcon {
-    font-size: 1rem;
+  font-size: 1rem;
 }
 
 
@@ -62,7 +62,7 @@
 
 body {
   font-family: "Open Sans", sans-serif;
-  background: #FFF6F5;
+  background: #FFF9F9;
   color: #444444;
 }
 
@@ -108,10 +108,10 @@ h6 {
 }
 
 .pagetitle h1 {
-  font-size: 24px;
+  font-size: 22px;
   margin-bottom: 0;
   font-weight: 600;
-  color: #012970;
+  color: #000;
 }
 
 /*--------------------------------------------------------------
@@ -294,9 +294,9 @@ h6 {
 
 .card-title {
   padding: 20px 0 5px 0;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
-  color: #012970;
+  color: #000;
   font-family: "Poppins", sans-serif;
 }
 
@@ -431,14 +431,14 @@ h6 {
 }
 
 .logo img {
-  max-height: 26px;
+  max-height: 24px;
   margin-right: 6px;
 }
 
 .logo span {
-  font-size: 26px;
-  font-weight: 700;
-  color: #012970;
+  font-size: 24px;
+  font-weight: 600;
+  color: #000;
   font-family: "Nunito", sans-serif;
 }
 
@@ -454,7 +454,7 @@ h6 {
 }
 
 .header .toggle-sidebar-btn {
-  margin-left: -60px;
+  margin-left: -10px;
   font-size: 32px;
   padding-left: 10px;
   cursor: pointer;
@@ -535,13 +535,13 @@ h6 {
 
 .header-nav .nav-icon {
   font-size: 22px;
-  color: #012970;
+  color: #000;
   margin-right: 25px;
   position: relative;
 }
 
 .header-nav .nav-profile {
-  color: #012970;
+  color: #000;
 }
 
 .header-nav .nav-profile img {
@@ -550,7 +550,7 @@ h6 {
 
 .header-nav .nav-profile span {
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .header-nav .badge-number {
@@ -739,21 +739,23 @@ h6 {
 }
 
 .sidebar-nav .nav-heading {
-  font-size: 11px;
+  font-size: 10px;
   text-transform: uppercase;
   color: #899bbd;
   font-weight: 600;
   margin: 10px 0 5px 15px;
+  padding: 3px;
+  letter-spacing: 1.5px;
 }
 
 .sidebar-nav .nav-link {
   display: flex;
   align-items: center;
-  font-size: 15px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 500;
   color: #DA4256;
   transition: 0.3;
-  background: #FFF6F5;
+  background: #FFF9F9;
   padding: 10px 15px;
   border-radius: 4px;
 }
@@ -765,7 +767,7 @@ h6 {
 }
 
 .sidebar-nav .nav-link.collapsed {
-  color: #012970;
+  color: #868e96;
   background: #fff;
 }
 
@@ -800,9 +802,9 @@ h6 {
 .sidebar-nav .nav-content a {
   display: flex;
   align-items: center;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
-  color: #012970;
+  color: #868e96;
   transition: 0.3;
   padding: 10px 0 10px 40px;
   transition: 0.3s;
