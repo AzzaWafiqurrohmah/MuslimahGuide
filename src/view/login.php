@@ -37,12 +37,8 @@
                                         <div class="invalid-feedback">Please enter your password!</div>
                                     </div>
 
-                                    <div class="col-12">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="remember" value="true" id="rememberMe">
-                                            <label class="form-check-label" for="rememberMe">Remember me</label>
-                                        </div>
-                                    </div>
+                                    <a href="pages-register.html" class="forgot-password" style="text-align: right; color: #DE6172 " for="forgotPass">Forgot Password?</a>
+
                                         <div class="col-12">
                                             <button class="btn btn-primary w-100" type="submit" id="manual" name="manual" >Login</button>
                                             <button class="btn btn-primary w-100" style="margin-top: 10px; margin-bottom: 20px; background-color: white; border-color: #DA4256 ; color: #DA4256;" type="submit" id="google" name="google">

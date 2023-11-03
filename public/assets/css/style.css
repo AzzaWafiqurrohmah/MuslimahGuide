@@ -10,6 +10,15 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
+.forgot-password {
+  text-decoration: none;
+  color: #000; /* Ubah warna sesuai kebutuhan */
+}
+
+.forgot-password:hover,
+.forgot-password:active {
+  text-decoration: underline;
+}
 
 .img-fluid{
   height: 100%;

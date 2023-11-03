@@ -91,14 +91,4 @@ class adminController
         header('Content-Type: application/json');
         echo json_encode($response);
     }
-
-    function dashboard(){
-
-        $user = $this->sessionService->current();
-
-        $name = $user->getName();
-        view::render('dashboard', [
-            'name' => $name,
-        ]);
-    }
 }

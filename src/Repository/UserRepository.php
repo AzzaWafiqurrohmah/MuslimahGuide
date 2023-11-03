@@ -106,6 +106,21 @@ class UserRepository
         return null;
     }
 
+    public function chart() :array{
+        $sql = "SELECT TIMESTAMPDIFF(YEAR, birthdate, CURDATE()) as usia, COUNT(*) as jumlah FROM users WHERE role='user' GROUP BY usia;";
+        $data = ["usia"=>[], "jumlah"=>[]];
+
+        $statement = $this->connection->prepare($sql);
+        if($statement->execute()){
+            foreach ($statement as $row){
+                $data["usia"][] = $row['usia'];
+                $data["jumlah"][] = $row['jumlah'];
+            }
+        }
+
+        return $data;
+    }
+
     public function mapToDomain($row) : user{
             $user = new user(
                 $row['name'],
