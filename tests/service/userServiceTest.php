@@ -6,14 +6,14 @@ use MuslimahGuide\Config\database;
 use MuslimahGuide\data\role;
 use MuslimahGuide\Domain\user;
 use MuslimahGuide\Exception\validationException;
-use MuslimahGuide\Model\userRequest;
+use MuslimahGuide\Model\adminRequest;
 use MuslimahGuide\Repository\SessionRepository;
 use MuslimahGuide\Repository\UserRepository;
 use PHPUnit\Framework\TestCase;
 
 class userServiceTest extends TestCase
 {
-    private userService $userService;
+    private adminService $userService;
     private UserRepository $userRepo;
     private SessionRepository $sessionRepo;
 
@@ -21,7 +21,7 @@ class userServiceTest extends TestCase
     {
         $connection = database::getConnection();
         $this->userRepo = new UserRepository($connection);
-        $this->userService = new userService($this->userRepo);
+        $this->userService = new adminService($this->userRepo);
         $this->sessionRepo = new SessionRepository($connection);
     }
 
@@ -29,7 +29,7 @@ class userServiceTest extends TestCase
         $user = new user('sisi', null, role::admin,'087342123456', 'afdfdgdg', "azza123", 'rahasia');
         $this->expectException(validationException::class);
 
-        $request = new userRequest();
+        $request = new adminRequest();
         $request->username = "azza123";
         $request->password = "rahasia";
 

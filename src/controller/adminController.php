@@ -5,24 +5,25 @@ namespace MuslimahGuide\controller;
 use MuslimahGuide\app\view;
 use MuslimahGuide\Config\database;
 use MuslimahGuide\Exception\validationException;
-use MuslimahGuide\Model\userRequest;
+use MuslimahGuide\Model\adminRequest;
 use MuslimahGuide\Repository\SessionRepository;
 use MuslimahGuide\Repository\UserRepository;
+use MuslimahGuide\service\adminService;
 use MuslimahGuide\Service\sessionService;
-use MuslimahGuide\Service\userService;
 
-class userController
+class adminController
 {
-    private userService $userService;
+    private UserRepository $userRepo;
+    private adminService $userService;
     private sessionService $sessionService;
     public function __construct()
     {
         $connection = database::getConnection();
-        $userRepo = new UserRepository($connection);
-        $this -> userService = new userService($userRepo);
+        $this->userRepo = new UserRepository($connection);
+        $this -> userService = new adminService($this->userRepo);
 
         $sessionRepo = new SessionRepository($connection);
-        $this->sessionService = new sessionService($sessionRepo, $userRepo);
+        $this->sessionService = new sessionService($sessionRepo, $this->userRepo);
     }
 
     function login(){
@@ -33,15 +34,13 @@ class userController
         if($_SERVER["REQUEST_METHOD"] == "POST"){
             if(isset($_POST['manual'])){
 
-                $request = new userRequest();
+                $request = new adminRequest();
                 $request->username = $_POST['username'];
                 $request->password = $_POST['password'];
 
                 try {
                     $response = $this->userService->login($request);
-                    if($_POST['remember'] == "true"){
-                        $this->sessionService->create($response->user);
-                    }
+                    $this->sessionService->create($response->user);
                     view::redirect('dashboard');
                 } catch (validationException $exception){
                     view::render('login');
@@ -52,7 +51,7 @@ class userController
     }
 
     function loginAPI(){
-        $request = new userRequest();
+        $request = new adminRequest();
         $request->username = $_GET['username'];
         $request->password = $_GET['password'];
 
@@ -72,7 +71,34 @@ class userController
         echo json_encode($response);
     }
 
+    function registerAPI(){
+        $request = new adminRequest();
+        $request->username = $_GET['username'];
+        $request->password = $_GET['password'];
+
+        try {
+            $this->userService->register($request);
+            $response = array(
+                'status' => 1,
+                'message' => 'Register berhasil'
+            );
+        } catch (validationException $exception){
+            $response = array(
+                'status' => 0,
+                'message' => 'Register gagal'
+            );
+        }
+        header('Content-Type: application/json');
+        echo json_encode($response);
+    }
+
     function dashboard(){
-        view::render('dashboard');
+
+        $user = $this->sessionService->current();
+
+        $name = $user->getName();
+        view::render('dashboard', [
+            'name' => $name,
+        ]);
     }
 }

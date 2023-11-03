@@ -3,7 +3,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 use MuslimahGuide\app\router;
 use MuslimahGuide\controller\homeController;
-use MuslimahGuide\controller\userController;
+use MuslimahGuide\controller\adminController;
 
 //require __DIR__ . '/../src/view/login.php';
 
@@ -11,12 +11,13 @@ use MuslimahGuide\controller\userController;
 router::add("web", "GET", "/", homeController::class, 'landingPage', []);
 router::add("web", "POST", "/", homeController::class, 'PostLandingPage', []);
 
-router::add("web", "GET", "/login", userController::class, 'login', []);
-router::add("web", "POST", "/login", userController::class, 'postLogin', []);
+router::add("web", "GET", "/login", adminController::class, 'login', []);
+router::add("web", "POST", "/login", adminController::class, 'postLogin', []);
 
-router::add("web", "GET", "/dashboard", userController::class, 'dashboard', []);
+router::add("web", "GET", "/dashboard", adminController::class, 'dashboard', []);
 
 //API
-router::add("API", "GET", '/loginAPI', userController::class, 'loginAPI');
+router::add("API", "GET", '/loginAPI', adminController::class, 'loginAPI');
+router::add("API", "GET", '/registerAPI', adminController::class, 'registerAPI');
 
 router::run();

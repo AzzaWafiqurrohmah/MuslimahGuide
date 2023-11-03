@@ -4,7 +4,7 @@ namespace MuslimahGuide\Model;
 
 use MuslimahGuide\Exception\validationException;
 
-class userRequest
+class adminRequest
 {
     public ?string $username = null;
     public ?string $password = null;

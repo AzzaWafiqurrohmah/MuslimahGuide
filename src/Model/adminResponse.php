@@ -4,7 +4,8 @@ namespace MuslimahGuide\Model;
 
 use MuslimahGuide\Domain\user;
 
-class userResponse
+class adminResponse
 {
- public user $user;
+    public user $user;
+
 }
