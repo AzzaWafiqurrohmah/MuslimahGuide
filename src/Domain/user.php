@@ -5,14 +5,14 @@ namespace MuslimahGuide\Domain;
 class user{
     private int $id;
     private ?string $name;
-    private ?\DateTime $birthDate;
+    private ?string $birthDate;
     private string $role;
     private ?string $phone;
     private ?string $email;
     private ?string $username;
     private string $password;
 
-    public function __construct(?string $name, ?\DateTime $birthDate, string $role, ?string $phone, ?string $email, ?string $username, string $password)
+    public function __construct(?string $name, ?string $birthDate, string $role, ?string $phone, ?string $email, ?string $username, string $password)
     {
         $this->name = $name;
         $this->birthDate = $birthDate;
@@ -49,12 +49,12 @@ class user{
         return $this->birthDate;
     }
 
-    public function setBirthDate(?\DateTime $birthDate): void
+    public function setBirthDate(?string $birthDate): void
     {
         $this->birthDate = $birthDate;
     }
 
-    public function getPhone(): string
+    public function getPhone(): ?string
     {
         return $this->phone;
     }

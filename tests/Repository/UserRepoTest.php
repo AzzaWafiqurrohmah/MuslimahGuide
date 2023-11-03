@@ -14,8 +14,9 @@ class UserRepoTest extends TestCase
 
 
     protected function setup() : void{
+        $now =new \DateTime();
         $this->userRepo = new UserRepository(database::getConnection());
-        $this -> user = new user(null, null, role::admin,"082342123456", null, "azza23", "rahasia");
+        $this -> user = new user(null, $now->format('Y-m-d'), role::admin,"082342123456", null, "mbul", "rahasia");
     }
 
     public function testAdd(){
