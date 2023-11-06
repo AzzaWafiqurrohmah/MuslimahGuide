@@ -12,7 +12,7 @@ class user{
     private ?string $username;
     private string $password;
 
-    public function __construct(?string $name, ?string $birthDate, string $role, ?string $phone, ?string $email, ?string $username, string $password)
+    public function __construct(?string $name, ?string $birthDate, string $role, ?string $phone, ?string $email, ?string $username, ?string $password)
     {
         $this->name = $name;
         $this->birthDate = $birthDate;
@@ -84,7 +84,7 @@ class user{
         $this->username = $username;
     }
 
-    public function getPassword(): string
+    public function getPassword(): ?string
     {
         return $this->password;
     }

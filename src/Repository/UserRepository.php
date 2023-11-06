@@ -107,7 +107,7 @@ class UserRepository
     }
 
     public function chart() :array{
-        $sql = "SELECT TIMESTAMPDIFF(YEAR, birthdate, CURDATE()) as usia, COUNT(*) as jumlah FROM users WHERE role='user' GROUP BY usia;";
+        $sql = "SELECT COALESCE(TIMESTAMPDIFF(YEAR, birthdate, CURDATE()), 0) as usia,  COUNT(*) as jumlah FROM users WHERE role='user' GROUP BY usia;";
         $data = ["usia"=>[], "jumlah"=>[]];
 
         $statement = $this->connection->prepare($sql);
@@ -120,6 +120,20 @@ class UserRepository
 
         return $data;
     }
+
+    public function userTable(): array{
+        $sql = "SELECT user_id, name AS fullname, birthdate, TIMESTAMPDIFF(YEAR, birthdate, CURDATE()) as age, phone, username, email, password FROM users  WHERE role='user'";
+
+        $statement = $this->connection->prepare($sql);
+
+        if($statement->execute()){
+            return $statement->fetchAll(\PDO::FETCH_ASSOC);
+
+        }
+
+        return  [];
+    }
+
 
     public function mapToDomain($row) : user{
             $user = new user(

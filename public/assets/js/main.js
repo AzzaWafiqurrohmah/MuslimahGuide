@@ -5,6 +5,14 @@
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
 */
+
+//show selector user table
+// const select = document.getElementById("datatable-selector-custom");
+
+//change entries, for selector entries
+
+$('.datatables').DataTable();
+
 (function() {
   "use strict";
 
@@ -319,3 +327,20 @@
   }
 
 })();
+
+$('#user-table').on('click', '.btn-edit', function() {
+   const id = this.dataset.id;
+    const username = this.dataset.username;
+    const email = this.dataset.email;
+    const password = this.dataset.password;
+
+    $('#edit-username').val(username);
+    $('#edit-email').val(email);
+    $('#edit-password').val(password);
+    $('#user_id_edit').val(id);
+});
+
+$('#user-table').on('click', '.btn-delete', function() {
+    const id = this.dataset.id;
+    $('#user_id_delete').val(id);
+});

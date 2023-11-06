@@ -5,6 +5,7 @@ use MuslimahGuide\app\router;
 use MuslimahGuide\controller\homeController;
 use MuslimahGuide\controller\adminController;
 use MuslimahGuide\controller\dashboardController;
+use MuslimahGuide\controller\userTableController;
 
 //require __DIR__ . '/../src/view/login.php';
 
@@ -16,6 +17,8 @@ router::add("web", "GET", "/login", adminController::class, 'login', []);
 router::add("web", "POST", "/login", adminController::class, 'postLogin', []);
 
 router::add("web", "GET", "/dashboard", dashboardController::class, 'dashboard', []);
+router::add("web", "GET", "/userTable", userTableController::class, 'userTable', []);
+router::add("web", "POST", "/userTable", userTableController::class, 'userTable', []);
 
 //API
 router::add("API", "GET", '/loginAPI', adminController::class, 'loginAPI');

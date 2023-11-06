@@ -67,7 +67,7 @@
 
         <li class="nav-heading">Home</li>
         <li class="nav-item">
-            <a class="nav-link " href="index.html">
+            <a class="nav-link " href="/dashboard">
                 <i class="bi bi-grid"></i>
                 <span>Dashboard</span>
             </a>
@@ -76,7 +76,7 @@
         <li class="nav-heading">Menu</li>
 
         <li class="nav-item">
-            <a class="nav-link collapsed " href="tables-data.html">
+            <a class="nav-link collapsed " href="/userTable">
                 <i class="bi bi-people"></i>
                 <span>User</span>
             </a>
@@ -178,11 +178,6 @@
                                                 // categories: ["3", "6", "12", "8", "2", "9", "14"]
                                                 categories: <?php echo json_encode($data["usia"]); ?>
                                             }
-                                            // tooltip: {
-                                            //     x: {
-                                            //         format: 'dd/MM/yy HH:mm'
-                                            //     },
-                                            // }
                                         }).render();
                                     });
                                 </script>
