@@ -40,7 +40,7 @@ class userTableController
                 $email = $_POST['validationCustom01'];
                 $password = $_POST['validationCustom02'];
 
-                $this->user = new user(null, null, role::user, null, $email, $username, $password);
+                $this->user = new user(null, null, null, role::user, null, $email, $username, $password);
                 $this->userRepo->addAll($this->user);
             } else if(isset($_POST['editUser'])){
                 $username = $_POST['validationCustomUsername'];

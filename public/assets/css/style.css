@@ -12,6 +12,23 @@
 --------------------------------------------------------------*/
 /*user table*/
 
+/*input image edit profile*/
+#previewImage {
+    max-width: 150px; /* Atur lebar maksimum gambar */
+    max-height: 150px; /* Atur tinggi maksimum gambar */
+    margin-top: 10px; /* Atur margin atas */
+}
+
+input[type="file"] {
+    /*color: transparent;*/
+    /*width: 90px;*/
+    /*border: 2px solid #FC2A46;*/
+    /*background-color: white;*/
+    /*padding: 5px;*/
+    /*border-radius: 5px;*/
+    /*outline: none;*/
+    /*font-size: 12px;*/
+}
 
 /*pop up add table*/
 
