@@ -29,13 +29,15 @@ class dashboardController
         //header name
         $user = $this->sessionService->current();
         $name = $user->getName();
+        $profileImg = $user->getProfileImg();
 
         //dashboard chart
         $data = $this->userRepo->chart();
 
         view::render('dashboard', [
             'name' => $name,
-            'data' => $data
+            'data' => $data,
+            'profileImg' => $profileImg
         ]);
     }
 }

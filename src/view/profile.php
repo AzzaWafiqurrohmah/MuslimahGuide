@@ -8,7 +8,7 @@
 <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-        <a href="index.html" class="logo d-flex align-items-center">
+        <a href="/dashboad" class="logo d-flex align-items-center">
             <img src="/assets/img/logo.png" alt="">
             <span class="d-none d-lg-block">MuslimahGuide</span>
         </a>
@@ -21,12 +21,12 @@
 
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                     <img src="assets/img/profile/<?=$profileImg;?>" alt="Profile" class="rounded-circle">
-                    <span class="d-none d-md-block dropdown-toggle ps-2">Azza Wafiqurrohmah</span>
+                    <span class="d-none d-md-block dropdown-toggle ps-2"><?=$fullName;?></span>
                 </a><!-- End Profile Iamge Icon -->
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                     <li class="dropdown-header">
-                        <h6>Azza Wafiqurrohmah</h6>
+                        <h6><?=$fullName;?></h6>
                         <span>Admin</span>
                     </li>
                     <li>
@@ -113,8 +113,7 @@
         <h1>Profile</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item">Users</li>
+                <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
                 <li class="breadcrumb-item active">Profile</li>
             </ol>
         </nav>

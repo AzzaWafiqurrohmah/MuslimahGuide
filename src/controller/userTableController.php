@@ -32,6 +32,7 @@ class userTableController
         //header name
         $userProfile = $this->sessionService->current();
         $name = $userProfile->getName();
+        $profileImg = $userProfile->getProfileImg();
 
         if($_SERVER['REQUEST_METHOD'] == "POST"){
 
@@ -65,7 +66,8 @@ class userTableController
 
         view::render('userTable',[
             'name' => $name,
-            'data' => $data
+            'data' => $data,
+            'profileImg' => $profileImg
         ]);
     }
 }
