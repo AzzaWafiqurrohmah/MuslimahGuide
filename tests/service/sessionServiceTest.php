@@ -20,7 +20,7 @@ class sessionServiceTest extends TestCase
         $this->userRepository = new UserRepository(database::getConnection());
         $this->sessionService = new sessionService($this->sessionRepository, $this->userRepository);
 
-        $this-> user = new user("azza", null, role::user,"087675453432", "azza@gmail.com", "azza345", "rahasia");
+        $this-> user = new user( null,"azza", null, role::user,"087675453432", "azza@gmail.com", "azza345", "rahasia");
         $this->user->setId($this->userRepository->addAll($this -> user));
     }
 

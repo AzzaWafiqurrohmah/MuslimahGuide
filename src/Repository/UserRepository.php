@@ -34,11 +34,11 @@ class UserRepository
     }
 
     public function update(user $user) : bool{
-        $sql = "UPDATE users SET name = ?, birthdate = ?, phone = ?, email = ?, username = ?, password = ? WHERE user_id = ?";
+        $sql = "UPDATE users SET profileImg = ?, name = ?, birthdate = ?, phone = ?, email = ?, username = ?, password = ? WHERE user_id = ?";
 
         $statement = $this->connection->prepare($sql);
         $res = $statement->execute([
-            $user->getName(), $user->getBirthDate(), $user->getPhone(), $user->getEmail(), $user->getUsername(), $user->getPassword(), $user->getId()
+            $user->getProfileImg() ,$user->getName(), $user->getBirthDate(), $user->getPhone(), $user->getEmail(), $user->getUsername(), $user->getPassword(), $user->getId()
         ]);
 
         return $res;
@@ -137,6 +137,7 @@ class UserRepository
 
     public function mapToDomain($row) : user{
             $user = new user(
+                $row['profileImg'],
                 $row['name'],
             $row['birthdate'],
             $row['role'],

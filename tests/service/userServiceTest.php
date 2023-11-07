@@ -26,7 +26,7 @@ class userServiceTest extends TestCase
     }
 
     public function testLogin(){
-        $user = new user('sisi', null, role::admin,'087342123456', 'afdfdgdg', "azza123", 'rahasia');
+        $user = new user(null, 'sisi', null, role::admin,'087342123456', 'afdfdgdg', "azza123", 'rahasia');
         $this->expectException(validationException::class);
 
         $request = new adminRequest();

@@ -20,7 +20,7 @@ class cycleHistRepoTest extends TestCase
         $this->cycleRepo = new CycleHistRepository(database::getConnection());
         $this->userRepo = new UserRepository(database::getConnection());
 
-        $this->user = new user('sisi', null, role::admin,'087342123456', 'afdfdgdg', "hjhjhjhj", 'rahasia');
+        $this->user = new user(null ,'sisi', null, role::admin,'087342123456', 'afdfdgdg', "hjhjhjhj", 'rahasia');
         $this->user ->setId($this->userRepo->addAll($this->user));
     }
 

@@ -34,7 +34,7 @@ class adminService
     public function register(adminRequest $request) :adminResponse{
         $request -> validateUserLoginRequest($request->username, $request->username);
 
-        $user = new user(null, null, role::user, null, null, $request->username, $request->password);
+        $user = new user(null,null, null, role::user, null, null, $request->username, $request->password);
         $user->setId($this->userRepo->addAll($user));
 
         $response = new adminResponse();

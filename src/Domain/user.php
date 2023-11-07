@@ -4,6 +4,7 @@ namespace MuslimahGuide\Domain;
 
 class user{
     private int $id;
+    private ?string $profileImg;
     private ?string $name;
     private ?string $birthDate;
     private string $role;
@@ -12,8 +13,9 @@ class user{
     private ?string $username;
     private string $password;
 
-    public function __construct(?string $name, ?string $birthDate, string $role, ?string $phone, ?string $email, ?string $username, ?string $password)
+    public function __construct(?string $profileImg ,?string $name, ?string $birthDate, string $role, ?string $phone, ?string $email, ?string $username, ?string $password)
     {
+        $this->profileImg = $profileImg;
         $this->name = $name;
         $this->birthDate = $birthDate;
         $this-> role = $role;
@@ -33,6 +35,17 @@ class user{
     {
         $this->id = $id;
     }
+
+    public function getProfileImg(): ?string
+    {
+        return $this->profileImg;
+    }
+
+    public function setProfileImg(?string $profileImg): void
+    {
+        $this->profileImg = $profileImg;
+    }
+
 
     public function getName(): ?string
     {

@@ -19,7 +19,7 @@ class SessionRepoTest extends TestCase
         $this->userRepo = new UserRepository(database::getConnection());
         $this->sessionRepo = new SessionRepository(database::getConnection());
 
-        $this-> user = new user('second', null, role::user,'087342123456', 'afdfdgdg', "hjhjhjhj", 'rahasia');
+        $this-> user = new user( null,'second', null, role::user,'087342123456', 'afdfdgdg', "hjhjhjhj", 'rahasia');
     }
 
     public function testSaveSuccess(){

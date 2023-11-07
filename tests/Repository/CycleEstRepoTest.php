@@ -20,7 +20,7 @@ class CycleEstRepoTest extends TestCase
        $this->cycleRepo = new CycleEstRepository(database::getConnection());
        $this->userRepo = new UserRepository(database::getConnection());
 
-        $this->user = new user('sisi', null, role::admin,'087342123456', 'afdfdgdg', "hjhjhjhj", 'rahasia');
+        $this->user = new user(null, 'sisi', null, role::admin,'087342123456', 'afdfdgdg', "hjhjhjhj", 'rahasia');
         $this->user ->setId($this->userRepo->addAll($this->user));
         $this->cycle = new cycleEst(3, 22, null, null, $this->user);
     }
