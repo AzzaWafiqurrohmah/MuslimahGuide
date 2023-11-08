@@ -18,6 +18,7 @@ router::add("web", "GET", "/login", adminController::class, 'login', []);
 router::add("web", "POST", "/login", adminController::class, 'postLogin', []);
 
 router::add("web", "GET", "/dashboard", dashboardController::class, 'dashboard', []);
+router::add("web", "POST", "/dashboard", dashboardController::class, 'postDashboard', []);
 router::add("web", "GET", "/userTable", userTableController::class, 'userTable', []);
 router::add("web", "POST", "/userTable", userTableController::class, 'userTable', []);
 router::add("WEB", "GET", "/profile", profileController::class, 'profile', []);

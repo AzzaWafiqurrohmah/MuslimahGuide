@@ -34,7 +34,7 @@
                     </li>
 
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                        <a class="dropdown-item d-flex align-items-center" href="/profile">
                             <i class="bi bi-person"></i>
                             <span>My Profile</span>
                         </a>
@@ -43,7 +43,7 @@
                         <hr class="dropdown-divider">
                     </li>
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="#">
+                        <a class="dropdown-item d-flex align-items-center" style="cursor:pointer;"  data-bs-toggle="modal" data-bs-target="#basicModal4">
                             <i class="bi bi-box-arrow-right"></i>
                             <span>Sign Out</span>
                         </a>
@@ -56,6 +56,28 @@
     </nav><!-- End Icons Navigation -->
 
 </header><!-- End Header -->
+
+<!-- Sign Out -->
+<form method="post" action="/profile">
+    <div class="modal fade" id="basicModal4" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                    <div class="modal-header" style="padding-top: 0.6rem; padding-bottom: 0.3rem;">
+                        <i class="bi bi-exclamation-circle" style="color: red; font-size: 1.5rem; margin-left: 15px; margin-right: 8px" ></i>
+                        <h5 style="margin-top: 9px">Warning</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" style="text-align: center;">
+                        Apakah Anda yakin ingin keluar?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary"  id="sign-out" name="sign-out">Sign out</button>
+                    </div>
+            </div>
+        </div>
+    </div><!-- End Basic Modal-->
+</form>
 
 <!-- ======= Sidebar ======= -->
 <aside id="sidebar" class="sidebar">

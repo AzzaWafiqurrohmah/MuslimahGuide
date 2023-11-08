@@ -55,9 +55,13 @@ class userTableController
                 $this->user->setPassword($password);
 
                 $this->userRepo->update($this->user);
-            } else {
+            } else if(isset($_POST['deleteUser'])) {
                 $id = $_POST['user_id_delete'];
                 $this->userRepo->delete($id);
+            } else {
+                $this->sessionService->destroy();
+                view::redirect('login');
+                exit();
             }
         }
 

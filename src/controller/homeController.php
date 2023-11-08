@@ -3,6 +3,8 @@
 namespace MuslimahGuide\controller;
 
 use MuslimahGuide\app\view;
+use MuslimahGuide\service\adminService;
+use MuslimahGuide\Service\sessionService;
 
 class homeController
 {

@@ -51,6 +51,13 @@ class profileController
     }
 
     public function postProfile(){
+
+        if(isset($_POST['sign-out'])){
+            $this->sessionService->destroy();
+            view::redirect('login');
+            exit();
+        }
+
         $profileImg = $this->user->getProfileImg();
         $password = $this->user->getPassword();
 

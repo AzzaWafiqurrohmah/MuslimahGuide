@@ -40,4 +40,12 @@ class dashboardController
             'profileImg' => $profileImg
         ]);
     }
+
+    function postDashboard(){
+        if(isset($_POST['sign-out'])){
+            $this->sessionService->destroy();
+            view::redirect('login');
+        }
+    }
+
 }
