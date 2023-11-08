@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 17, 2023 at 12:03 AM
+-- Generation Time: Nov 08, 2023 at 03:14 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -54,6 +54,30 @@ CREATE TABLE `cycle_history` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `educations`
+--
+
+CREATE TABLE `educations` (
+  `education_id` int(11) NOT NULL,
+  `img` varchar(50) DEFAULT NULL,
+  `title` text DEFAULT NULL,
+  `contents` text DEFAULT NULL,
+  `on_clicked` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `educations`
+--
+
+INSERT INTO `educations` (`education_id`, `img`, `title`, `contents`, `on_clicked`) VALUES
+(1, 'coba.jpeg', 'tata cara mengganti sholat', 'mengganti sholat diwajibkan bagi setiap perempuan yang sudah menyelesaikan masa menstruasinya', 3),
+(2, 'coba.jpeg', 'tata cara mengganti sholat', 'mengganti sholat diwajibkan bagi setiap perempuan yang sudah menyelesaikan masa menstruasinya', 3),
+(3, 'coba.jpeg', 'tata cara mengganti sholat', 'mengganti sholat diwajibkan bagi setiap perempuan yang sudah menyelesaikan masa menstruasinya', 3),
+(4, 'coba.jpeg', 'tata cara mengganti sholat', 'mengganti sholat diwajibkan bagi setiap perempuan yang sudah menyelesaikan masa menstruasinya', 3);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `reminder`
 --
 
@@ -79,6 +103,13 @@ CREATE TABLE `sessions` (
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `sessions`
+--
+
+INSERT INTO `sessions` (`session_id`, `user_id`) VALUES
+('654ae57b464b0', 468);
+
 -- --------------------------------------------------------
 
 --
@@ -87,7 +118,8 @@ CREATE TABLE `sessions` (
 
 CREATE TABLE `users` (
   `user_id` int(11) NOT NULL,
-  `name` varchar(15) DEFAULT NULL,
+  `profileImg` varchar(50) DEFAULT NULL,
+  `name` varchar(30) DEFAULT NULL,
   `birthdate` date DEFAULT NULL,
   `role` enum('admin','user') NOT NULL,
   `phone` char(12) DEFAULT NULL,
@@ -95,6 +127,25 @@ CREATE TABLE `users` (
   `email` varchar(50) DEFAULT NULL,
   `password` char(8) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `profileImg`, `name`, `birthdate`, `role`, `phone`, `username`, `email`, `password`) VALUES
+(468, 'profile.jpg', 'Azza Wafiqurrohmah', NULL, 'admin', '087546534211', 'azza23', 'azza@gmail.com', 'rahasia'),
+(473, NULL, 'nisa', '2003-08-07', 'user', NULL, 'nisa12', 'nisa@gmail.com', 'nisa123'),
+(474, NULL, 'sisi', '2003-08-03', 'user', '082342123456', 'sisi123', 'sisi@gmailcom', 'rahasia'),
+(475, NULL, 'nana', '2005-11-03', 'user', '082342123456', 'nana', 'nana@gmail.com', 'rahasia'),
+(476, NULL, 'rika', '2005-11-03', 'user', '082342123456', 'sinta', 'sinta@gmail.com', 'rahasia'),
+(478, NULL, 'putri', '2005-11-03', 'user', '082342123456', 'putri123', 'putri@gmail.com', 'rahasia'),
+(493, NULL, 'siska', '2001-05-03', 'user', NULL, 'siska20', 'siska@gmail.com', 'rahasia'),
+(494, NULL, 'ani', '2001-03-02', 'user', NULL, 'ani12', 'ani@gmail.com', 'rahasia'),
+(495, NULL, 'rere', '2001-04-01', 'user', NULL, 'rere23', 'rere@gmail.com', 'rahasia'),
+(496, NULL, 'mayang', '2001-07-05', 'user', NULL, 'mayang', 'mayang@gmail.com', 'rahasia'),
+(497, NULL, 'riri', '1998-08-23', 'user', NULL, 'riri12', 'riri@gmail.com', 'rahasia'),
+(526, NULL, 'second', NULL, 'user', '087342123456', 'hjhjhjhj', 'afdfdgdg', 'rahasia'),
+(540, NULL, NULL, NULL, 'user', NULL, 'monika23', 'monika@gmail.com', 'rahasia');
 
 --
 -- Indexes for dumped tables
@@ -113,6 +164,12 @@ ALTER TABLE `cycle_est`
 ALTER TABLE `cycle_history`
   ADD PRIMARY KEY (`cycleHistory_id`),
   ADD KEY `cycle_history_ibfk_1` (`user_id`);
+
+--
+-- Indexes for table `educations`
+--
+ALTER TABLE `educations`
+  ADD PRIMARY KEY (`education_id`);
 
 --
 -- Indexes for table `reminder`
@@ -142,25 +199,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cycle_est`
 --
 ALTER TABLE `cycle_est`
-  MODIFY `cycleEst_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `cycleEst_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `cycle_history`
 --
 ALTER TABLE `cycle_history`
-  MODIFY `cycleHistory_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `cycleHistory_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `educations`
+--
+ALTER TABLE `educations`
+  MODIFY `education_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `reminder`
 --
 ALTER TABLE `reminder`
-  MODIFY `reminder_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `reminder_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=404;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=543;
 
 --
 -- Constraints for dumped tables
