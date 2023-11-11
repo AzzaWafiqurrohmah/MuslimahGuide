@@ -188,14 +188,16 @@ div.dataTables_wrapper div.dataTables_info {
 }
 
 .upload-button {
-    background-color: #F9F9F9;
+    cursor: pointer;
+    background-color: #FBFBFB;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 250px;
-    height: 200px;
-    border: 4px dashed #c9c9c9;
+    width: 270px;
+    height: 250px;
+    border: 3px dashed #c9c9c9;
     border-radius: 10px;
+    margin-top: 75px;
 }
 
 .upload-button i {

@@ -111,7 +111,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="upload.html">
+                    <a href="/uploadArticle">
                         <i class="bi bi-circle"></i><span>Upload New Article</span>
                     </a>
                 </li>

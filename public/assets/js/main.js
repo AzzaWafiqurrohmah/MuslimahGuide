@@ -344,3 +344,43 @@ $('#user-table').on('click', '.btn-delete', function() {
     const id = this.dataset.id;
     $('#user_id_delete').val(id);
 });
+
+// img in upload article
+let currentImage = null;
+function handleFileUpload(input) {
+  const file = input.files[0];
+  const uploadButton = document.querySelector('.upload-button');
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      if (currentImage) {
+        currentImage.parentNode.removeChild(currentImage);
+      }
+      const newImage = document.createElement('img');
+      newImage.setAttribute('id', 'previewImage');
+      newImage.setAttribute('src', e.target.result);
+      newImage.setAttribute('style', 'max-width: 100%; max-height: 200px; margin-top: 10px;');
+      input.parentNode.appendChild(newImage);
+      currentImage = newImage;
+      uploadButton.style.backgroundColor = '#fff';
+      uploadButton.style.border = '0px';
+      uploadButton.querySelector('h5').style.display = 'none';
+      uploadButton.querySelector('i').style.display ='none';
+    };
+    reader.readAsDataURL(file);
+  }
+
+  //quill editor
+  var quill = new Quill('#text', {
+    theme: 'snow'
+  });
+
+  document.querySelector('form').addEventListener('submit', function(e) {
+    var editorContent = document.querySelector('.quill-editor-full .ql-editor').innerHTML;
+    var hiddenInput = document.createElement('input');
+    hiddenInput.setAttribute('type', 'hidden');
+    hiddenInput.setAttribute('name', 'content');
+    hiddenInput.setAttribute('value', editorContent);
+    this.appendChild(hiddenInput);
+  });
+}
