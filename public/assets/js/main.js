@@ -384,3 +384,35 @@ function handleFileUpload(input) {
     this.appendChild(hiddenInput);
   });
 }
+
+//delete article
+$('#article').on('click', '#deleteArticle', function() {
+  const id = this.dataset.id;
+  $('#education_id_delete').val(id);
+});
+
+//img on edit article
+let currentImage2 = null;
+function handleFileUpload2(input) {
+  const file = input.files[0];
+  const uploadButton = document.querySelector('.upload-button-edit');
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      if (currentImage2) {
+        currentImage2.parentNode.removeChild(currentImage2);
+      }
+
+      const newImage = document.getElementById('previewImg');
+      newImage.setAttribute('src', e.target.result);
+      currentImage2 = newImage;
+    };
+    reader.readAsDataURL(file);
+  } else {
+    const newImage = document.getElementById('previewImg');
+    const value = newImage.getAttribute('src');
+    console
+    newImage.setAttribute('src', value);
+    currentImage2 = newImage;
+  }
+}

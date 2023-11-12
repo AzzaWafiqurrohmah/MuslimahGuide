@@ -8,6 +8,8 @@ use MuslimahGuide\controller\dashboardController;
 use MuslimahGuide\controller\userTableController;
 use MuslimahGuide\controller\profileController;
 use MuslimahGuide\controller\uploadController;
+use MuslimahGuide\controller\articleController;
+use MuslimahGuide\controller\editArticleController;
 
 //require __DIR__ . '/../src/view/login.php';
 
@@ -26,6 +28,10 @@ router::add("WEB", "GET", "/profile", profileController::class, 'profile', []);
 router::add("WEB", "POST", "/profile", profileController::class, 'postProfile', []);
 router::add("WEB", "GET", "/uploadArticle", uploadController::class, 'upload', []);
 router::add("WEB", "POST", "/uploadArticle", uploadController::class, 'postUpload', []);
+router::add("WEB", "GET", "/article", articleController::class, 'article', []);
+router::add("WEB", "POST", "/article", articleController::class, 'postArticle', []);
+router::add("WEB", "GET", "/editArticle", editArticleController::class, 'editArticle', []);
+router::add("WEB", "POST", "/editArticle", editArticleController::class, 'postEditArticle', []);
 
 //API
 router::add("API", "GET", '/loginAPI', adminController::class, 'loginAPI');

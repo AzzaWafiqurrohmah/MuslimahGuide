@@ -61,16 +61,14 @@ class EducationRepository
         return null;
     }
 
-    public function getAll() :?education{
-        $sql = "SELECT FROM educations";
+    public function getAll() :?array{
+        $sql = "SELECT * FROM educations";
 
         $statement = $this->connection->prepare($sql);
         if($statement->execute()){
-            foreach ($statement as $row){
-                return $this->mapToDomain($row);
-            }
+            return $statement->fetchAll(\PDO::FETCH_ASSOC);
         }
-        return null;
+        return [];
     }
 
     public function getBy(array $values) :?education{

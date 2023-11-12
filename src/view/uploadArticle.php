@@ -105,7 +105,7 @@
         </a>
         <ul id="tables-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
           <li>
-            <a href="article.html">
+            <a href="/article">
               <i class="bi bi-circle"></i><span>Articles</span>
             </a>
           </li>
