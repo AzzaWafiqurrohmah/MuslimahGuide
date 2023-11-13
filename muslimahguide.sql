@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 08, 2023 at 03:14 PM
+-- Generation Time: Nov 13, 2023 at 07:49 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -70,10 +70,7 @@ CREATE TABLE `educations` (
 --
 
 INSERT INTO `educations` (`education_id`, `img`, `title`, `contents`, `on_clicked`) VALUES
-(1, 'coba.jpeg', 'tata cara mengganti sholat', 'mengganti sholat diwajibkan bagi setiap perempuan yang sudah menyelesaikan masa menstruasinya', 3),
-(2, 'coba.jpeg', 'tata cara mengganti sholat', 'mengganti sholat diwajibkan bagi setiap perempuan yang sudah menyelesaikan masa menstruasinya', 3),
-(3, 'coba.jpeg', 'tata cara mengganti sholat', 'mengganti sholat diwajibkan bagi setiap perempuan yang sudah menyelesaikan masa menstruasinya', 3),
-(4, 'coba.jpeg', 'tata cara mengganti sholat', 'mengganti sholat diwajibkan bagi setiap perempuan yang sudah menyelesaikan masa menstruasinya', 3);
+(18, 'd7511_ilustrasi.jpeg', 'Apa itu haid?', 'haid yaitu keluarnya darah selama kurun waktu tertentu\r\n', 0);
 
 -- --------------------------------------------------------
 
@@ -108,7 +105,9 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`session_id`, `user_id`) VALUES
-('654ae57b464b0', 468);
+('654ae57b464b0', 468),
+('6550f41c7f068', 473),
+('6550fbfee9e5d', 473);
 
 -- --------------------------------------------------------
 
@@ -134,7 +133,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`user_id`, `profileImg`, `name`, `birthdate`, `role`, `phone`, `username`, `email`, `password`) VALUES
 (468, 'profile.jpg', 'Azza Wafiqurrohmah', NULL, 'admin', '087546534211', 'azza23', 'azza@gmail.com', 'rahasia'),
-(473, NULL, 'nisa', '2003-08-07', 'user', NULL, 'nisa12', 'nisa@gmail.com', 'nisa123'),
+(473, NULL, 'user', '2003-08-07', 'user', NULL, 'user', 'nisa@gmail.com', 'user'),
 (474, NULL, 'sisi', '2003-08-03', 'user', '082342123456', 'sisi123', 'sisi@gmailcom', 'rahasia'),
 (475, NULL, 'nana', '2005-11-03', 'user', '082342123456', 'nana', 'nana@gmail.com', 'rahasia'),
 (476, NULL, 'rika', '2005-11-03', 'user', '082342123456', 'sinta', 'sinta@gmail.com', 'rahasia'),
@@ -211,7 +210,7 @@ ALTER TABLE `cycle_history`
 -- AUTO_INCREMENT for table `educations`
 --
 ALTER TABLE `educations`
-  MODIFY `education_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `education_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `reminder`
@@ -223,7 +222,7 @@ ALTER TABLE `reminder`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=543;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=544;
 
 --
 -- Constraints for dumped tables
