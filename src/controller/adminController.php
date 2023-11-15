@@ -56,15 +56,17 @@ class adminController
         $request->password = $_GET['password'];
 
         try {
-            $this->userService->login($request);
+            $response = $this->userService->login($request);
+            $token = $this->sessionService->create($response->user);
             $response = array(
                 'status' => 1,
-                'message' => 'login berhasil'
+                'message' => 'login berhasil',
+                'token' => $token->getId()
             );
-        } catch (validationException $exception){
+        } catch (\Exception $exception){
             $response = array(
                 'status' => 0,
-                'message' => 'login gagal'
+                'message' => $exception->getMessage()
             );
         }
         header('Content-Type: application/json');
@@ -77,7 +79,10 @@ class adminController
         $request->password = $_GET['password'];
 
         try {
-            $this->userService->register($request);
+            $adminResponse = $this->userService->register($request);
+            if(!$adminResponse){
+                throw new \Exception('login gagal');
+            }
             $response = array(
                 'status' => 1,
                 'message' => 'Register berhasil'
@@ -85,7 +90,7 @@ class adminController
         } catch (validationException $exception){
             $response = array(
                 'status' => 0,
-                'message' => 'Register gagal'
+                'message' => $exception->getMessage()
             );
         }
         header('Content-Type: application/json');

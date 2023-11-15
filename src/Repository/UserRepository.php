@@ -80,7 +80,15 @@ class UserRepository
             }
         }
         return null;
+    }
 
+    public function getByIdAPI(int $id) : ?array {
+        $sql = "SELECT * FROM users WHERE user_id = ?";
+        $statement = $this->connection->prepare($sql);
+        if ($statement->execute([$id])){
+            return $statement->fetchAll(\PDO::FETCH_ASSOC);
+        }
+        return null;
     }
 
     public function get(array $values) : ?user{
