@@ -31,6 +31,19 @@ class adminService
         return $response;
     }
 
+    public function loginEmail(adminRequest $request) : adminResponse{
+        $request->validateUserEmailRequest($request->email);
+
+        $user = $this->userRepo->get(["email" => $request->email]);
+        if($user == null){
+            throw new validationException("email or password is wrong");
+        }
+
+        $response = new adminResponse();
+        $response->user = $user;
+        return $response;
+    }
+
     public function register(adminRequest $request) :adminResponse{
         $request -> validateUserRequest($request->email, $request->password);
 

@@ -40,8 +40,18 @@ class adminController
             $googleAuth = new Google_Service_Oauth2($client);
             $google_info = $googleAuth->userinfo->get();
 
-            print_r($google_info);
-            $client->revokeToken();
+            $request = new adminRequest();
+            $request->email = $google_info->email;
+
+            try {
+                $response = $this->userService->loginEmail($request);
+                $this->sessionService->create($response->user);
+                view::redirect('dashboard');
+            } catch (validationException $exception){
+                view::render('login');
+            }
+
+            $client->revokeToken();  //for ask what email that will be used in every request
             exit();
 
         }

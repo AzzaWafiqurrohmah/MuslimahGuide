@@ -18,5 +18,13 @@ class adminRequest
         }
     }
 
+    public function validateUserEmailRequest($email){
+        $this->email = $email;
+
+        if($this->email == null || trim($this->email) == ""){
+            throw new validationException();
+        }
+    }
+
 
 }
