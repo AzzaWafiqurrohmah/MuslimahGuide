@@ -2,6 +2,9 @@
 
 namespace MuslimahGuide\controller;
 
+require_once __DIR__ . "/../../config/google-login.php";
+
+use Google_Service_Oauth2;
 use MuslimahGuide\app\view;
 use MuslimahGuide\Config\database;
 use MuslimahGuide\Exception\validationException;
@@ -27,7 +30,25 @@ class adminController
     }
 
     function login(){
-        view::render('login');
+        global $client;
+        $urlAuth = $client->createAuthUrl();
+
+        if (isset($_GET['code'])){
+            $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
+            $client->setAccessToken($token);
+
+            $googleAuth = new Google_Service_Oauth2($client);
+            $google_info = $googleAuth->userinfo->get();
+
+            print_r($google_info);
+            $client->revokeToken();
+            exit();
+
+        }
+
+        view::render('login', [
+            'auth' => $urlAuth
+        ]);
     }
 
     function postLogin(){
@@ -52,7 +73,7 @@ class adminController
 
     function loginAPI(){
         $request = new adminRequest();
-        $request->username = $_GET['username'];
+        $request->email = $_GET['email'];
         $request->password = $_GET['password'];
 
         try {
@@ -75,7 +96,7 @@ class adminController
 
     function registerAPI(){
         $request = new adminRequest();
-        $request->username = $_GET['username'];
+        $request->email = $_GET['email'];
         $request->password = $_GET['password'];
 
         try {

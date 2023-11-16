@@ -19,11 +19,11 @@ class adminService
     }
 
     public function login(adminRequest $request) : adminResponse{
-        $request->validateUserLoginRequest($request->username, $request->password);
+        $request->validateUserRequest($request->email, $request->password);
 
-        $user = $this->userRepo->get(["username" => $request->username, "password"=> $request->password]);
+        $user = $this->userRepo->get(["email" => $request->email, "password"=> $request->password]);
         if($user == null){
-            throw new validationException("username or password is wrong");
+            throw new validationException("email or password is wrong");
         }
 
         $response = new adminResponse();
@@ -32,9 +32,9 @@ class adminService
     }
 
     public function register(adminRequest $request) :adminResponse{
-        $request -> validateUserLoginRequest($request->username, $request->username);
+        $request -> validateUserRequest($request->email, $request->password);
 
-        $user = new user(null,null, null, role::user, null, null, $request->username, $request->password);
+        $user = new user(null,null, null, role::user, null, $request->email, null, $request->password);
         $user->setId($this->userRepo->addAll($user));
 
         $response = new adminResponse();

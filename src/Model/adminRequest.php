@@ -6,15 +6,17 @@ use MuslimahGuide\Exception\validationException;
 
 class adminRequest
 {
-    public ?string $username = null;
+    public ?string $email = null;
     public ?string $password = null;
 
-    public function validateUserLoginRequest($username, $password){
-        $this->username = $username;
+    public function validateUserRequest($email, $password){
+        $this->email = $email;
         $this->password = $password;
 
-        if($this->username == null || $this->password == null || trim($this->username) == "" || trim($this->password) == null){
+        if($this->email == null || $this->password == null || trim($this->email) == "" || trim($this->password) == null){
             throw new validationException();
         }
     }
+
+
 }
