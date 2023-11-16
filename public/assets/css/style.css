@@ -10,6 +10,42 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
+/*login*/
+
+/*body {*/
+/*    font-family: Arial, sans-serif;*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+/*    height: 100vh;*/
+/*    margin: 0;*/
+/*}*/
+
+.password-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.password-input-container {
+    position: relative;
+}
+
+input {
+    padding: 8px;
+    width: 200px;
+}
+
+.toggle-password {
+    color: #899bbd;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+
 /*user table*/
 
 /*input image edit profile*/

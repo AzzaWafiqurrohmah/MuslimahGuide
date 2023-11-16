@@ -31,9 +31,12 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-12">
+                                    <div class="col-12 password-container">
                                         <label for="yourPassword" class="form-label">Password</label>
-                                        <input type="password" name="password" class="form-control" id="yourPassword" required>
+                                        <div class="password-input-container">
+                                            <input type="password" name="password" class="form-control" id="password" required>
+                                            <span id="togglePassword" class="toggle-password bi bi-eye-fill"></span>
+                                        </div>
                                         <div class="invalid-feedback">Please enter your password!</div>
                                     </div>
 
@@ -61,4 +64,24 @@
         </section>
     </div>
 </main><!-- End #main -->
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const passwordInput = document.getElementById('password');
+        const toggleButton = document.getElementById('togglePassword');
+
+        toggleButton.addEventListener('click', function () {
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleButton.classList.remove('bi-eye-fill');
+                toggleButton.classList.add('bi-eye-slash-fill');
+            } else {
+                passwordInput.type = 'password';
+                toggleButton.classList.remove('bi-eye-slash-fill');
+                toggleButton.classList.add('bi-eye-fill');
+            }
+        });
+    });
+
+</script>
 
