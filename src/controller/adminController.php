@@ -107,6 +107,7 @@ class adminController
     function registerAPI(){
         $request = new adminRequest();
         $request->email = $_GET['email'];
+        $request->username = $_GET['username'];
         $request->password = $_GET['password'];
 
         try {
