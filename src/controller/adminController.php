@@ -70,7 +70,7 @@ class adminController
                 $request->password = $_POST['password'];
 
                 try {
-                    $response = $this->userService->login($request);
+                    $response = $this->userService->loginWeb($request);
                     $this->sessionService->create($response->user);
                     view::redirect('dashboard');
                 } catch (validationException $exception){

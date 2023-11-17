@@ -7,13 +7,23 @@ use MuslimahGuide\Exception\validationException;
 class adminRequest
 {
     public ?string $email = null;
+    public ?string $username = null;
     public ?string $password = null;
 
-    public function validateUserRequest($email, $password){
+    public function validateUserMobileRequest($email, $password){
         $this->email = $email;
         $this->password = $password;
 
         if($this->email == null || $this->password == null || trim($this->email) == "" || trim($this->password) == null){
+            throw new validationException();
+        }
+    }
+
+    public function validateUserWebRequest($username, $password){
+        $this->username = $username;
+        $this->password = $password;
+
+        if($this->username == null || $this->password == null || trim($this->username) == "" || trim($this->password) == null){
             throw new validationException();
         }
     }
