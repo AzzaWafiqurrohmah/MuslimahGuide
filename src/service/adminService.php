@@ -58,9 +58,9 @@ class adminService
     }
 
     public function register(adminRequest $request) :adminResponse{
-        $request -> validateUserRequest($request->email, $request->password);
+        $request -> validateRegisterRequest($request->email, $request->password, $request->username);
 
-        $user = new user(null,null, null, role::user, null, $request->email, null, $request->password);
+        $user = new user(null,null, null, role::user, null, $request->email, $request->username, $request->password);
         $user->setId($this->userRepo->addAll($user));
 
         $response = new adminResponse();

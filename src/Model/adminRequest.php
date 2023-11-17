@@ -36,5 +36,15 @@ class adminRequest
         }
     }
 
+    public function validateRegisterRequest($email, $username, $password){
+        $this->email = $email;
+        $this->username = $username;
+        $this->password = $password;
+
+        if($this->email == null || $this->username == null || $this->password == null || trim($this->email) == "" || trim($this->username) == "" || trim($this->password) == ""){
+            throw new validationException();
+        }
+    }
+
 
 }
