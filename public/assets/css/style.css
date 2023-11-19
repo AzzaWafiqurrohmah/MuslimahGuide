@@ -10,16 +10,49 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
-/*login*/
+/*input code verification*/
+/* Gaya input default */
+.custom-input {
+    border: none;
+    border-bottom: 2px solid #899bbd;
+    border-radius: 0;
+    margin-top: 7px;
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 90%;
+    text-align: center;
+    font-size: 28px;
+    letter-spacing: 1rem;
+}
 
-/*body {*/
-/*    font-family: Arial, sans-serif;*/
-/*    display: flex;*/
-/*    align-items: center;*/
-/*    justify-content: center;*/
-/*    height: 100vh;*/
-/*    margin: 0;*/
-/*}*/
+/* Gaya input saat aktif atau diklik */
+.custom-input:focus {
+    border-bottom-color: #DA4256; /* Ganti warna sesuai keinginan Anda */
+    outline: none; /* Hilangkan outline bawaan */
+}
+
+/* Gaya input saat invalid */
+.custom-input:invalid {
+    border-bottom-color: #899bbd; /* Ganti warna sesuai keinginan Anda */
+}
+
+.custom-input:empty {
+    border-bottom-color: #899bbd; /* Ganti warna sesuai keinginan Anda */
+}
+
+/* Gaya pesan invalid */
+.invalid-feedback {
+    color: #e74c3c; /* Warna pesan invalid */
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.empty-feedback {
+    color: #e74c3c; /* Warna pesan invalid */
+    font-size: 12px;
+    margin-top: 5px;
+}
+
 
 .password-container {
     display: flex;

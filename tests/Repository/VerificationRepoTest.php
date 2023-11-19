@@ -38,10 +38,9 @@ class VerificationRepoTest extends TestCase
     public function testGet()
     {
         $verification_id = $this->verificationRepo->add($this->verification);
-        $this->verification->setVerificationId($verification_id);
-
-        $result = $this->verificationRepo->getByUserId($this->user->getId());
+        $result = $this->verificationRepo->getById($verification_id);
         assertNotNull($result);
+        var_dump($result);
     }
 
     public function  testUpdate(){

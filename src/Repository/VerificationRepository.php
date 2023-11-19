@@ -25,8 +25,8 @@ class VerificationRepository
         return $res;
     }
 
-    public function getByUserId(int $id) : ?verification{
-        $sql = "SELECT * FROM verifications WHERE user_id = ?";
+    public function getById(int $id) : ?verification{
+        $sql = "SELECT * FROM verifications WHERE verification_id = ?";
 
         $statement = $this->connection->prepare($sql);
         if($statement->execute([$id])){

@@ -11,8 +11,8 @@ use MuslimahGuide\controller\uploadController;
 use MuslimahGuide\controller\articleController;
 use MuslimahGuide\controller\editArticleController;
 use MuslimahGuide\controller\api\profile;
+use MuslimahGuide\controller\verificationController;
 
-//require __DIR__ . '/../src/view/login.php';
 
 //website
 router::add("web", "GET", "/", homeController::class, 'landingPage', []);
@@ -33,6 +33,13 @@ router::add("WEB", "GET", "/article", articleController::class, 'article', []);
 router::add("WEB", "POST", "/article", articleController::class, 'postArticle', []);
 router::add("WEB", "GET", "/editArticle", editArticleController::class, 'editArticle', []);
 router::add("WEB", "POST", "/editArticle", editArticleController::class, 'postEditArticle', []);
+
+router::add("WEB", "GET", "/verificationEmail", verificationController::class, 'email', []);
+router::add("WEB", "POST", "/verificationEmail", verificationController::class, 'postEmail', []);
+router::add("WEB", "GET", "/verificationCode", verificationController::class, 'code', []);
+router::add("WEB", "POST", "/verificationCode", verificationController::class, 'postCode', []);
+router::add("WEB", "GET", "/verificationNewPassword", verificationController::class, 'newPassword', []);
+router::add("WEB", "POST", "/verificationNewPassword", verificationController::class, 'postNewPassword', []);
 
 //API
 router::add("API", "GET", '/loginAPI', adminController::class, 'loginAPI');

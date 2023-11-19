@@ -40,14 +40,10 @@
                                         <div class="invalid-feedback">Please enter your password!</div>
                                     </div>
 
-                                    <a href="pages-register.html" class="forgot-password" style="text-align: right; color: #DE6172 " for="forgotPass">Forgot Password?</a>
+                                    <a href="/verificationEmail" class="forgot-password" style="text-align: right; color: #DE6172; text-decoration: underline; font-size: 14px" for="forgotPass" >Forgot Password?</a>
 
                                         <div class="col-12">
                                             <button class="btn btn-primary w-100" type="submit" id="manual" name="manual" >Login</button>
-<!--                                            <button class="btn btn-primary w-100" style="margin-top: 10px; margin-bottom: 20px; background-color: white; border-color: #DA4256 ; color: #DA4256;" type="submit" id="google" name="google">-->
-<!--                                                <i class="bi bi-google" style="color: #DA4256 ; font-size: 0.8rem;"></i>-->
-<!--                                                Login with google-->
-<!--                                            </button>-->
                                             <a href="<?= $auth; ?>" class="btn btn-primary w-100" style="margin-top: 10px; margin-bottom: 20px; background-color: white; border-color: #DA4256 ; color: #DA4256;">
                                                 <i class="bi bi-google" style="color: #DA4256 ; font-size: 0.8rem;"></i>
                                                 Login with Google
