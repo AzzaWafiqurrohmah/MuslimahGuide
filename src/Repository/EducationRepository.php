@@ -94,6 +94,15 @@ class EducationRepository
         return null;
     }
 
+    public function dashboard() :array{
+        $sql = "SELECT * FROM `educations` ORDER BY on_clicked DESC LIMIT 3";
+        $statement = $this->connection->prepare($sql);
+        if($statement->execute()){
+            return $statement->fetchAll(\PDO::FETCH_ASSOC);
+        }
+        return [];
+    }
+
 
     public function mapToDomain($row) :education{
         $education = new education(

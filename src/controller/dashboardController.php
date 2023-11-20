@@ -4,6 +4,7 @@ namespace MuslimahGuide\controller;
 
 use MuslimahGuide\app\view;
 use MuslimahGuide\Config\database;
+use MuslimahGuide\Repository\EducationRepository;
 use MuslimahGuide\Repository\SessionRepository;
 use MuslimahGuide\Repository\UserRepository;
 use MuslimahGuide\service\adminService;
@@ -14,6 +15,8 @@ class dashboardController
     private UserRepository $userRepo;
     private adminService $userService;
     private sessionService $sessionService;
+    private EducationRepository $educationRepo;
+
 
     public function __construct()
     {
@@ -23,6 +26,7 @@ class dashboardController
 
         $sessionRepo = new SessionRepository($connection);
         $this->sessionService = new sessionService($sessionRepo, $this->userRepo);
+        $this->educationRepo = new EducationRepository($connection);
     }
 
     function dashboard(){
@@ -34,9 +38,13 @@ class dashboardController
         //dashboard chart
         $data = $this->userRepo->chart();
 
+        //dashboard education
+        $education = $this->educationRepo->dashboard();
+
         view::render('dashboard', [
             'name' => $name,
             'data' => $data,
+            'education' => $education,
             'profileImg' => $profileImg
         ]);
     }

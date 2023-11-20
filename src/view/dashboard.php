@@ -216,37 +216,26 @@
                 <!-- Budget Report -->
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">With captions</h5>
+                        <h5 class="card-title">Trending Article</h5>
 
                         <!-- Slides with captions -->
                         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-indicators">
-                                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                <?php foreach ($education as $i => $row): ?>
+                                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="<?= $i ?>" <?= $i == 0 ? 'class="active" aria-current="true"' : '' ?> aria-label="Slide <?= $i + 1 ?>"></button>
+                                <?php endforeach; ?>
                             </div>
+
                             <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img src="/assets/img/card-1.jpeg" style="border-radius: 7px" class="d-block w-100" alt="...">
-                                    <div class=class="card-text" style="margin-top: 10px">
-                                        <h5>First slide label</h5>
-                                        <p>Some representative placeholder content for the first slide.</p>
+                                <?php foreach ($education as $i => $row): ?>
+                                    <div class="carousel-item <?= $i == 0 ? 'active' : '' ?>">
+                                        <img src="/assets/img/education/<?= $row['img']; ?>" style="border-radius: 7px" class="d-block w-100" alt="...">
+                                        <div class="card-text" style="margin-top: 10px">
+                                            <h5><?= $row['title']; ?></h5>
+                                            <p><?= $row['contents']; ?></p>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="/assets/img/card-2.jpeg" class="d-block w-100" alt="..." style="border-radius: 7px">
-                                    <div class="card-text" style="margin-top: 10px">
-                                        <h5>Second slide label</h5>
-                                        <p>Some representative placeholder content for the second slide.</p>
-                                    </div>
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="/assets/img/card-4.jpeg" class="d-block w-100" alt="..." style="border-radius: 7px">
-                                    <div class="card-text" style="margin-top: 10px">
-                                        <h5>Third slide label</h5>
-                                        <p>Some representative placeholder content for the third slide.</p>
-                                    </div>
-                                </div>
+                                <?php endforeach; ?>
                             </div>
 
                             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
@@ -257,11 +246,7 @@
                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                 <span class="visually-hidden">Next</span>
                             </button>
-
-                        </div><!-- End Slides with captions -->
-
-                    </div>
-                </div><!-- End Budget Report -->
+                        </div>
 
             </div><!-- End Right side columns -->
 
