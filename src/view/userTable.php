@@ -174,6 +174,16 @@
                                                 </div>
                                             </div>
                                         </div>
+                                            <div class="col-12">
+                                                <label for="validationCustom01" class="form-label">Nama Lengkap</label>
+                                                <input type="text" class="form-control" id="edit-name" name ="validationCustom03"  required>
+                                                <div class="valid-feedback">
+                                                    Looks good!
+                                                </div>
+                                                <div class="invalid-feedback">
+                                                    Please enter a valid name!
+                                                </div>
+                                            </div>
                                         <div class="col-12">
                                             <label for="validationCustom01" class="form-label">Email</label>
                                             <input type="email" class="form-control" id="validationCustom01" name ="validationCustom01"  required>
@@ -224,6 +234,16 @@
                                 </div>
                             </div>
                             <div class="col-12">
+                                <label for="validationCustom01" class="form-label">Nama Lengkap</label>
+                                <input type="text" class="form-control" id="edit-name" name ="validationCustom03"  required>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please enter a valid name!
+                                </div>
+                            </div>
+                            <div class="col-12">
                                 <label for="validationCustom01" class="form-label">Email</label>
                                 <input type="email" class="form-control" id="edit-email" name ="validationCustom01"  required>
                                 <div class="valid-feedback">
@@ -250,6 +270,7 @@
                 </div>
             </div>
         </div> <!--End Basic Modal-->
+
 
         <!-- Delete Modal -->
         <div class="modal fade" id="basicModal3" tabindex="-1">
@@ -312,12 +333,12 @@
                     ?>
                     <tr>
                         <th scope="row"><?= $i; ?></th>
-                        <td><?=  $row['fullname']; ?></td>
+                        <td><?=  $row['name']; ?></td>
                         <td><?=  $row['age']; ?></td>
                         <td><?=  $row['username']; ?></td>
                         <td><?=  $row['email']; ?></td>
                         <td>
-                            <button type="button" class="custom-btn btn-edit" id="btn-edit" name="btn-edit" data-bs-toggle="modal" data-bs-target="#basicModal2" data-id="<?=$row['user_id']?>"  data-username=<?=$row['username']?> data-email=<?=$row['email']?> data-password=<?=$row['password']?> >
+                            <button type="button" class="custom-btn btn-edit" id="btn-edit" name="btn-edit" data-bs-toggle="modal" data-bs-target="#basicModal2" data-id="<?=$row['user_id']?>"  data-username=<?=$row['username']?> data-email=<?=$row['email']?> data-password=<?=$row['password']?> data-name=<?=$row['name']?> >
                                 Edit
                             </button>
                             <button type="button" class="custom-btnDelete btn-delete" id="btn-delete" name="btn-delete" data-bs-toggle="modal" data-bs-target="#basicModal3" data-id="<?=$row['user_id']?>" >

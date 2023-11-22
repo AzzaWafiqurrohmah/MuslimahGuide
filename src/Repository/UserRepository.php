@@ -130,7 +130,7 @@ class UserRepository
     }
 
     public function userTable(): array{
-        $sql = "SELECT user_id, name AS fullname, birthdate, TIMESTAMPDIFF(YEAR, birthdate, CURDATE()) as age, phone, username, email, password FROM users  WHERE role='user'";
+        $sql = "SELECT user_id, name, birthdate, TIMESTAMPDIFF(YEAR, birthdate, CURDATE()) as age, phone, username, email, password FROM users  WHERE role='user'";
 
         $statement = $this->connection->prepare($sql);
 

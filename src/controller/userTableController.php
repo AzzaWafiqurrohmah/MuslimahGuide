@@ -40,16 +40,18 @@ class userTableController
 
             if(isset($_POST['addUser'])){
                 $username = $_POST['validationCustomUsername'];
+                $name = $_POST['validationCustom03'];
                 $email = $_POST['validationCustom01'];
                 $password = $_POST['validationCustom02'];
 
-                $this->user = new user(null, null, null, role::user, null, $email, $username, $password);
+                $this->user = new user(null, $name, null, role::user, null, $email, $username, $password);
 //                $this->userRepo->addAll($this->user);
                 if( $this->userRepo->addAll($this->user)){
                    $alert = "DiTambahkan";
                 }
             } else if(isset($_POST['editUser'])){
                 $username = $_POST['validationCustomUsername'];
+                $name = $_POST['validationCustom03'];
                 $email = $_POST['validationCustom01'];
                 $password = $_POST['validationCustom02'];
                 $id = $_POST['user_id_edit'];
@@ -57,6 +59,7 @@ class userTableController
                 $this->user = $this->userRepo->getById($id);
                 $this->user->setEmail($email);
                 $this->user->setUsername($username);
+                $this->user->setName($name);
                 $this->user->setPassword($password);
 
 //                $this->userRepo->update($this->user);

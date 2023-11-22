@@ -343,10 +343,12 @@ $('.datatables').DataTable();
 $('#user-table').on('click', '.btn-edit', function() {
    const id = this.dataset.id;
     const username = this.dataset.username;
+    const name =this.dataset.name;
     const email = this.dataset.email;
     const password = this.dataset.password;
 
     $('#edit-username').val(username);
+    $('#edit-name').val(name);
     $('#edit-email').val(email);
     $('#edit-password').val(password);
     $('#user_id_edit').val(id);
