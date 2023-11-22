@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 20, 2023 at 03:37 AM
+-- Generation Time: Nov 22, 2023 at 01:41 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `muslimahguide`
+-- Database: `zenfemina`
 --
 
 -- --------------------------------------------------------
@@ -90,7 +90,7 @@ CREATE TABLE `educations` (
 --
 
 INSERT INTO `educations` (`education_id`, `img`, `title`, `contents`, `on_clicked`) VALUES
-(18, 'd7511_ilustrasi.jpeg', 'Apa itu haid?', 'haid yaitu keluarnya darah selama kurun waktu tertentu\r\n', 5),
+(18, 'd7511_ilustrasi.jpeg', 'Apa itu haid?', 'haid yaitu keluarnya darah selama kurun waktu tertentu, dan ketentuan tertentu.\r\n', 5),
 (25, 'Niqab_Sastra-Arab-UI.jpg', 'kewajiban mengganti sholat', 'setelah siklus mentruasi selesai, perempuan muslimah diwajibkan untuk mengganti sholatnya dengan ketentuan tertentu\r\n', 0),
 (27, 'Niqab_Sastra-Arab-UI.jpg', 'kenali gejala sebelum menstruasi', 'sebelum menstruasi, biasanya beberapa orang mengalami gejara seperti kram perut dan lainnya\r\n', 4);
 
@@ -146,7 +146,12 @@ INSERT INTO `sessions` (`session_id`, `user_id`) VALUES
 ('6559f8542ddce', 468),
 ('655a37988e110', 468),
 ('655ab6bbd0303', 468),
-('6556f396bfff5', 575);
+('655b08a7c72aa', 468),
+('655c10e9e6b7b', 468),
+('655c3874bb6b3', 468),
+('655c76cc2a944', 468),
+('655c786c33620', 468),
+('655cb72d6ca22', 468);
 
 -- --------------------------------------------------------
 
@@ -173,14 +178,14 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`user_id`, `profileImg`, `name`, `birthdate`, `role`, `phone`, `username`, `email`, `password`) VALUES
 (468, 'profile.jpg', 'Azza Wafiqurrohmah', '2003-04-02', 'admin', '087876123213', 'azza23', 'wafiqurrohmahazza@gmail.com', 'rahasia'),
 (473, NULL, 'user', '2003-04-02', 'user', '087876123213', 'user', 'user@gmail.com', 'user'),
-(474, NULL, 'sisi', '2003-08-03', 'user', '082342123456', 'sisi123', 'sisi@gmailcom', 'rahasia'),
-(475, NULL, 'nana', '2005-11-03', 'user', '082342123456', 'nana', 'nana@gmail.com', 'rahasia'),
-(476, NULL, 'rika', '2005-11-03', 'user', '082342123456', 'sinta', 'sinta@gmail.com', 'rahasia'),
-(478, NULL, 'putri', '2005-11-03', 'user', '082342123456', 'putri123', 'putri@gmail.com', 'rahasia'),
+(474, NULL, 'sisi', '2003-08-03', 'user', '082342123456', 'sisi12', 'sisi@gmailcom', 'rahasia'),
+(475, NULL, 'nana', '2005-11-03', 'user', '082342123456', 'nana14', 'nana@gmail.com', 'rahasia'),
+(476, NULL, 'rika', '2005-11-03', 'user', '082342123456', 'sinta82', 'sinta@gmail.com', 'rahasia'),
+(478, NULL, 'putri', '2005-11-03', 'user', '082342123456', 'putri12', 'putri@gmail.com', 'rahasia'),
 (493, NULL, 'siska', '2001-05-03', 'user', NULL, 'siska20', 'siska@gmail.com', 'rahasia'),
-(494, NULL, 'ani', '2001-03-02', 'user', NULL, 'ani12', 'ani@gmail.com', 'rahasia'),
+(494, NULL, 'ani', '2001-03-02', 'user', NULL, 'ani1', 'ani@gmail.com', 'rahasia'),
 (495, NULL, 'rere', '2001-04-01', 'user', NULL, 'rere23', 'rere@gmail.com', 'rahasia'),
-(496, NULL, 'mayang', '2001-07-05', 'user', NULL, 'mayang', 'mayang@gmail.com', 'rahasia'),
+(496, NULL, 'mayang', '2001-07-05', 'user', NULL, 'mayang65', 'mayang@gmail.com', 'rahasia'),
 (497, NULL, 'riri', '1998-08-23', 'user', NULL, 'riri12', 'riri@gmail.com', 'rahasia'),
 (526, NULL, 'second', NULL, 'user', '087342123456', 'hjhjhjhj', 'afdfdgdg', 'rahasia'),
 (544, NULL, 'sisi', NULL, 'admin', '087342123456', 'hjhjhjhj', 'afdfdgdg', 'rahasia'),
@@ -207,15 +212,15 @@ INSERT INTO `users` (`user_id`, `profileImg`, `name`, `birthdate`, `role`, `phon
 (571, NULL, NULL, '2023-11-15', 'admin', '082342123456', 'mbul', NULL, 'rahasia'),
 (572, NULL, 'sisi', NULL, 'admin', '087342123456', 'hjhjhjhj', 'afdfdgdg', 'rahasia'),
 (573, NULL, 'azza', NULL, 'user', '087675453432', 'azza345', 'azza@gmail.com', 'rahasia'),
-(574, NULL, NULL, NULL, 'user', NULL, 'coba', 'coba@gmail.com', 'coba'),
-(575, NULL, NULL, NULL, 'user', NULL, NULL, 'coba@gmail.com', 'rahasia'),
-(592, NULL, NULL, NULL, 'user', NULL, 'rahasia', 'siska@gmail.com', 'siska'),
-(593, NULL, NULL, NULL, 'user', NULL, 'siska', 'siska@gmail.com', 'rahasia'),
 (594, NULL, 'contoh', NULL, 'admin', NULL, 'contoh', 'contoh@gmail.com', 'rahasia'),
 (595, NULL, 'contoh', NULL, 'admin', NULL, 'contoh', 'contoh@gmail.com', 'rahasia'),
 (596, NULL, 'contoh', NULL, 'admin', NULL, 'contoh', 'contoh@gmail.com', 'rahasia'),
 (597, NULL, 'contoh', NULL, 'admin', NULL, 'contoh', 'contoh@gmail.com', 'rahasia'),
-(598, NULL, 'contoh', NULL, 'admin', NULL, 'contoh', 'contoh@gmail.com', 'rahasia');
+(598, NULL, 'contoh', NULL, 'admin', NULL, 'contoh', 'contoh@gmail.com', 'rahasia'),
+(601, NULL, 'contoh', NULL, 'admin', NULL, 'contoh', 'contoh@gmail.com', 'rahasia'),
+(602, NULL, 'contoh', NULL, 'admin', NULL, 'contoh', 'contoh@gmail.com', 'rahasia'),
+(603, NULL, 'contoh', NULL, 'admin', NULL, 'contoh', 'contoh@gmail.com', 'rahasia'),
+(604, NULL, 'contoh', NULL, 'admin', NULL, 'contoh', 'contoh@gmail.com', 'rahasia');
 
 -- --------------------------------------------------------
 
@@ -225,7 +230,7 @@ INSERT INTO `users` (`user_id`, `profileImg`, `name`, `birthdate`, `role`, `phon
 
 CREATE TABLE `verifications` (
   `verification_id` int(11) NOT NULL,
-  `code` int(5) DEFAULT NULL,
+  `code` varchar(6) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -312,13 +317,13 @@ ALTER TABLE `reminder`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=599;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=605;
 
 --
 -- AUTO_INCREMENT for table `verifications`
 --
 ALTER TABLE `verifications`
-  MODIFY `verification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `verification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- Constraints for dumped tables
