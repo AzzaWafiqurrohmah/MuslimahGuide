@@ -319,8 +319,8 @@
                                     <div class="row mb-3">
                                         <label for="newPassword" class="col-md-4 col-lg-3 col-form-label" style="color: #6C757D;">New Password</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="firstnewpassword" type="password" class="form-control" id="firstPassword" required>
-                                            <div class="invalid-feedback">Please enter your password</div>
+                                            <input name="firstPassword" type="password" class="form-control" id="firstPassword" required>
+                                            <div class="invalid-feedback">Please enter your New password</div>
                                         </div>
                                     </div>
 
@@ -328,7 +328,7 @@
                                         <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label" style="color: #6C757D;">Re-enter New Password</label>
                                         <div class="col-md-8 col-lg-9">
                                             <input name="secondPassword" type="password" class="form-control" id="secondPassword" required>
-                                            <div class="invalid-feedback">Please enter your password</div>
+                                            <div class="invalid-feedback">Please Re-enter your New password</div>
                                         </div>
                                     </div>
 

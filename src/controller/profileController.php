@@ -59,8 +59,14 @@ class profileController
         }
 
         if(isset($_POST['changePassword'])){
-            echo "true";
-            view::render('prfofile');
+            $currentPassword = $_POST['currentPassword'];
+            $firstPassword = $_POST['firstPassword'];
+
+            if($currentPassword == $this->user->getPassword()){
+                $this->user->setPassword($firstPassword);
+            }
+            $this->userRepo->update($this->user);
+            view::redirect('profile');
         }
 
         $profileImg = $this->user->getProfileImg();

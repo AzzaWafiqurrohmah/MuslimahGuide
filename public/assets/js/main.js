@@ -302,19 +302,63 @@ $('.datatables').DataTable();
   /**
    * Initiate Bootstrap validation check
    */
-  var needsValidation = document.querySelectorAll('.needs-validation')
+  // var needsValidation = document.querySelectorAll('.needs-validation')
+  // var firstPassword = document.getElementById('firstPassword');
+  // var secondPassword = document.getElementById('secondPassword');
+  //
+  // Array.prototype.slice.call(needsValidation)
+  //   .forEach(function(form) {
+  //     form.addEventListener('submit', function(event) {
+  //       if (!form.checkValidity()) {
+  //         event.preventDefault()
+  //         event.stopPropagation()
+  //       } else if(firstPassword !== secondPassword){
+  //         secondPassword.textContent = "Harap masukkan password yang sama";
+  //         secondPassword.classList.add('.invalid-feedback')
+  //         event.preventDefault()
+  //         event.stopPropagation()
+  //       }
+  //
+  //       form.classList.add('was-validated')
+  //     }, false)
+  //   })
+
+  var needsValidation = document.querySelectorAll('.needs-validation');
+  var firstPassword = document.getElementById('firstPassword');
+  var secondPassword = document.getElementById('secondPassword');
 
   Array.prototype.slice.call(needsValidation)
-    .forEach(function(form) {
-      form.addEventListener('submit', function(event) {
-        if (!form.checkValidity()) {
-          event.preventDefault()
-          event.stopPropagation()
-        }
+      .forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+          } else if (firstPassword.value !== secondPassword.value) {
+            secondPassword.nextElementSibling.textContent = "Harap masukkan password yang sama";
+            firstPassword.nextElementSibling.textContent = "password tidak sama";
+            secondPassword.classList.add('is-invalid');
+            firstPassword.classList.add('is-invalid');
+            secondPassword.style.borderColor = 'red';
+            firstPassword.style.borderColor = 'red';
+            secondPassword.style.borderStyle = 'solid';
+            firstPassword.style.borderStyle = 'solid';
+            secondPassword.style.borderWidth = '1px';
+            firstPassword.style.borderWidth = '1px';
+            secondPassword.style.backgroundImage = 'none';
+            firstPassword.style.backgroundImage = 'none';
+            secondPassword.nextElementSibling.style.color = 'red';
+            firstPassword.nextElementSibling.style.color = 'red';
 
-        form.classList.add('was-validated')
-      }, false)
-    })
+            event.preventDefault();
+            event.stopPropagation();
+          }
+
+          form.classList.add('was-validated');
+        }, false);
+      });
+
+
+
 
   /**
    * Initiate Datatables

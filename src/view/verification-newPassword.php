@@ -34,13 +34,13 @@
 
                                     <div class="col-12" style="margin-top: 0px; margin-bottom: 10px">
                                         <label for="firstPassword" class="form-label" style="font-size: 13px">Kata sandi baru</label>
-                                        <input type="password" name="firstPassword" class="form-control" id="firstPassword"  required>
+                                        <input type="password" name="firstPassword" class="form-control" id="firstPasswordVerif"  required>
                                         <div class="invalid-feedback">Please enter your password!</div>
                                     </div>
 
                                     <div class="col-12" style="margin-top: 0px; margin-bottom: 20px">
                                         <label for="secondPassword" class="form-label" style="font-size: 13px">Ketik ulang kata sandi baru</label>
-                                        <input type="password" name="secondPassword" class="form-control" id="secondPassword"  required>
+                                        <input type="password" name="secondPassword" class="form-control" id="secondPasswordVerif"  required>
                                         <div class="invalid-feedback">Please enter your password!</div>
                                     </div>
 
