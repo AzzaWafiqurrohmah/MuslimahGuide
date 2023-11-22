@@ -5,9 +5,9 @@ namespace MuslimahGuide\Domain;
 class verification
 {
     private int $verification_id;
-    private ?int $code;
+    private ?string $code;
     private user $user;
-    public function __construct(?int $code, user $user)
+    public function __construct(?string $code, user $user)
     {
         $this->code = $code;
         $this->user = $user;
@@ -23,7 +23,7 @@ class verification
         $this->verification_id = $verification_id;
     }
 
-    public function getCode(): ?int
+    public function getCode(): ?string
     {
         return $this->code;
     }

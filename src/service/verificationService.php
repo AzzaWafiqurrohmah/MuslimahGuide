@@ -46,7 +46,7 @@ class verificationService
         }
 
         $uniqueNumber = str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
-        $verification = new verification($uniqueNumber, $user);
+        $verification = new verification((string)$uniqueNumber, $user);
         $verification_id = $this->verificationRepo->add($verification);
         $verification->setVerificationId($verification_id);
 
