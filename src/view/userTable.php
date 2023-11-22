@@ -176,7 +176,7 @@
                                         </div>
                                             <div class="col-12">
                                                 <label for="validationCustom01" class="form-label">Nama Lengkap</label>
-                                                <input type="text" class="form-control" id="edit-name" name ="validationCustom03"  required>
+                                                <input type="text" class="form-control" id="add-name" name ="validationCustom03"  required>
                                                 <div class="valid-feedback">
                                                     Looks good!
                                                 </div>
