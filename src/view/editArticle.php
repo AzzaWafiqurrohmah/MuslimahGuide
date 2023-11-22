@@ -182,12 +182,31 @@
                     <input type="hidden" id="content" name="content">
                 </div>
 
+                <input type="hidden" id="alertArticleEdit" name="alertArticleEdit" data-alertArticleEdit="<?= $_SESSION['alert']; ?>">
+
             </form><!-- End Horizontal Form -->
 
         </div>
     </div>
 
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.all.min.js"></script>
     <script>
+
+        //alert
+        const alertArticleEdit = document.getElementById('alertArticleEdit').dataset;
+       console.log(alertArticleEdit);
+        if(alertArticleEdit !== 'alert'){
+            Swal.fire({
+                title: 'Artikel Edukasi',
+                text: 'berhasil ' + alertArticleEdit,
+                icon: 'success',
+                confirmButtonText: 'Ok'
+            });
+
+        }
+
+        //quill content
         function QuillContent() {
             var quill = new Quill('#text', {
                 theme: 'snow'

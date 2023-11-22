@@ -306,31 +306,34 @@
 
                             <div class="tab-pane fade pt-3" id="profile-change-password">
                                 <!-- Change Password Form -->
-                                <form>
+                                <form class="needs-validation" method="POST" action="/profile" novalidate>
 
                                     <div class="row mb-3">
                                         <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label" style="color: #6C757D;">Current Password</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="password" type="password" class="form-control" id="currentPassword">
+                                            <input name="currentPassword" type="password" class="form-control" id="currentPassword" required>
+                                            <div class="invalid-feedback">Please enter your current password</div>
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
                                         <label for="newPassword" class="col-md-4 col-lg-3 col-form-label" style="color: #6C757D;">New Password</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="newpassword" type="password" class="form-control" id="newPassword">
+                                            <input name="firstnewpassword" type="password" class="form-control" id="firstPassword" required>
+                                            <div class="invalid-feedback">Please enter your password</div>
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
                                         <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label" style="color: #6C757D;">Re-enter New Password</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="renewpassword" type="password" class="form-control" id="renewPassword">
+                                            <input name="secondPassword" type="password" class="form-control" id="secondPassword" required>
+                                            <div class="invalid-feedback">Please enter your password</div>
                                         </div>
                                     </div>
 
                                     <div style="text-align: right;">
-                                        <button type="submit" class="btn btn-primary" style="font-size: 14px; margin-bottom: 10px;">Change Password</button>
+                                        <button type="submit" class="btn btn-primary" style="font-size: 14px; margin-bottom: 10px;" id="changePassword" name="changePassword" >Change Password</button>
                                     </div>
                                 </form><!-- End Change Password Form -->
 

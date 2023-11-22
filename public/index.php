@@ -13,6 +13,7 @@ use MuslimahGuide\controller\editArticleController;
 use MuslimahGuide\controller\api\profile;
 use MuslimahGuide\controller\verificationController;
 
+session_start();
 
 //website
 router::add("web", "GET", "/", homeController::class, 'landingPage', []);

@@ -242,7 +242,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" id="editUser" name="editUser" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary" id="close" name="close" data-bs-dismiss="modal">Close</button>
                             <button class="btn btn-primary" type="submit" id="editUser" name="editUser">Submit</button>
                             <input type="hidden" name="user_id_edit" id="user_id_edit" >
                         </div>
@@ -274,6 +274,21 @@
             </div>
         </div><!-- End Basic Modal-->
 
+<!--        <div class="sessionData" data-sessionData="--><?php //= $_SESSION['alert']; ?><!--"></div>-->
+        <input type="hidden" id="sessionData" name="sessionData" data-sessionData="<?= $_SESSION['alert']; ?>">
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.all.min.js"></script>
+        <script>
+            const sessionData = document.getElementById('sessionData').dataset["sessiondata"];
+            if(sessionData != null && sessionData.trim() !== ""){
+                Swal.fire({
+                    title: 'Data Pengguna',
+                    text: 'berhasil ' + sessionData,
+                    icon: 'success',
+                    confirmButtonText: 'Ok'
+                });
+            }
+        </script>
             <!-- Table with hoverable rows -->
             <table class="Newtable datatables" id="user-table">
                 <thead>

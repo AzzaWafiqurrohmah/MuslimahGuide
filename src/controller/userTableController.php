@@ -34,6 +34,8 @@ class userTableController
         $name = $userProfile->getName();
         $profileImg = $userProfile->getProfileImg();
 
+        $alert = null;
+
         if($_SERVER['REQUEST_METHOD'] == "POST"){
 
             if(isset($_POST['addUser'])){
@@ -42,7 +44,10 @@ class userTableController
                 $password = $_POST['validationCustom02'];
 
                 $this->user = new user(null, null, null, role::user, null, $email, $username, $password);
-                $this->userRepo->addAll($this->user);
+//                $this->userRepo->addAll($this->user);
+                if( $this->userRepo->addAll($this->user)){
+                   $alert = "DiTambahkan";
+                }
             } else if(isset($_POST['editUser'])){
                 $username = $_POST['validationCustomUsername'];
                 $email = $_POST['validationCustom01'];
@@ -54,10 +59,16 @@ class userTableController
                 $this->user->setUsername($username);
                 $this->user->setPassword($password);
 
-                $this->userRepo->update($this->user);
+//                $this->userRepo->update($this->user);
+                if($this->userRepo->update($this->user)){
+                    $alert = "DiUbah";
+                }
             } else if(isset($_POST['deleteUser'])) {
                 $id = $_POST['user_id_delete'];
-                $this->userRepo->delete($id);
+//                $this->userRepo->delete($id);
+                if( $this->userRepo->delete($id)){
+                    $alert = "Dihapus";
+                }
             } else {
                 $this->sessionService->destroy();
                 view::redirect('login');
@@ -68,10 +79,15 @@ class userTableController
         //table
         $data = $this->userRepo->userTable();
 
+        //alert
+        $_SESSION['alert'] = $alert;
+
         view::render('userTable',[
             'name' => $name,
             'data' => $data,
             'profileImg' => $profileImg
         ]);
+
+        unset($_SESSION['alert']);
     }
 }

@@ -46,6 +46,7 @@ class editArticleController
     public function postEditArticle(){
         $id = $_POST['education_id'];
         $this->education = $this->educationRepo->getById($id);
+        $alert = null;
 
         $img = $_FILES['fileInput-edit']['name'];
         if($img == null){
@@ -58,7 +59,12 @@ class editArticleController
         $this->education->setImg($img);
         $this->education->setTitle($title);
         $this->education->setContents($content);
-        $this->educationRepo->update($this->education);
+
+        if($this->educationRepo->update($this->education)){
+            $alert = "DiUbah";
+        }
+        $_SESSION['alert'] = 'oooo';
+
 
        view::redirect('article');
     }

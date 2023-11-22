@@ -58,6 +58,11 @@ class profileController
             exit();
         }
 
+        if(isset($_POST['changePassword'])){
+            echo "true";
+            view::render('prfofile');
+        }
+
         $profileImg = $this->user->getProfileImg();
         $password = $this->user->getPassword();
 

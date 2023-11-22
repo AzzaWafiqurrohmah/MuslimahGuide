@@ -6,6 +6,18 @@
 * License: https://bootstrapmade.com/license/
 */
 
+
+
+// const sessionEditArticle = document.getElementById('sessionEditArticle').dataset['sessionEditArticle'];
+// if(sessionEditArticle != null && sessionEditArticle.trim() !== ""){
+//   Swal.fire({
+//     title: 'Data Pengguna',
+//     text: 'berhasil ' + sessionEditArticle,
+//     icon: 'success',
+//     confirmButtonText: 'Ok'
+//   });
+// }
+
 //show selector user table
 // const select = document.getElementById("datatable-selector-custom");
 
