@@ -35,7 +35,7 @@
                                     </div>
 
                                     <div class="col-12">
-                                        <button class="btn btn-primary w-100" type="submit" id="manual" name="manual" style="font-size: 14px; padding: 6px" >Lanjutkan</button>
+                                        <button class="btn btn-primary w-100" type="submit" id="manual" name="manual" style="font-size: 14px; padding: 6px" >Kirim kode verifikasi</button>
                                     </div>
                                 </form>
 

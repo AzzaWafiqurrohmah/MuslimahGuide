@@ -32,9 +32,6 @@
                                         <input type="hidden" name="verification_id" id="verification_id" value="<?= $id; ?>">
                                         <div class="invalid-feedback">Please enter your password!</div>
                                     </div>
-                                    <p style="font-size: 14px; text-align: center">
-                                        Tidak menerima kode? <a href="#" style="color: #DA4256; text-decoration: underline;">Kirim ulang</a>
-                                    </p>
                                     <div class="col-12">
                                         <button class="btn btn-primary w-100" type="submit" id="manual" name="manual" style="font-size: 14px; padding: 6px" >Lanjutkan</button>
                                     </div>
