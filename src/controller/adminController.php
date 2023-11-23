@@ -11,7 +11,7 @@ use MuslimahGuide\Exception\validationException;
 use MuslimahGuide\Model\adminRequest;
 use MuslimahGuide\Repository\SessionRepository;
 use MuslimahGuide\Repository\UserRepository;
-use MuslimahGuide\service\adminService;
+use MuslimahGuide\Service\adminService;
 use MuslimahGuide\Service\sessionService;
 
 class adminController

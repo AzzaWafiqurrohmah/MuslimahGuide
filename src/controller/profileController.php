@@ -7,7 +7,7 @@ use MuslimahGuide\Config\database;
 use MuslimahGuide\Domain\user;
 use MuslimahGuide\Repository\SessionRepository;
 use MuslimahGuide\Repository\UserRepository;
-use MuslimahGuide\service\adminService;
+use MuslimahGuide\Service\adminService;
 use MuslimahGuide\Service\sessionService;
 
 class profileController

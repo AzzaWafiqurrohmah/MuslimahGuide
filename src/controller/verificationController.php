@@ -10,8 +10,8 @@ use MuslimahGuide\app\view;
 use MuslimahGuide\Config\database;
 use MuslimahGuide\Model\adminRequest;
 use MuslimahGuide\Repository\UserRepository;
-use MuslimahGuide\service\adminService;
-use MuslimahGuide\service\verificationService;
+use MuslimahGuide\Service\adminService;
+use MuslimahGuide\Service\verificationService;
 
 class verificationController
 {
