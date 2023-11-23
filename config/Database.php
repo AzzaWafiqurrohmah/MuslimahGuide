@@ -6,7 +6,7 @@ function getdatabaseconfig(): array
 
     $dbname = "zenfemina";
     $username = "root";
-    $pass = "123";
+    $pass = "";
 
 
     return [

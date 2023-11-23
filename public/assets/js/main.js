@@ -23,7 +23,6 @@
 
 //change entries, for selector entries
 
-$('.datatables').DataTable();
 
 (function() {
   "use strict";
@@ -474,3 +473,5 @@ function handleFileUpload2(input) {
     currentImage2 = newImage;
   }
 }
+
+$('.datatables').DataTable();
