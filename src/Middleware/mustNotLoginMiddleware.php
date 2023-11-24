@@ -23,7 +23,8 @@ class mustNotLoginMiddleware implements middleware
     {
         $user = $this->sessionService->current();
         if( $user != null ){
-            view::redirect('/');
+            view::redirect('/dashboard');
         }
     }
 }
+
