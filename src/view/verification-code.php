@@ -2,6 +2,7 @@
 
 <!-- Template Main CSS File -->
 <link href="/assets/css/style.css" rel="stylesheet">
+<title>Page: Verifikasi-kode</title>
 </head>
 
 <body>

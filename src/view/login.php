@@ -1,6 +1,7 @@
 
     <!-- Template Main CSS File -->
     <link href="/assets/css/style.css" rel="stylesheet">
+    <title>Page: login</title>
 </head>
 
 <body>

@@ -1,5 +1,6 @@
 
 <link href="assets/css/style.css" rel="stylesheet">
+<title>Page: Upload Artikel</title>
 </head>
 
 <body>
