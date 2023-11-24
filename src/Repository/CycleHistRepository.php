@@ -1,6 +1,7 @@
 <?php
 
 namespace MuslimahGuide\Repository;
+use MuslimahGuide\Config\database;
 use MuslimahGuide\Domain\cycleHistory;
 
 class CycleHistRepository
@@ -26,6 +27,31 @@ class CycleHistRepository
 
         $res = $this->connection->lastInsertId();
         return $res;
+    }
+
+    public function getById(int $id) :?cycleHistory{
+        $sql = "SELECT * FROM cycle_history WHERE cycleHistory_id = ?";
+
+        $statement = $this->connection->prepare($sql);
+        if($statement->execute([$id])){
+            foreach ($statement as $row){
+                return $this->mapToDomain($row);
+            }
+        }
+        return null;
+    }
+
+    public function mapToDomain($row) :cycleHistory{
+        $user_id = $row['user_id'];
+        $userRepo = new UserRepository(database::getConnection());
+        $cycleHistory = new cycleHistory(
+            $row['cycle_length'],
+            $row['period_length'],
+            $row['start_date'],
+            $row['end_date'],
+            $userRepo->getById($user_id)
+        );
+        return $cycleHistory;
     }
 
 }

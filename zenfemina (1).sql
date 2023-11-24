@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 22, 2023 at 01:41 AM
+-- Generation Time: Nov 24, 2023 at 09:14 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -24,6 +24,19 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `change_prayer`
+--
+
+CREATE TABLE `change_prayer` (
+  `changePrayer_id` int(11) NOT NULL,
+  `prayer` enum('shubuh','dzuhur','ashar','maghrib','isya') DEFAULT NULL,
+  `status` enum('yes','no') DEFAULT 'no',
+  `cycleHistory_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `cycle_est`
 --
 
@@ -35,18 +48,6 @@ CREATE TABLE `cycle_est` (
   `end_date` datetime DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `cycle_est`
---
-
-INSERT INTO `cycle_est` (`cycleEst_id`, `cycle_length`, `period_length`, `start_date`, `end_date`, `user_id`) VALUES
-(49, 3, 22, NULL, NULL, 544),
-(50, 8, 27, NULL, NULL, 545),
-(52, 3, 22, NULL, NULL, 547),
-(53, 8, 27, NULL, NULL, 548),
-(55, 3, 22, NULL, NULL, 560),
-(56, 8, 27, NULL, NULL, 561);
 
 -- --------------------------------------------------------
 
@@ -68,8 +69,7 @@ CREATE TABLE `cycle_history` (
 --
 
 INSERT INTO `cycle_history` (`cycleHistory_id`, `cycle_length`, `period_length`, `start_date`, `end_date`, `user_id`) VALUES
-(9, 4, 30, NULL, NULL, 559),
-(10, 4, 30, NULL, NULL, 572);
+(42, 4, 30, NULL, NULL, 639);
 
 -- --------------------------------------------------------
 
@@ -111,16 +111,6 @@ CREATE TABLE `reminder` (
   `user_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `reminder`
---
-
-INSERT INTO `reminder` (`reminder_id`, `type`, `message`, `reminder`, `reminder_time`, `is_on`, `is_read`, `user_id`) VALUES
-(73, 'period_start', 'atur dan cek kembali siklus mu', 0, '08:00:00', 1, 0, 550),
-(74, 'period_start', 'haiiii', 0, NULL, 1, 0, 551),
-(76, 'period_start', 'atur dan cek kembali siklus mu', 0, '08:00:00', 1, 0, 563),
-(77, 'period_start', 'haiiii', 0, NULL, 1, 0, 564);
-
 -- --------------------------------------------------------
 
 --
@@ -137,21 +127,8 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`session_id`, `user_id`) VALUES
-('6556448511faa', 468),
-('65564b8530830', 468),
-('6556bac57c71c', 468),
-('6556baf31630e', 468),
-('6556bb0662dc6', 468),
-('6558837f41db8', 468),
-('6559f8542ddce', 468),
-('655a37988e110', 468),
-('655ab6bbd0303', 468),
-('655b08a7c72aa', 468),
-('655c10e9e6b7b', 468),
-('655c3874bb6b3', 468),
-('655c76cc2a944', 468),
-('655c786c33620', 468),
-('655cb72d6ca22', 468);
+('655ee5a61b774', 468),
+('655f96efbd88e', 468);
 
 -- --------------------------------------------------------
 
@@ -180,47 +157,17 @@ INSERT INTO `users` (`user_id`, `profileImg`, `name`, `birthdate`, `role`, `phon
 (473, NULL, 'user', '2003-04-02', 'user', '087876123213', 'user', 'user@gmail.com', 'user'),
 (474, NULL, 'sisi', '2003-08-03', 'user', '082342123456', 'sisi12', 'sisi@gmailcom', 'rahasia'),
 (475, NULL, 'nana', '2005-11-03', 'user', '082342123456', 'nana14', 'nana@gmail.com', 'rahasia'),
-(476, NULL, 'rika', '2005-11-03', 'user', '082342123456', 'sinta82', 'sinta@gmail.com', 'rahasia'),
+(476, NULL, 'rika12', '2005-11-03', 'user', '082342123456', 'sinta82', 'sinta@gmail.com', 'rahasia'),
 (478, NULL, 'putri', '2005-11-03', 'user', '082342123456', 'putri12', 'putri@gmail.com', 'rahasia'),
 (493, NULL, 'siska', '2001-05-03', 'user', NULL, 'siska20', 'siska@gmail.com', 'rahasia'),
 (494, NULL, 'ani', '2001-03-02', 'user', NULL, 'ani1', 'ani@gmail.com', 'rahasia'),
-(495, NULL, 'rere', '2001-04-01', 'user', NULL, 'rere23', 'rere@gmail.com', 'rahasia'),
+(495, NULL, 'rere23', '2001-04-01', 'user', NULL, 'rere23', 'rere@gmail.com', 'rahasia'),
 (496, NULL, 'mayang', '2001-07-05', 'user', NULL, 'mayang65', 'mayang@gmail.com', 'rahasia'),
 (497, NULL, 'riri', '1998-08-23', 'user', NULL, 'riri12', 'riri@gmail.com', 'rahasia'),
-(526, NULL, 'second', NULL, 'user', '087342123456', 'hjhjhjhj', 'afdfdgdg', 'rahasia'),
-(544, NULL, 'sisi', NULL, 'admin', '087342123456', 'hjhjhjhj', 'afdfdgdg', 'rahasia'),
-(545, NULL, 'sisi', NULL, 'admin', '087342123456', 'hjhjhjhj', 'afdfdgdg', 'rahasia'),
-(546, NULL, 'sisi', NULL, 'admin', '087342123456', 'hjhjhjhj', 'afdfdgdg', 'rahasia'),
-(547, NULL, 'sisi', NULL, 'admin', '087342123456', 'hjhjhjhj', 'afdfdgdg', 'rahasia'),
-(548, NULL, 'sisi', NULL, 'admin', '087342123456', 'hjhjhjhj', 'afdfdgdg', 'rahasia'),
-(549, NULL, 'sisi', NULL, 'admin', '087342123456', 'hjhjhjhj', 'afdfdgdg', 'rahasia'),
-(550, NULL, 'sisi', NULL, 'admin', '087342123456', 'hjhjhjhj', 'afdfdgdg', 'rahasia'),
-(551, NULL, 'sisi', NULL, 'admin', '087342123456', 'hjhjhjhj', 'afdfdgdg', 'rahasia'),
-(552, NULL, 'sisi', NULL, 'admin', '087342123456', 'hjhjhjhj', 'afdfdgdg', 'rahasia'),
-(555, NULL, NULL, '2023-11-15', 'admin', '082342123456', 'mbul', NULL, 'rahasia'),
-(556, NULL, 'rika', '2023-11-15', 'admin', '082342123456', 'mbul', NULL, 'rahasia'),
-(558, NULL, NULL, '2023-11-15', 'admin', '082342123456', 'mbul', NULL, 'rahasia'),
-(559, NULL, 'sisi', NULL, 'admin', '087342123456', 'hjhjhjhj', 'afdfdgdg', 'rahasia'),
-(560, NULL, 'sisi', NULL, 'admin', '087342123456', 'hjhjhjhj', 'afdfdgdg', 'rahasia'),
-(561, NULL, 'sisi', NULL, 'admin', '087342123456', 'hjhjhjhj', 'afdfdgdg', 'rahasia'),
-(562, NULL, 'sisi', NULL, 'admin', '087342123456', 'hjhjhjhj', 'afdfdgdg', 'rahasia'),
-(563, NULL, 'sisi', NULL, 'admin', '087342123456', 'hjhjhjhj', 'afdfdgdg', 'rahasia'),
-(564, NULL, 'sisi', NULL, 'admin', '087342123456', 'hjhjhjhj', 'afdfdgdg', 'rahasia'),
-(565, NULL, 'sisi', NULL, 'admin', '087342123456', 'hjhjhjhj', 'afdfdgdg', 'rahasia'),
-(568, NULL, NULL, '2023-11-15', 'admin', '082342123456', 'mbul', NULL, 'rahasia'),
-(569, NULL, 'rika', '2023-11-15', 'admin', '082342123456', 'mbul', NULL, 'rahasia'),
-(571, NULL, NULL, '2023-11-15', 'admin', '082342123456', 'mbul', NULL, 'rahasia'),
-(572, NULL, 'sisi', NULL, 'admin', '087342123456', 'hjhjhjhj', 'afdfdgdg', 'rahasia'),
 (573, NULL, 'azza', NULL, 'user', '087675453432', 'azza345', 'azza@gmail.com', 'rahasia'),
-(594, NULL, 'contoh', NULL, 'admin', NULL, 'contoh', 'contoh@gmail.com', 'rahasia'),
-(595, NULL, 'contoh', NULL, 'admin', NULL, 'contoh', 'contoh@gmail.com', 'rahasia'),
-(596, NULL, 'contoh', NULL, 'admin', NULL, 'contoh', 'contoh@gmail.com', 'rahasia'),
-(597, NULL, 'contoh', NULL, 'admin', NULL, 'contoh', 'contoh@gmail.com', 'rahasia'),
-(598, NULL, 'contoh', NULL, 'admin', NULL, 'contoh', 'contoh@gmail.com', 'rahasia'),
-(601, NULL, 'contoh', NULL, 'admin', NULL, 'contoh', 'contoh@gmail.com', 'rahasia'),
-(602, NULL, 'contoh', NULL, 'admin', NULL, 'contoh', 'contoh@gmail.com', 'rahasia'),
-(603, NULL, 'contoh', NULL, 'admin', NULL, 'contoh', 'contoh@gmail.com', 'rahasia'),
-(604, NULL, 'contoh', NULL, 'admin', NULL, 'contoh', 'contoh@gmail.com', 'rahasia');
+(605, NULL, 'contoh', NULL, 'user', NULL, 'contoh', 'contoh@gmail.com', 'rahasia'),
+(606, NULL, 'liliii', NULL, 'user', NULL, 'lili', 'lili@gmail.com', '12345'),
+(639, NULL, 'sisi', NULL, 'admin', '087342123456', 'hjhjhjhj', 'afdfdgdg', 'rahasia');
 
 -- --------------------------------------------------------
 
@@ -237,6 +184,13 @@ CREATE TABLE `verifications` (
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `change_prayer`
+--
+ALTER TABLE `change_prayer`
+  ADD PRIMARY KEY (`changePrayer_id`),
+  ADD KEY `change_prayer_ibfk_1` (`cycleHistory_id`);
 
 --
 -- Indexes for table `cycle_est`
@@ -290,6 +244,12 @@ ALTER TABLE `verifications`
 --
 
 --
+-- AUTO_INCREMENT for table `change_prayer`
+--
+ALTER TABLE `change_prayer`
+  MODIFY `changePrayer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
 -- AUTO_INCREMENT for table `cycle_est`
 --
 ALTER TABLE `cycle_est`
@@ -299,13 +259,13 @@ ALTER TABLE `cycle_est`
 -- AUTO_INCREMENT for table `cycle_history`
 --
 ALTER TABLE `cycle_history`
-  MODIFY `cycleHistory_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `cycleHistory_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `educations`
 --
 ALTER TABLE `educations`
-  MODIFY `education_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `education_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT for table `reminder`
@@ -317,17 +277,23 @@ ALTER TABLE `reminder`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=605;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=640;
 
 --
 -- AUTO_INCREMENT for table `verifications`
 --
 ALTER TABLE `verifications`
-  MODIFY `verification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `verification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `change_prayer`
+--
+ALTER TABLE `change_prayer`
+  ADD CONSTRAINT `change_prayer_ibfk_1` FOREIGN KEY (`cycleHistory_id`) REFERENCES `cycle_history` (`cycleHistory_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `cycle_est`

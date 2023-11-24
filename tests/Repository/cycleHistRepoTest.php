@@ -30,4 +30,11 @@ class cycleHistRepoTest extends TestCase
         $cycle_id = $this->cycleRepo->addAll($cycle);
         self::assertTrue($cycle_id > 0);
     }
+
+    public function testGet(){
+        $cycle = new cycleHistory(4, 30, null, null, $this->user);
+
+        $cycle_id = $this->cycleRepo->addAll($cycle);
+        self::assertNotNull($this->cycleRepo->getById($cycle_id));
+    }
 }
