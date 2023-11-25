@@ -46,6 +46,7 @@ class adminController
             try {
                 $response = $this->userService->loginEmail($request);
                 $this->sessionService->create($response->user);
+                session_start();
                 view::redirect('dashboard');
             } catch (validationException $exception){
                 view::render('login');
@@ -81,10 +82,11 @@ class adminController
         }
     }
 
+
     function loginAPI(){
         $request = new adminRequest();
-        $request->email = $_GET['email'];
-        $request->password = $_GET['password'];
+        $request->email = $_POST['email'];
+        $request->password = $_POST['password'];
 
         try {
             $response = $this->userService->login($request);
@@ -106,9 +108,9 @@ class adminController
 
     function registerAPI(){
         $request = new adminRequest();
-        $request->email = $_GET['email'];
-        $request->username = $_GET['username'];
-        $request->password = $_GET['password'];
+        $request->email = $_POST['email'];
+        $request->username = $_POST['username'];
+        $request->password = $_POST['password'];
 
         try {
             $adminResponse = $this->userService->register($request);

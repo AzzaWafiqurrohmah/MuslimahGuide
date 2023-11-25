@@ -15,7 +15,6 @@ use MuslimahGuide\controller\verificationController;
 use MuslimahGuide\Middleware\mustLoginMiddleware;
 use MuslimahGuide\Middleware\mustNotLoginMiddleware;
 
-session_start();
 
 //website
 router::add("web", "GET", "/", homeController::class, 'landingPage', [mustNotLoginMiddleware::class]);
@@ -45,8 +44,8 @@ router::add("WEB", "GET", "/verificationNewPassword", verificationController::cl
 router::add("WEB", "POST", "/verificationNewPassword", verificationController::class, 'postNewPassword', []);
 
 //API
-router::add("API", "GET", '/loginAPI', adminController::class, 'loginAPI');
-router::add("API", "GET", '/registerAPI', adminController::class, 'registerAPI');
+router::add("API", "POST", '/loginAPI', adminController::class, 'loginAPI');
+router::add("API", "POST", '/registerAPI', adminController::class, 'registerAPI');
 router::add("API", "GET", '/profileAPI', profile::class, 'get_profile');
 router::add("API", "PUT", '/profileAPI', profile::class, 'put_profile');
 
