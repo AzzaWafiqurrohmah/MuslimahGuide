@@ -8,6 +8,6 @@ if (!empty($_POST['email'])){
         }catch (Exception $e){
             $otp = rand(100000, 999999);
         }
-        $sql = "UPDATE users SET reset_password_otp"
+        $sql = "UPDATE users SET reset_password_otp";
     }else echo "Database koneksi gagal";
 }else echo "Semua kolom wajib diisi";

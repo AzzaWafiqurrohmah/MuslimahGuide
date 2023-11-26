@@ -11,4 +11,4 @@ if(!empty($_POST['username']) && !empty($_POST['email']) && !empty($_POST['passw
             }else echo "Registrasi gagal";
         }else echo "Database koneksi gagal";
     }else echo "Semua kolom wajib diisi";
-    ?>
+?>

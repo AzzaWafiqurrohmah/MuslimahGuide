@@ -14,6 +14,7 @@ use MuslimahGuide\controller\api\profile;
 use MuslimahGuide\controller\verificationController;
 use MuslimahGuide\Middleware\mustLoginMiddleware;
 use MuslimahGuide\Middleware\mustNotLoginMiddleware;
+use MuslimahGuide\controller\api\verification;
 
 
 //website
@@ -48,6 +49,9 @@ router::add("API", "POST", '/loginAPI', adminController::class, 'loginAPI');
 router::add("API", "POST", '/registerAPI', adminController::class, 'registerAPI');
 router::add("API", "GET", '/profileAPI', profile::class, 'get_profile');
 router::add("API", "PUT", '/profileAPI', profile::class, 'put_profile');
+router::add("API", "POST", '/emailVerification',verification::class, 'emailVerification' );
+router::add("API", "POST", '/otpVerification', verification::class, 'otpVerification');
+router::add("API", "POST", '/newPassword', verification::class, 'newPassword');
 
 
 

@@ -66,13 +66,14 @@ class verificationController
         $code = $_POST['code'];
 
         $verification = $this->verificationRepo->getById($verification_id);
-        echo $verification_id;
         if($code == $verification->getCode()){
             view::redirect("verificationNewPassword?id=$verification_id");
         } else {
             view::render('verificationCode?id=' . $verification_id);
         }
     }
+
+
 
     public function newPassword(){
         $verification_id = $_GET['id'];

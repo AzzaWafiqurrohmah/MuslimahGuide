@@ -77,4 +77,5 @@ class verificationService
 
         return $phpmailer;
     }
+
 }
