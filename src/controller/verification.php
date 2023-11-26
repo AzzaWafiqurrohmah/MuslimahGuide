@@ -1,8 +1,7 @@
 <?php
 
-namespace MuslimahGuide\controller\api;
+namespace MuslimahGuide\controller;
 
-use MuslimahGuide\app\view;
 use MuslimahGuide\Config\database;
 use MuslimahGuide\Model\verificationRequest;
 use MuslimahGuide\Repository\UserRepository;
