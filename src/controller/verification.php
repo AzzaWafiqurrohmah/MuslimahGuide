@@ -39,7 +39,8 @@ class verification
             if($phpmailer->send()){
                 $response = array(
                     'status' => 1,
-                    'message' => 'Kode Berhasil Dikirim'
+                    'message' => 'Kode Berhasil Dikirim',
+                    'verification_id' => $response->verification->getVerificationId()
                 );
             } else{
                 throw new \Exception($phpmailer->ErrorInfo);
