@@ -6,8 +6,8 @@ use MuslimahGuide\Config\database;
 use MuslimahGuide\Model\verificationRequest;
 use MuslimahGuide\Repository\UserRepository;
 use MuslimahGuide\Repository\VerificationRepository;
-use MuslimahGuide\service\adminService;
-use MuslimahGuide\service\verificationService;
+use MuslimahGuide\Service\adminService;
+use MuslimahGuide\Service\verificationService;
 
 class verification
 {

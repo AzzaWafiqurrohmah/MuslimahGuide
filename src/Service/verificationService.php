@@ -1,6 +1,6 @@
 <?php
 
-namespace MuslimahGuide\service;
+namespace MuslimahGuide\Service;
 
 use MuslimahGuide\Config\database;
 use MuslimahGuide\Domain\verification;
@@ -66,7 +66,7 @@ class verificationService
         $phpmailer->Password = $this->Password;
         $phpmailer->SMTPSecure = $this->SMTPSecure;
 
-        $phpmailer->setFrom($this->Username, 'admin zenFemina');
+        $phpmailer->setFrom($this->Username, 'zenFemina');
         $phpmailer->addAddress($recipient, $name);     //Add a recipient
         $phpmailer->addReplyTo($this->Username, 'Information');
 

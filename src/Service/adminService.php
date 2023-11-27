@@ -1,6 +1,6 @@
 <?php
 
-namespace MuslimahGuide\service;
+namespace MuslimahGuide\Service;
 
 use MuslimahGuide\data\role;
 use MuslimahGuide\Domain\user;

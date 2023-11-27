@@ -43,9 +43,12 @@ class articleController
         ]);
     }
     public function postArticle(){
+        $alert = null;
         if(isset($_POST['deleteUser'])) {
             $id = $_POST['education_id_delete'];
-            $this->educationRepo->delete($id);
+            if($this->educationRepo->delete($id)){
+                $alert = "Dihapus";
+            }
         }
         $user = $this->sessionService->current();
         $name = $user->getName();
@@ -53,6 +56,7 @@ class articleController
 
         $data = $this->educationRepo->getAll();
 
+        $_SESSION['article'] = $alert;
         view::render('article', [
             'name' => $name,
             'profileImg' => $profileImg,

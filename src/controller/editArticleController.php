@@ -36,6 +36,7 @@ class editArticleController
         $data = $this->educationRepo->getById($id);
         $data->setEducationId($id);
 
+        $_SESSION['EditArticle'] = 'hai';
         view::render('editArticle', [
             'name' => $name,
             'profileImg' => $profileImg,
@@ -60,12 +61,10 @@ class editArticleController
         $this->education->setTitle($title);
         $this->education->setContents($content);
 
+        $_SESSION['EditArticle'] = 'hai';
         if($this->educationRepo->update($this->education)){
             $alert = "DiUbah";
         }
-        $_SESSION['alert'] = 'oooo';
-
-
        view::redirect('article');
     }
 }
