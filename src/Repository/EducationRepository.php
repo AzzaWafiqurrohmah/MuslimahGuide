@@ -61,6 +61,16 @@ class EducationRepository
         return null;
     }
 
+    public function getByIdAPI(int $id) : ?array{
+        $sql = "SELECT * FROM educations WHERE education_id = ?";
+        $statement = $this->connection->prepare($sql);
+
+        if($statement->execute([$id])){
+            return $statement->fetchAll(\PDO::FETCH_ASSOC);
+        }
+        return null;
+    }
+
     public function getAll() :?array{
         $sql = "SELECT * FROM educations";
 
@@ -92,6 +102,27 @@ class EducationRepository
             return $this->mapToDomain($row);
         }
         return null;
+    }
+
+    public function search($input) :array{
+        $sql = "SELECT * FROM educations WHERE title LIKE '%$input%' OR contents LIKE '%$input%'";
+
+        $statement = $this->connection->prepare($sql);
+        if($statement->execute()){
+            return $statement->fetchAll(\PDO::FETCH_ASSOC);
+        }
+        return [];
+    }
+
+    public function addOnClick(education $education) :bool{
+        $sql = "UPDATE educations SET on_clicked = ? WHERE education_id = ?";
+
+        $statement = $this->connection->prepare($sql);
+        $res = $statement->execute([
+            $education->getOnClicked(),
+            $education->getEducationId()
+        ]);
+        return $res;
     }
 
     public function dashboard() :array{
