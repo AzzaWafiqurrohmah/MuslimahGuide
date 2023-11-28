@@ -15,6 +15,7 @@ use MuslimahGuide\controller\verification;
 use MuslimahGuide\controller\verificationController;
 use MuslimahGuide\Middleware\mustLoginMiddleware;
 use MuslimahGuide\Middleware\mustNotLoginMiddleware;
+use MuslimahGuide\controller\api\education;
 
 
 //website
@@ -47,8 +48,17 @@ router::add("WEB", "POST", "/verificationNewPassword", verificationController::c
 //API
 router::add("API", "POST", '/loginAPI', adminController::class, 'loginAPI');
 router::add("API", "POST", '/registerAPI', adminController::class, 'registerAPI');
+
 router::add("API", "GET", '/profileAPI', profile::class, 'get_profile');
 router::add("API", "PUT", '/profileAPI', profile::class, 'put_profile');
+router::add("API", "POST", '/profilePassword', profile::class, 'post_password');
+router::add("API", "POST",'/signOut', profile::class, 'signOut');
+
+router::add("API", "GET", '/education', education::class, 'getAll');
+router::add("API", "POST", '/education', education::class, 'getById');
+router::add("API" , "GET", '/searchEdu', education::class, 'searchEdu');
+router::add("API", "POST", '/addOnClicked', education::class, 'addOnClick');
+
 router::add("API", "POST", '/emailVerification',verification::class, 'emailVerification' );
 router::add("API", "POST", '/otpVerification', verification::class, 'otpVerification');
 router::add("API", "POST", '/newPassword', verification::class, 'newPassword');
