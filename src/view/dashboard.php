@@ -1,5 +1,5 @@
 <!-- Template Main CSS File -->
-<link href="assets/css/style.css" rel="stylesheet">
+<link href="assetsWeb/css/style.css" rel="stylesheet">
 <title>Page: Dashboard</title>
 </head>
 
@@ -10,7 +10,7 @@
 
     <div class="d-flex align-items-center justify-content-between">
         <a href="/dashboard" class="logo d-flex align-items-center">
-            <img src="assets/img/logo.png" alt="">
+            <img src="assetsWeb/img/logo.png" alt="">
             <span class="d-none d-lg-block">ZenFemina</span>
         </a>
         <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -20,7 +20,7 @@
             <ul class="d-flex align-items-center">
                 <li class="nav-item dropdown pe-3">
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" data-bs-toggle="dropdown" style="cursor: pointer" >
-                        <img src="assets/img/profile/<?=$profileImg;?>" alt="Profile" class="rounded-circle">
+                        <img src="assetsWeb/img/profile/<?=$profileImg;?>" alt="Profile" class="rounded-circle">
                         <span class="d-none d-md-block dropdown-toggle ps-2" style="margin-right: 10px"><?= $name; ?></span>
                     </a><!-- End Profile Iamge Icon -->
 
@@ -230,7 +230,7 @@
                             <div class="carousel-inner">
                                 <?php foreach ($education as $i => $row): ?>
                                     <div class="carousel-item <?= $i == 0 ? 'active' : '' ?>">
-                                        <img src="/assets/img/education/<?= $row['img']; ?>" style="border-radius: 7px" class="d-block w-100" alt="...">
+                                        <img src="/assetsWeb/img/education/<?= $row['img']; ?>" style="border-radius: 7px" class="d-block w-100" alt="...">
                                         <div class="card-text" style="margin-top: 10px">
                                             <h5><?= $row['title']; ?></h5>
                                             <p><?= $row['contents']; ?></p>
@@ -256,4 +256,4 @@
 
 </main><!-- End #main -->
 <!-- Template Main JS File -->
-<script src="assets/js/main.js"></script>
+<script src="assetsWeb/js/main.js"></script>

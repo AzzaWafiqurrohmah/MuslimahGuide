@@ -1,5 +1,5 @@
 <!-- Template Main CSS File -->
-<link href="assets/css/style.css" rel="stylesheet">
+<link href="assetsWeb/css/style.css" rel="stylesheet">
 
 </head>
 
@@ -10,7 +10,7 @@
 
     <div class="d-flex align-items-center justify-content-between">
         <a href="/dashboard" class="logo d-flex align-items-center">
-            <img src="assets/img/logo.png" alt="">
+            <img src="assetsWeb/img/logo.png" alt="">
             <span class="d-none d-lg-block">ZenFemina</span>
         </a>
         <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -37,7 +37,7 @@
                     <li class="nav-item dropdown pe-3">
 
                         <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                            <img src="assets/img/profile/<?=$profileImg;?>" alt="Profile" class="rounded-circle">
+                            <img src="assetsWeb/img/profile/<?=$profileImg;?>" alt="Profile" class="rounded-circle">
                             <span class="d-none d-md-block dropdown-toggle ps-2"><?= $name; ?></span>
                         </a><!-- End Profile Iamge Icon -->
 
@@ -195,7 +195,7 @@
                 }
                 ?>
                 <div class="card col-lg-3 col-md-6 col-sm-12" style="padding: 0px; margin-right: 20px; margin-left: 10px">
-                    <img src="assets/img/education/<?=  $row['img']; ?>" class="card-img-top" alt="..." style="padding: 0 0 0 0" >
+                    <img src="assetsWeb/img/education/<?=  $row['img']; ?>" class="card-img-top" alt="..." style="padding: 0 0 0 0" >
                     <div class="card-body">
                         <h5 class="card-title"><?=  $row['title']; ?></h5>
                         <p class="card-text"><?=  $row['contents']; ?></p>

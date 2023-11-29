@@ -1,5 +1,5 @@
 
-<link href="assets/css/style.css" rel="stylesheet">
+<link href="assetsWeb/css/style.css" rel="stylesheet">
 <title>Page: Edit Artikel</title>
 </head>
 
@@ -10,7 +10,7 @@
 
     <div class="d-flex align-items-center justify-content-between">
         <a href="/dashboard" class="logo d-flex align-items-center">
-            <img src="assets/img/logo.png" alt="">
+            <img src="assetsWeb/img/logo.png" alt="">
             <span class="d-none d-lg-block">ZenFemina</span>
         </a>
         <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -21,7 +21,7 @@
             <li class="nav-item dropdown pe-3">
 
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                    <img src="assets/img/profile/<?=$profileImg;?>" alt="Profile" class="rounded-circle">
+                    <img src="assetsWeb/img/profile/<?=$profileImg;?>" alt="Profile" class="rounded-circle">
                     <span class="d-none d-md-block dropdown-toggle ps-2"><?= $name; ?></span>
                 </a><!-- End Profile Iamge Icon -->
 
@@ -154,7 +154,7 @@
                     <div class="col-sm-4">
                         <div class="upload-container" style="text-align: center;">
                             <div class="upload-button-edit" onclick="document.getElementById('fileInput-edit').click()">
-                                <img src="assets/img/education/<?=$data->getImg();?>" id="previewImg" style="max-width: 100%; max-height: 200px; margin-top: 10px;">
+                                <img src="assetsWeb/img/education/<?=$data->getImg();?>" id="previewImg" style="max-width: 100%; max-height: 200px; margin-top: 10px;">
                                 <input type="hidden" id="inputImg" name="inputImg" value="<?=$data->getImg();?>">
                                 <input type="file" id="fileInput-edit" name="fileInput-edit" style="display:none" onchange="handleFileUpload2(this)" >
                             </div>

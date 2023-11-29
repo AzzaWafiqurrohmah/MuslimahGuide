@@ -1,5 +1,5 @@
 <!-- Template Main CSS File -->
-<link href="assets/css/style.css" rel="stylesheet">
+<link href="assetsWeb/css/style.css" rel="stylesheet">
 <title>Page: profile</title>
 </head>
 
@@ -10,7 +10,7 @@
 
     <div class="d-flex align-items-center justify-content-between">
         <a href="/dashboad" class="logo d-flex align-items-center">
-            <img src="/assets/img/logo.png" alt="">
+            <img src="/assetsWeb/img/logo.png" alt="">
             <span class="d-none d-lg-block">ZenFemina</span>
         </a>
         <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -21,7 +21,7 @@
             <li class="nav-item dropdown pe-3">
 
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                    <img src="assets/img/profile/<?=$profileImg;?>" alt="Profile" class="rounded-circle">
+                    <img src="assetsWeb/img/profile/<?=$profileImg;?>" alt="Profile" class="rounded-circle">
                     <span class="d-none d-md-block dropdown-toggle ps-2"><?=$fullName;?></span>
                 </a><!-- End Profile Iamge Icon -->
 
@@ -216,7 +216,7 @@
                                     <div class="row mb-3">
                                         <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <img src="assets/img/profile/<?=$profileImg;?>" id="previewImage" alt=<?=$profileImg;?>>
+                                            <img src="assetsWeb/img/profile/<?=$profileImg;?>" id="previewImage" alt=<?=$profileImg;?>>
                                             <div class="pt-2">
                                                     <label for="fileUpload" class="custom-button">
                                                        <i  style="background-color: #4085FF; color: white; border-color: #4085FF; padding: 4px 10px; font-size: 12px; border-radius: 5px; cursor: pointer; margin-left: 0px " >Choose File</i>
