@@ -16,6 +16,7 @@ use MuslimahGuide\controller\verificationController;
 use MuslimahGuide\Middleware\mustLoginMiddleware;
 use MuslimahGuide\Middleware\mustNotLoginMiddleware;
 use MuslimahGuide\controller\api\education;
+use MuslimahGuide\controller\api\cycle;
 
 
 //website
@@ -58,6 +59,8 @@ router::add("API", "GET", '/education', education::class, 'getAll');
 router::add("API", "POST", '/education', education::class, 'getById');
 router::add("API" , "GET", '/searchEdu', education::class, 'searchEdu');
 router::add("API", "POST", '/addOnClicked', education::class, 'addOnClick');
+
+router::add("API", "POST", '/question', cycle::class, 'question');
 
 router::add("API", "POST", '/emailVerification',verification::class, 'emailVerification' );
 router::add("API", "POST", '/otpVerification', verification::class, 'otpVerification');

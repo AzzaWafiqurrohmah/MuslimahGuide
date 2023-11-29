@@ -7,12 +7,12 @@ class cycleHistory
     private int $id;
     private ?int $cycleLength;
     private ?int $periodLength;
-    private ?\DateTime $startDate;
-    private ?\DateTime $endDate;
+    private ?string $startDate;
+    private ?string $endDate;
     private ?user $user_id;
 
 
-    public function __construct(?int $cycleLength, ?int $periodLength, ?\DateTime $startDate, ?\DateTime $endDate, ?user $user_id)
+    public function __construct(?int $cycleLength, ?int $periodLength, ?string $startDate, ?string $endDate, ?user $user_id)
     {
         $this->cycleLength = $cycleLength;
         $this->periodLength = $periodLength;
@@ -53,22 +53,22 @@ class cycleHistory
         $this->periodLength = $periodLength;
     }
 
-    public function getStartDate(): ?\DateTime
+    public function getStartDate(): ?string
     {
         return $this->startDate;
     }
 
-    public function setStartDate(?\DateTime $startDate): void
+    public function setStartDate(?string $startDate): void
     {
         $this->startDate = $startDate;
     }
 
-    public function getEndDate(): ?\DateTime
+    public function getEndDate(): ?string
     {
         return $this->endDate;
     }
 
-    public function setEndDate(?\DateTime $endDate): void
+    public function setEndDate(?string $endDate): void
     {
         $this->endDate = $endDate;
     }
