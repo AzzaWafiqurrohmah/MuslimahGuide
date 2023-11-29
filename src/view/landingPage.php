@@ -38,8 +38,11 @@
                     <a href="#contact" class="nav__link">Contact Us</a>
                 </li>
                 <li class=" getstarted" style="padding: 0.4rem 1rem">
-                    <a href="#contact" class="nav__link" style="color: white; font-size: 14px;">Sign In</a>
+                    <a href="/login" class="nav__link" style="color: white; font-size: 14px;">Sign In</a>
                 </li>
+<!--                <li class="nav__item">-->
+<!--                    <a href="#contact" class="nav__link">Sign in</a>-->
+<!--                </li>-->
             </ul>
 
             <div class="nav__close" id="nav-close">
@@ -74,7 +77,7 @@
                     seamlessly integrating menstrual cycle tracking and qodho' prayer management,
                     providing a comprehensive approach to women's health and spirituality
                 </p>
-                <a href="#about" class="button button--flex" style="padding: 0.7rem 1rem">
+                <a href="https://github.com/khairunnisaalallah/zenFeminaMobile" target="_blank" class="button button--flex" style="padding: 0rem 1rem">
                     <i class="ri-github-fill" style="color: white; font-size: 32px;"></i>
                     GitHub
                 </a>
