@@ -46,6 +46,16 @@ class CycleEstRepository
         return $res;
     }
 
+    public function getByUserId(string $id) :?array{
+        $sql = "SELECT * FROM cycle_est WHERE user_id = ?";
+
+        $statement = $this->connection->prepare($sql);
+        if($statement->execute([$id])){
+            return $statement->fetchAll(\PDO::FETCH_ASSOC);
+        }
+        return [];
+    }
+
     public function delete(string $id) :bool{
         $sql = "DELETE FROM cycle_est WHERE cycleEst_id = ?";
         $statement = $this->connection->prepare($sql);

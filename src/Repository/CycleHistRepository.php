@@ -25,6 +25,7 @@ class CycleHistRepository
             $cycle->getUser_id()->getId()
         ]);
 
+
         $res = $this->connection->lastInsertId();
         return $res;
     }
@@ -39,6 +40,16 @@ class CycleHistRepository
             }
         }
         return null;
+    }
+
+    public function getLastCycle(string $id) :?array{
+        $sql = "SELECT * FROM cycle_history WHERE user_id = ? ORDER BY end_date DESC LIMIT 1";
+
+        $statement = $this->connection->prepare($sql);
+        if($statement->execute([$id])){
+            return $statement->fetchAll(\PDO::FETCH_ASSOC);
+        }
+        return [];
     }
 
     public function mapToDomain($row) :cycleHistory{
