@@ -35,13 +35,13 @@ class changePrayerRepoTest extends TestCase
     }
 
     public function testAdd(){
-        $this->changePrayer = new changePrayer(prayer::dzuhur, 'yes', $this->cycleHistory);
+        $this->changePrayer = new changePrayer(prayer::dzuhur, 'no', $this->cycleHistory);
         $res = $this->changePrayerRepo->addChangePrayer($this->changePrayer);
         self::assertNotNull($res);
     }
 
     public function testGet(){
-        $this->changePrayer = new changePrayer(prayer::dzuhur, 'yes', $this->cycleHistory);
+        $this->changePrayer = new changePrayer(prayer::dzuhur, 'done', $this->cycleHistory);
         $res = $this->changePrayerRepo->addChangePrayer($this->changePrayer);
         $this->changePrayer->setId($res);
         $res = $this->changePrayerRepo->getById($res);
@@ -49,12 +49,10 @@ class changePrayerRepoTest extends TestCase
     }
 
     public function testUpdate(){
-        $this->changePrayer = new changePrayer(prayer::dzuhur, 'yes', $this->cycleHistory);
+        $this->changePrayer = new changePrayer(prayer::dzuhur, 'no', $this->cycleHistory);
         $res = $this->changePrayerRepo->addChangePrayer($this->changePrayer);
 
         $this->changePrayer->setId($res);
-
-        $this->changePrayer->setPrayer(prayer::ashar);
-        self::assertTrue($this->changePrayerRepo->update($this->changePrayer));
+        self::assertTrue($this->changePrayerRepo->update($res));
     }
 }

@@ -29,7 +29,7 @@ class changePrayerRepository
         return $res;
     }
 
-    public function getById(int $id) :?changePrayer{
+    public function getById(string $id) :?changePrayer{
         $sql = "SELECT * FROM change_prayer WHERE changePrayer_id = ?";
 
         $statement = $this->connection->prepare($sql);
@@ -41,15 +41,22 @@ class changePrayerRepository
         return null;
     }
 
-    public function update(changePrayer $changePrayer) :bool{
-        $sql = "UPDATE change_prayer set prayer = ?, status = ?, cycleHistory_id = ? WHERE changePrayer_id = ?";
+    public function getChangePrayer(string $cycleHistory_id) :?array{
+        $sql = "SELECT * FROM change_prayer WHERE status = 'no' and cycleHistory_id = ?";
+
+        $statement = $this->connection->prepare($sql);
+        if($statement->execute([$cycleHistory_id])){
+            return $statement->fetchAll(\PDO::FETCH_ASSOC);
+        }
+        return [];
+    }
+
+    public function update(string $changePrayer_id) :bool{
+        $sql = "UPDATE change_prayer set status = 'done' WHERE changePrayer_id = ?";
 
         $statement = $this->connection->prepare($sql);
         $res = $statement->execute([
-            $changePrayer->getPrayer(),
-            $changePrayer->getStatus(),
-            $changePrayer->getCycleHistory()->getId(),
-            $changePrayer->getId()
+            $changePrayer_id
         ]);
         return $res;
     }
