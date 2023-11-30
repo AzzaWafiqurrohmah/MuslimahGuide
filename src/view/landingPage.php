@@ -13,6 +13,8 @@
     <!--=============== CSS ===============-->
     <link rel="stylesheet" href="/assetsLandingPage/css/styles.css">
 
+    <link href="/assetsWeb/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+
     <title>zenfemina</title>
 </head>
 <body>
@@ -65,7 +67,7 @@
     <!--==================== HOME ====================-->
     <section class="home" id="home">
         <div class="home__container container grid">
-            <img src="/assetsLandingPage/img/home.png" alt="" class="home__img">
+            <img src="/assetsLandingPage/img/hijab2.png" alt="" class="home__img">
 
             <div class="home__data">
                 <h1 class="home__title">
@@ -100,39 +102,29 @@
 
         <div class="product__container grid">
             <article class="product__card">
-
-                <img src="/assetsLandingPage/img/product1.png" alt="" class="product__img">
-
-                <h3 class="product__title">Cacti Plant</h3>
-                <span class="product__price">$19.99</span>
-
+                <i class="bi bi-calendar-range calendar-icon" style="font-size: 4rem; color: #DA4256; text-align: center"></i> <!-- Menggunakan ikon Calendar Range dari Bootstrap -->
+                <h3 class="product__title" style="text-align: center">Tracking cycle</h3>
             </article>
 
             <article class="product__card">
-
-                <img src="/assetsLandingPage/img/product2.png" alt="" class="product__img">
-
-                <h3 class="product__title">Cactus Plant</h3>
-                <span class="product__price">$11.99</span>
+                <i class="bi bi-bell-fill calendar-icon" style="font-size: 4rem; color: #DA4256; text-align: center"></i> <!-- Menggunakan ikon Calendar Range dari Bootstrap -->
+                <h3 class="product__title" style="text-align: center">Prayer Notification</h3>
             </article>
 
             <article class="product__card">
-
-                <img src="/assetsLandingPage/img/product3.png" alt="" class="product__img">
-
-                <h3 class="product__title">Aloe Vera Plant</h3>
-                <span class="product__price">$7.99</span>
+                <i class="bi bi-journals calendar-icon" style="font-size: 4rem; color: #DA4256; text-align: center"></i> <!-- Menggunakan ikon Calendar Range dari Bootstrap -->
+                <h3 class="product__title" style="text-align: center">Education Article</h3>
             </article>
 
             <article class="product__card">
-
-                <img src="/assetsLandingPage/img/product4.png" alt="" class="product__img">
-
-                <h3 class="product__title">Succulent Plant</h3>
-                <span class="product__price">$5.99</span>
+                <i class="bi bi-moon-stars-fill calendar-icon" style="font-size: 4rem; color: #DA4256; text-align: center"></i> <!-- Menggunakan ikon Calendar Range dari Bootstrap -->
+                <h3 class="product__title" style="text-align: center">Prayer Schedule </h3>
             </article>
         </div>
     </section>
+
+
+
 
     <!--==================== QUESTIONS ====================-->
     <section class="questions section" id="faqs">
@@ -146,14 +138,18 @@
                     <header class="questions__header">
                         <i class="ri-add-line questions__icon"></i>
                         <h3 class="questions__item-title">
-                            My flowers are falling off or dying?
+                            What is zenfemina application?
                         </h3>
                     </header>
 
                     <div class="questions__content">
                         <p class="questions__description">
-                            Plants are easy way to add color energy and transform your
-                            space but which planet is for you. Choosing the right plant.
+                            Zenfemina is an integrated app encompassing a Menstrual Calendar
+                            for reproductive health tracking and a Missed Prayer Reminder
+                            to prompt users for unfulfilled religious duties. With a
+                            user-friendly design, Zenfemina provides a streamlined solution,
+                            seamlessly merging these features into a single, accessible
+                            platform.
                         </p>
                     </div>
                 </div>
@@ -162,14 +158,18 @@
                     <header class="questions__header">
                         <i class="ri-add-line questions__icon"></i>
                         <h3 class="questions__item-title">
-                            What causes leaves to become pale?
+                            Can This App Be Used Anonymously?
                         </h3>
                     </header>
 
                     <div class="questions__content">
                         <p class="questions__description">
-                            Plants are easy way to add color energy and transform your
-                            space but which planet is for you. Choosing the right plant.
+                            This application is designed with a high regard for privacy.
+                            All features of the application can only be accessed after logging
+                            in, ensuring the security and confidentiality of user data.
+                            Therefore, users can feel confident that their personal information
+                            is protected and can only be accessed by those who have access
+                            to the associated account.
                         </p>
                     </div>
                 </div>
@@ -178,14 +178,16 @@
                     <header class="questions__header">
                         <i class="ri-add-line questions__icon"></i>
                         <h3 class="questions__item-title">
-                            What causes brown crispy leaves?
+                            Is This App Only Intended for Muslim Women?
                         </h3>
                     </header>
 
                     <div class="questions__content">
                         <p class="questions__description">
-                            Plants are easy way to add color energy and transform your
-                            space but which planet is for you. Choosing the right plant.
+                            Yes, this application is specifically designed for Muslim women.
+                            Key features of the app, such as prayer replacement reminders,
+                            are tailored to support the religious practices and reproductive
+                            health of Muslim women.
                         </p>
                     </div>
                 </div>
@@ -291,13 +293,22 @@
         </div>
 
         <div class="footer__content">
-            <h3 class="footer__title">Contact Us</h3>
+            <h3 class="footer__title">On Github</h3>
 
-            <ul class="footer__data" style="padding-left: 0rem">
-                <li class="footer__information">
-                    +6281358301632
-                </li>
-                <li class="footer__information">contact@zenfemina.com</li>
+            <ul class="custom-nav" style="padding-left: 0rem">
+                <li class="custom-nav__item">
+                    <a href="https://github.com/AzzaWafiqurrohmah/ZenFeminaWeb" target="_blank" class="custom-nav__link">
+                        <i class="ri-arrow-right-s-line" style="color: #DA4256; margin-right: 7px;"></i>
+                        Our website
+                    </a>
+                </li >
+
+                <li class="custom-nav__item">
+                    <a href="https://github.com/khairunnisaalallah/zenFeminaMobile" target="_blank" class="custom-nav__link">
+                        <i class="ri-arrow-right-s-line" style="color: #DA4256; margin-right: 7px;"></i>
+                        Our mobile App
+                    </a>
+                </li >
             </ul>
         </div>
     </div>
@@ -315,5 +326,6 @@
 
 <!--=============== MAIN JS ===============-->
 <script src="/assetsLandingPage/js/main.js"></script>
+<script src="/assetsWeb/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -599,6 +599,7 @@ the website, in dark theme
 
 .product__title{
   margin-bottom: .25rem;
+  margin-top: 1.2rem;
 }
 
 .product__button{
@@ -1052,7 +1053,7 @@ the website, in dark theme
     padding: 13rem 0 5rem;
   }
   .home__img{
-    width: 350px;
+    width: 390px;
   }
   .home__description{
     padding-right: 7rem;
@@ -1076,9 +1077,9 @@ the website, in dark theme
     padding: 0 10rem;
   }
   .product__container{
-    padding: 4rem 0;
-    grid-template-columns: repeat(4, 185px);
-    gap: 4rem 6rem;
+    padding: 7rem 0;
+    grid-template-columns: repeat(4, 160px);
+    gap: 4rem 5rem;
   }
   .product__img{
     width: 160px;
