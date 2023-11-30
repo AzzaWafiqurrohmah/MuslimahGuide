@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 24, 2023 at 09:14 AM
+-- Generation Time: Nov 30, 2023 at 04:01 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `change_prayer` (
   `changePrayer_id` int(11) NOT NULL,
   `prayer` enum('shubuh','dzuhur','ashar','maghrib','isya') DEFAULT NULL,
-  `status` enum('yes','no') DEFAULT 'no',
+  `status` enum('done','no') DEFAULT 'no',
   `cycleHistory_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -64,13 +64,6 @@ CREATE TABLE `cycle_history` (
   `user_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `cycle_history`
---
-
-INSERT INTO `cycle_history` (`cycleHistory_id`, `cycle_length`, `period_length`, `start_date`, `end_date`, `user_id`) VALUES
-(42, 4, 30, NULL, NULL, 639);
-
 -- --------------------------------------------------------
 
 --
@@ -90,9 +83,9 @@ CREATE TABLE `educations` (
 --
 
 INSERT INTO `educations` (`education_id`, `img`, `title`, `contents`, `on_clicked`) VALUES
-(18, 'd7511_ilustrasi.jpeg', 'Apa itu haid?', 'haid yaitu keluarnya darah selama kurun waktu tertentu, dan ketentuan tertentu.\r\n', 5),
-(25, 'Niqab_Sastra-Arab-UI.jpg', 'kewajiban mengganti sholat', 'setelah siklus mentruasi selesai, perempuan muslimah diwajibkan untuk mengganti sholatnya dengan ketentuan tertentu\r\n', 0),
-(27, 'Niqab_Sastra-Arab-UI.jpg', 'kenali gejala sebelum menstruasi', 'sebelum menstruasi, biasanya beberapa orang mengalami gejara seperti kram perut dan lainnya\r\n', 4);
+(18, 'd7511_ilustrasi.jpeg', 'Apa itu haid?', 'haid yaitu keluarnya darah selama kurun waktu tertentu, dan ketentuan tertentu.\n', 5),
+(25, 'Niqab_Sastra-Arab-UI.jpg', 'kewajiban mengganti sholat', 'setelah siklus haid selesai, perempuan muslimah diwajibkan untuk mengganti sholatnya dengan ketentuan tertentu\n', 0),
+(27, 'Niqab_Sastra-Arab-UI.jpg', 'kenali gejala sebelum menstruasi', 'sebelum menstruasi, biasanya beberapa orang mengalami gejara seperti kram perut dan lainnya\r\n', 7);
 
 -- --------------------------------------------------------
 
@@ -104,10 +97,9 @@ CREATE TABLE `reminder` (
   `reminder_id` int(11) NOT NULL,
   `type` enum('period_start','period_late','period_end') DEFAULT NULL,
   `message` varchar(100) DEFAULT 'atur dan cek kembali siklus mu',
-  `reminder` int(2) DEFAULT 0,
+  `reminderDays` int(2) DEFAULT 0,
   `reminder_time` time DEFAULT '08:00:00',
   `is_on` tinyint(1) NOT NULL DEFAULT 1,
-  `is_read` tinyint(4) NOT NULL DEFAULT 0,
   `user_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -121,14 +113,6 @@ CREATE TABLE `sessions` (
   `session_id` char(15) NOT NULL,
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `sessions`
---
-
-INSERT INTO `sessions` (`session_id`, `user_id`) VALUES
-('655ee5a61b774', 468),
-('655f96efbd88e', 468);
 
 -- --------------------------------------------------------
 
@@ -153,13 +137,13 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `profileImg`, `name`, `birthdate`, `role`, `phone`, `username`, `email`, `password`) VALUES
-(468, 'profile.jpg', 'Azza Wafiqurrohmah', '2003-04-02', 'admin', '087876123213', 'azza23', 'wafiqurrohmahazza@gmail.com', 'rahasia'),
+(468, 'profile.jpg', 'Azza Wafiqurrohmah', '2003-04-02', 'admin', '087876123213', 'azza23', 'wafiqurrohmahazza@gmail.com', '12345'),
 (473, NULL, 'user', '2003-04-02', 'user', '087876123213', 'user', 'user@gmail.com', 'user'),
-(474, NULL, 'sisi', '2003-08-03', 'user', '082342123456', 'sisi12', 'sisi@gmailcom', 'rahasia'),
+(474, NULL, 'sisi', '2003-08-03', 'user', '082342123456', 'sisi123', 'sisi@gmailcom', 'rahasia'),
 (475, NULL, 'nana', '2005-11-03', 'user', '082342123456', 'nana14', 'nana@gmail.com', 'rahasia'),
-(476, NULL, 'rika12', '2005-11-03', 'user', '082342123456', 'sinta82', 'sinta@gmail.com', 'rahasia'),
+(476, NULL, 'rika12', '2005-11-03', 'user', '082342123456', 'sinta8', 'sinta@gmail.com', 'rahasia'),
 (478, NULL, 'putri', '2005-11-03', 'user', '082342123456', 'putri12', 'putri@gmail.com', 'rahasia'),
-(493, NULL, 'siska', '2001-05-03', 'user', NULL, 'siska20', 'siska@gmail.com', 'rahasia'),
+(493, NULL, 'siska', '2001-05-03', 'user', NULL, 'siska20', 'siska@gmail.com', '12345'),
 (494, NULL, 'ani', '2001-03-02', 'user', NULL, 'ani1', 'ani@gmail.com', 'rahasia'),
 (495, NULL, 'rere23', '2001-04-01', 'user', NULL, 'rere23', 'rere@gmail.com', 'rahasia'),
 (496, NULL, 'mayang', '2001-07-05', 'user', NULL, 'mayang65', 'mayang@gmail.com', 'rahasia'),
@@ -167,7 +151,23 @@ INSERT INTO `users` (`user_id`, `profileImg`, `name`, `birthdate`, `role`, `phon
 (573, NULL, 'azza', NULL, 'user', '087675453432', 'azza345', 'azza@gmail.com', 'rahasia'),
 (605, NULL, 'contoh', NULL, 'user', NULL, 'contoh', 'contoh@gmail.com', 'rahasia'),
 (606, NULL, 'liliii', NULL, 'user', NULL, 'lili', 'lili@gmail.com', '12345'),
-(639, NULL, 'sisi', NULL, 'admin', '087342123456', 'hjhjhjhj', 'afdfdgdg', 'rahasia');
+(643, NULL, NULL, '2003-11-16', 'user', NULL, 'mbul', 'mbul@gmail.com', 'rahasia'),
+(659, NULL, 'contoh', NULL, 'user', '087323232', 'contoh', 'contoh@gmail.com', 'rahasia');
+
+--
+-- Triggers `users`
+--
+DELIMITER $$
+CREATE TRIGGER `add_reminder` AFTER INSERT ON `users` FOR EACH ROW BEGIN
+IF NEW.role = 'user' THEN
+        INSERT INTO reminder (type, message, is_on, 			user_id) VALUES
+        ('period_start', 'Hari pertama siklus menstruasi Anda dimulai', '0', NEW.user_id),
+        ('period_end', 'Masa haid Anda telah selesai', '0', NEW.user_id),
+        ('period_late', 'Perhatian! Haid Anda terlambat.', '0', NEW.user_id);
+    END IF;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -247,43 +247,43 @@ ALTER TABLE `verifications`
 -- AUTO_INCREMENT for table `change_prayer`
 --
 ALTER TABLE `change_prayer`
-  MODIFY `changePrayer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `changePrayer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `cycle_est`
 --
 ALTER TABLE `cycle_est`
-  MODIFY `cycleEst_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `cycleEst_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 
 --
 -- AUTO_INCREMENT for table `cycle_history`
 --
 ALTER TABLE `cycle_history`
-  MODIFY `cycleHistory_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `cycleHistory_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
 
 --
 -- AUTO_INCREMENT for table `educations`
 --
 ALTER TABLE `educations`
-  MODIFY `education_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `education_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT for table `reminder`
 --
 ALTER TABLE `reminder`
-  MODIFY `reminder_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+  MODIFY `reminder_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=640;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=663;
 
 --
 -- AUTO_INCREMENT for table `verifications`
 --
 ALTER TABLE `verifications`
-  MODIFY `verification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `verification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- Constraints for dumped tables

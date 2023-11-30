@@ -30,7 +30,7 @@ class ReminderRepository
     }
 
     public function update(reminder $reminder) :bool{
-        $sql = "UPDATE reminder SET type = ?, message = ?, reminder = ?, reminder_time = ?, is_on = ? WHERE user_id = ?";
+        $sql = "UPDATE reminder SET type = ?, message = ?, reminderDays = ?, reminder_time = ?, is_on = ? WHERE user_id = ?";
 
         $statement = $this->connection->prepare($sql);
         $res = $statement->execute([
@@ -66,7 +66,7 @@ class ReminderRepository
         $reminder = new reminder(
             $row['type'],
             $row['message'],
-            $row['reminder'],
+            $row['reminderDays'],
             $row['reminder_time'],
             $row['is_on'],
             $userRepo->getById($user_id)
