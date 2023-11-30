@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!--=============== FAVICON ===============-->
-    <link rel="shortcut icon" href="/assetsLandingPage/img/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/assetsLandingPage/img/logo.svg" type="image/x-icon">
 
     <!--=============== REMIX ICONS ===============-->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
@@ -21,9 +21,14 @@
 <!--==================== HEADER ====================-->
 <header class="header" id="header">
     <nav class="nav container">
+<!--        <a href="#" class="nav__logo">-->
+<!--            <i class="nav__logo-icon"></i> zenfmina-->
+<!--        </a>-->
         <a href="#" class="nav__logo">
-            <i class="ri-leaf-line nav__logo-icon"></i> zenfmina
+            <img src="/assetsWeb/img/logo (1).png" style="width: 40px; height: 40px" alt="Logo Zenfemina" class="nav__logo-icon">
+            zenfmina
         </a>
+
 
         <div class="nav__menu" id="nav-menu">
             <ul class="nav__list">
