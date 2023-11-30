@@ -10,28 +10,17 @@ class reminder
     private string $type;
     private ?string $message;
     private ?int $reminder;
-    private ?\DateTime $time;
+    private ?string $time;
     private ?bool $is_on;
-    private ?bool$is_read;
     private user $user_id;
 
-    /**
-     * @param int $reminder_id
-     * @param reminderType $type
-     * @param string $message
-     * @param int|null $reminder
-     * @param \DateTime|null $time
-     * @param bool|null $is_on
-     * @param user $user_id
-     */
-    public function __construct(string $type, ?string $message, ?int $reminder, ?\DateTime $time, ?bool $is_on, ?bool $is_read, user $user_id)
+    public function __construct(string $type, ?string $message, ?int $reminder, ?string $time, ?bool $is_on, user $user_id)
     {
         $this->type = $type;
         $this->message = $message;
         $this->reminder = $reminder;
         $this->time = $time;
         $this->is_on = $is_on;
-        $this->is_read = $is_read;
         $this->user_id = $user_id;
     }
 
@@ -81,12 +70,12 @@ class reminder
         $this->reminder = $reminder;
     }
 
-    public function getTime(): \DateTime
+    public function getTime(): string
     {
         return $this->time;
     }
 
-    public function setTime(\DateTime $time): void
+    public function setTime(string $time): void
     {
         $this->time = $time;
     }
@@ -110,16 +99,4 @@ class reminder
     {
         $this->user_id = $user_id;
     }
-
-    public function getIsRead(): ?bool
-    {
-        return $this->is_read;
-    }
-
-    public function setIsRead(?bool $is_read): void
-    {
-        $this->is_read = $is_read;
-    }
-
-
 }

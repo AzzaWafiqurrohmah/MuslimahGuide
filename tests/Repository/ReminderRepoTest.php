@@ -22,7 +22,7 @@ class ReminderRepoTest extends TestCase
         $this->userRepo = new UserRepository(database::getConnection());
 
         $this->user = new user(null ,'sisi', null, role::admin,'087342123456', 'afdfdgdg', "hjhjhjhj", 'rahasia');
-        $this->reminder = new reminder(reminderType::start, 'dsdsjdhjs', null, null, null, null, $this->user);
+        $this->reminder = new reminder(reminderType::start, 'dsdsjdhjs', null, null, null,  $this->user);
     }
 
     public function testadd(){

@@ -30,11 +30,11 @@ class ReminderRepository
     }
 
     public function update(reminder $reminder) :bool{
-        $sql = "UPDATE reminder SET type = ?, message = ?, reminder = ?, reminder_time = ?, is_on = ?, is_read = ? WHERE user_id = ?";
+        $sql = "UPDATE reminder SET type = ?, message = ?, reminder = ?, reminder_time = ?, is_on = ? WHERE user_id = ?";
 
         $statement = $this->connection->prepare($sql);
         $res = $statement->execute([
-            $reminder->getType(), $reminder->getMessage(), $reminder->getReminder(), null, $reminder->getIsOn(), $reminder->getIsRead(), $reminder->getUserId()->getId()
+            $reminder->getType(), $reminder->getMessage(), $reminder->getReminder(), null, $reminder->getIsOn(), $reminder->getUserId()->getId()
         ]);
 
         return $res;
@@ -62,15 +62,13 @@ class ReminderRepository
 
     public function mapToDomain($row) : reminder{
         $user_id = $row['user_id'];
-        $time = $row['reminder_time'];
         $userRepo = new UserRepository(database::getConnection());
         $reminder = new reminder(
             $row['type'],
             $row['message'],
             $row['reminder'],
-            \DateTime::createFromFormat("H:i:s", $time),
+            $row['reminder_time'],
             $row['is_on'],
-            $row['is_read'],
             $userRepo->getById($user_id)
         );
 
