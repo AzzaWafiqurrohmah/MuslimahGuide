@@ -28,6 +28,7 @@ class CycleEstRepoTest extends TestCase
     public function testAdd(){
         $cycle_id = $this->cycleRepo->addAll($this->cycle);
         self::assertTrue($cycle_id > 0);
+        self::assertNotNull($this->cycleRepo->getById($cycle_id));
     }
 
     public function testUpdate(){

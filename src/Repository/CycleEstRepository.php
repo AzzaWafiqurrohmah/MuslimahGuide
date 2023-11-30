@@ -56,6 +56,18 @@ class CycleEstRepository
         return [];
     }
 
+    public function getById(string $id) : ?cycleEst{
+        $sql = "SELECT * FROM cycle_est WHERE cycleEst_id = ?";
+
+        $statement = $this->connection->prepare($sql);
+        if($statement->execute([$id])){
+            foreach ($statement as $row){
+                return $this->mapToDomain($row);
+            }
+        }
+        return null;
+    }
+
     public function delete(string $id) :bool{
         $sql = "DELETE FROM cycle_est WHERE cycleEst_id = ?";
         $statement = $this->connection->prepare($sql);
@@ -65,13 +77,15 @@ class CycleEstRepository
     }
 
     public function mapToDomain($row) : cycleEst{
-        $cycleRepo = new CycleEstRepository(database::getConnection());
+        $user_id = $row['user_id'];
+        $userRepo = new UserRepository(database::getConnection());
         $cycle = new cycleEst(
             $row['cycle_length'],
             $row['period_length'],
             $row['start_date'],
             $row['end_date'],
-            $row['user_id']
+            $userRepo->getById($user_id)
         );
+        return $cycle;
     }
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 30, 2023 at 04:01 AM
+-- Generation Time: Nov 30, 2023 at 07:52 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -100,6 +100,7 @@ CREATE TABLE `reminder` (
   `reminderDays` int(2) DEFAULT 0,
   `reminder_time` time DEFAULT '08:00:00',
   `is_on` tinyint(1) NOT NULL DEFAULT 1,
+  `cycleEst_id` int(11) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -217,7 +218,8 @@ ALTER TABLE `educations`
 --
 ALTER TABLE `reminder`
   ADD PRIMARY KEY (`reminder_id`),
-  ADD KEY `reminder_ibfk_1` (`user_id`);
+  ADD KEY `reminder_ibfk_1` (`user_id`),
+  ADD KEY `fk_reminder` (`cycleEst_id`);
 
 --
 -- Indexes for table `sessions`
@@ -253,13 +255,13 @@ ALTER TABLE `change_prayer`
 -- AUTO_INCREMENT for table `cycle_est`
 --
 ALTER TABLE `cycle_est`
-  MODIFY `cycleEst_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+  MODIFY `cycleEst_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=136;
 
 --
 -- AUTO_INCREMENT for table `cycle_history`
 --
 ALTER TABLE `cycle_history`
-  MODIFY `cycleHistory_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
+  MODIFY `cycleHistory_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 
 --
 -- AUTO_INCREMENT for table `educations`
@@ -271,13 +273,13 @@ ALTER TABLE `educations`
 -- AUTO_INCREMENT for table `reminder`
 --
 ALTER TABLE `reminder`
-  MODIFY `reminder_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+  MODIFY `reminder_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=142;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=663;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=719;
 
 --
 -- AUTO_INCREMENT for table `verifications`
@@ -311,6 +313,7 @@ ALTER TABLE `cycle_history`
 -- Constraints for table `reminder`
 --
 ALTER TABLE `reminder`
+  ADD CONSTRAINT `fk_reminder` FOREIGN KEY (`cycleEst_id`) REFERENCES `cycle_est` (`cycleEst_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `reminder_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --

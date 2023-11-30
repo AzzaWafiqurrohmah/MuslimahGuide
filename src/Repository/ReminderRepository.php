@@ -18,10 +18,10 @@ class ReminderRepository
 
     public function add(reminder $reminder) : ?int{
 
-        $sql = "INSERT INTO reminder(type, user_id) VALUES (?, ?) ";
+        $sql = "INSERT INTO reminder(type, cycleEst_id ,user_id) VALUES (?, ?, ?) ";
         $statement = $this->connection->prepare($sql);
         $statement->execute([
-            $reminder->getType(), $reminder->getUserId()->getId()
+            $reminder->getType(), $reminder->getCycleEst()->getId(), $reminder->getUserId()->getId()
         ]);
 
         $user_id = $this->connection->lastInsertId();
@@ -30,11 +30,11 @@ class ReminderRepository
     }
 
     public function update(reminder $reminder) :bool{
-        $sql = "UPDATE reminder SET type = ?, message = ?, reminderDays = ?, reminder_time = ?, is_on = ? WHERE user_id = ?";
+        $sql = "UPDATE reminder SET type = ?, message = ?, reminderDays = ?, reminder_time = ?, is_on = ?, cycleEst_id = ? WHERE user_id = ?";
 
         $statement = $this->connection->prepare($sql);
         $res = $statement->execute([
-            $reminder->getType(), $reminder->getMessage(), $reminder->getReminder(), null, $reminder->getIsOn(), $reminder->getUserId()->getId()
+            $reminder->getType(), $reminder->getMessage(), $reminder->getReminder(), null, $reminder->getIsOn(), $reminder->getCycleEst()->getId(), $reminder->getUserId()->getId()
         ]);
 
         return $res;
@@ -62,6 +62,8 @@ class ReminderRepository
 
     public function mapToDomain($row) : reminder{
         $user_id = $row['user_id'];
+        $cycleEst_id = $row['cycleEst_id'];
+        $cycleEstRepo = new CycleEstRepository(database::getConnection());
         $userRepo = new UserRepository(database::getConnection());
         $reminder = new reminder(
             $row['type'],
@@ -69,7 +71,8 @@ class ReminderRepository
             $row['reminderDays'],
             $row['reminder_time'],
             $row['is_on'],
-            $userRepo->getById($user_id)
+            $userRepo->getById($user_id),
+            $cycleEstRepo->getById($cycleEst_id)
         );
 
         return $reminder;
