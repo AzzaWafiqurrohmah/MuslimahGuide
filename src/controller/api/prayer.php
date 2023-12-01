@@ -19,7 +19,7 @@ class prayer
     }
 
     public function addPrayer(){
-        $cycleHistory_id = $_POST['cycle_id'];
+        $cycleHistory_id = $_POST['cycleHistory_id'];
         $prayer = $_POST['prayer'];
         $cycle = $this->cycleHistRepo->getById($cycleHistory_id);
         $cycle->setId($cycleHistory_id);
