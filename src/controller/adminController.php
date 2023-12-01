@@ -47,9 +47,9 @@ class adminController
                 $response = $this->userService->loginEmail($request);
                 $this->sessionService->create($response->user);
                 session_start();
-                view::redirect('dashboard');
+                view::redirect('/dashboard');
             } catch (validationException $exception){
-                view::render('login');
+                view::render('/login');
             }
 
             $client->revokeToken();  //for ask what email that will be used in every request
@@ -73,9 +73,9 @@ class adminController
                 try {
                     $response = $this->userService->loginWeb($request);
                     $this->sessionService->create($response->user);
-                    view::redirect('dashboard');
+                    view::redirect('/dashboard');
                 } catch (validationException $exception){
-                    view::render('login');
+                    view::render('/login');
                 }
 
             }
