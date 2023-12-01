@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 30, 2023 at 07:52 AM
+-- Generation Time: Dec 01, 2023 at 07:49 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -49,6 +49,17 @@ CREATE TABLE `cycle_est` (
   `user_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Triggers `cycle_est`
+--
+DELIMITER $$
+CREATE TRIGGER `add_cycleEst(reminder)` AFTER INSERT ON `cycle_est` FOR EACH ROW BEGIN
+UPDATE reminder SET cycleEst_id = NEW.cycleEst_id
+WHERE user_id = NEW.user_id;
+END
+$$
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
@@ -85,7 +96,7 @@ CREATE TABLE `educations` (
 INSERT INTO `educations` (`education_id`, `img`, `title`, `contents`, `on_clicked`) VALUES
 (18, 'd7511_ilustrasi.jpeg', 'Apa itu haid?', 'haid yaitu keluarnya darah selama kurun waktu tertentu, dan ketentuan tertentu.\n', 5),
 (25, 'Niqab_Sastra-Arab-UI.jpg', 'kewajiban mengganti sholat', 'setelah siklus haid selesai, perempuan muslimah diwajibkan untuk mengganti sholatnya dengan ketentuan tertentu\n', 0),
-(27, 'Niqab_Sastra-Arab-UI.jpg', 'kenali gejala sebelum menstruasi', 'sebelum menstruasi, biasanya beberapa orang mengalami gejara seperti kram perut dan lainnya\r\n', 7);
+(27, 'Niqab_Sastra-Arab-UI.jpg', 'kenali gejala sebelum menstruasi', 'sebelum menstruasi, biasanya beberapa orang mengalami gejara seperti kram perut dan lainnya\r\n', 8);
 
 -- --------------------------------------------------------
 
@@ -138,7 +149,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `profileImg`, `name`, `birthdate`, `role`, `phone`, `username`, `email`, `password`) VALUES
-(468, 'profile.jpg', 'Azza Wafiqurrohmah', '2003-04-02', 'admin', '087876123213', 'azza23', 'wafiqurrohmahazza@gmail.com', '12345'),
+(468, 'profile.jpg', 'Azza Wafiqurrohmah', '2003-04-02', 'admin', '087876123213', 'azza23', 'wafiqurrohmahazza@gmail.com', 'rahasia'),
 (473, NULL, 'user', '2003-04-02', 'user', '087876123213', 'user', 'user@gmail.com', 'user'),
 (474, NULL, 'sisi', '2003-08-03', 'user', '082342123456', 'sisi123', 'sisi@gmailcom', 'rahasia'),
 (475, NULL, 'nana', '2005-11-03', 'user', '082342123456', 'nana14', 'nana@gmail.com', 'rahasia'),
@@ -149,11 +160,9 @@ INSERT INTO `users` (`user_id`, `profileImg`, `name`, `birthdate`, `role`, `phon
 (495, NULL, 'rere23', '2001-04-01', 'user', NULL, 'rere23', 'rere@gmail.com', 'rahasia'),
 (496, NULL, 'mayang', '2001-07-05', 'user', NULL, 'mayang65', 'mayang@gmail.com', 'rahasia'),
 (497, NULL, 'riri', '1998-08-23', 'user', NULL, 'riri12', 'riri@gmail.com', 'rahasia'),
-(573, NULL, 'azza', NULL, 'user', '087675453432', 'azza345', 'azza@gmail.com', 'rahasia'),
-(605, NULL, 'contoh', NULL, 'user', NULL, 'contoh', 'contoh@gmail.com', 'rahasia'),
-(606, NULL, 'liliii', NULL, 'user', NULL, 'lili', 'lili@gmail.com', '12345'),
 (643, NULL, NULL, '2003-11-16', 'user', NULL, 'mbul', 'mbul@gmail.com', 'rahasia'),
-(659, NULL, 'contoh', NULL, 'user', '087323232', 'contoh', 'contoh@gmail.com', 'rahasia');
+(720, NULL, NULL, '2003-11-16', 'user', NULL, 'mbul', 'azza@gmail.com', 'rahasia'),
+(721, NULL, NULL, '2003-11-16', 'user', NULL, 'cici', 'cici@gmail.com', 'rahasia');
 
 --
 -- Triggers `users`
@@ -255,13 +264,13 @@ ALTER TABLE `change_prayer`
 -- AUTO_INCREMENT for table `cycle_est`
 --
 ALTER TABLE `cycle_est`
-  MODIFY `cycleEst_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=136;
+  MODIFY `cycleEst_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=143;
 
 --
 -- AUTO_INCREMENT for table `cycle_history`
 --
 ALTER TABLE `cycle_history`
-  MODIFY `cycleHistory_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
+  MODIFY `cycleHistory_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
 
 --
 -- AUTO_INCREMENT for table `educations`
@@ -273,19 +282,19 @@ ALTER TABLE `educations`
 -- AUTO_INCREMENT for table `reminder`
 --
 ALTER TABLE `reminder`
-  MODIFY `reminder_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=142;
+  MODIFY `reminder_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=155;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=719;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=726;
 
 --
 -- AUTO_INCREMENT for table `verifications`
 --
 ALTER TABLE `verifications`
-  MODIFY `verification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `verification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- Constraints for dumped tables

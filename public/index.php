@@ -18,9 +18,12 @@ use MuslimahGuide\Middleware\mustNotLoginMiddleware;
 use MuslimahGuide\controller\api\education;
 use MuslimahGuide\controller\api\cycle;
 use MuslimahGuide\controller\api\prayer;
+use MuslimahGuide\controller\api\reminder;
 
 
 //website
+router::add("web", "GET", "/image", homeController::class, 'image');
+
 router::add("web", "GET", "/", homeController::class, 'landingPage', [mustNotLoginMiddleware::class]);
 router::add("web", "POST", "/", homeController::class, 'PostLandingPage', []);
 
@@ -52,7 +55,7 @@ router::add("API", "POST", '/loginAPI', adminController::class, 'loginAPI');
 router::add("API", "POST", '/registerAPI', adminController::class, 'registerAPI');
 
 router::add("API", "GET", '/profileAPI', profile::class, 'get_profile');
-router::add("API", "PUT", '/profileAPI', profile::class, 'put_profile');
+router::add("API", "POST", '/profileAPI', profile::class, 'put_profile');
 router::add("API", "POST", '/profilePassword', profile::class, 'post_password');
 router::add("API", "POST",'/signOut', profile::class, 'signOut');
 
@@ -68,6 +71,10 @@ router::add("API", "GET", '/estimation', cycle::class, 'getEstimation');
 router::add("API", "POST",'/prayer', prayer::class, 'addPrayer');
 router::add("API", "GET", '/prayer', prayer::class, 'getPrayer');
 router::add("API", "POST", '/updatePrayer', prayer::class,'updatePrayer' );
+
+router::add("API", "GET", '/reminderGet', reminder::class, 'getAllReminder');
+router::add("API", "GET", '/reminderById', reminder::class, 'getById');
+router::add("API", "POST", '/reminderUpdate', reminder::class, 'updateReminder');
 
 router::add("API", "POST", '/emailVerification',verification::class, 'emailVerification' );
 router::add("API", "POST", '/otpVerification', verification::class, 'otpVerification');

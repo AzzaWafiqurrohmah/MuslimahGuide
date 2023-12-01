@@ -30,11 +30,12 @@ class ReminderRepository
     }
 
     public function update(reminder $reminder) :bool{
-        $sql = "UPDATE reminder SET type = ?, message = ?, reminderDays = ?, reminder_time = ?, is_on = ?, cycleEst_id = ? WHERE user_id = ?";
+        $sql = "UPDATE reminder SET message = ?, reminderDays = ?, reminder_time = ?, is_on = ?, cycleEst_id = ? WHERE reminder_id = ?";
 
+        $reminder->setCycleEst($reminder->getCycleEst());
         $statement = $this->connection->prepare($sql);
         $res = $statement->execute([
-            $reminder->getType(), $reminder->getMessage(), $reminder->getReminder(), null, $reminder->getIsOn(), $reminder->getCycleEst()->getId(), $reminder->getUserId()->getId()
+            $reminder->getMessage(), $reminder->getReminder(), $reminder->getTime(), $reminder->getIsOn(), $reminder->getCycleEst()->getId(), $reminder->getReminderId()
         ]);
 
         return $res;
@@ -49,7 +50,7 @@ class ReminderRepository
         return $statement->execute();
     }
 
-    public function getById(int $id){
+    public function getById(string $id){
         $sql = "SELECT * FROM reminder WHERE reminder_id = ?";
         $statement = $this->connection->prepare($sql);
         if($statement->execute([$id])){
@@ -58,6 +59,25 @@ class ReminderRepository
             }
         }
         return null;
+    }
+
+    public function getByIdAPI(string $id) :?array{
+        $sql = "SELECT reminder.*, cycle_est.start_date, cycle_est.end_date FROM reminder JOIN cycle_est ON reminder.cycleEst_id = cycle_est.cycleEst_id WHERE reminder.reminder_id = ?;
+";
+        $statement = $this->connection->prepare($sql);
+        if($statement->execute([$id])){
+            return $statement->fetchAll(\PDO::FETCH_ASSOC);
+        }
+        return [];
+    }
+
+    public function getAll(string $id) :?array{
+        $sql = "SELECT reminder.*, cycle_est.start_date, cycle_est.end_date FROM reminder JOIN cycle_est ON reminder.cycleEst_id = cycle_est.cycleEst_id WHERE reminder.user_id = ?";
+         $statement = $this->connection->prepare($sql);
+         if($statement->execute([$id])){
+             return $statement->fetchAll(\PDO::FETCH_ASSOC);
+         }
+         return [];
     }
 
     public function mapToDomain($row) : reminder{
