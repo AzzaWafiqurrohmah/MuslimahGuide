@@ -52,17 +52,25 @@ class profile
      * @throws \Exception
      */
     public function put_profile(){
-        $input_data = file_get_contents("php://input");
-        $params = json_decode($input_data, true);
-        $token = $params['token'];
-        $user = new user(null,
-                         $params['name'],
-                         $params['birthdate'],
-                         role::user,
-                         $params['phone'],
-                         $params['email'],
-                         $params['username'],
-                         $params['password']);
+        $token = $_POST['token'];
+
+        $profileImg = $_POST['profileImg'];
+        $name = $_POST['name'];
+        $birthDate = $_POST['birthDate'];
+        $phone = $_POST['phone'];
+        $email = $_POST['email'];
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        $user = new user(
+            $profileImg,
+            $name,
+            $birthDate,
+            role::user,
+            $phone,
+            $email,
+            $username,
+            $password
+        );
 
         try {
             if(!$token) throw new \Exception('Harap login terlebih dahulu');
