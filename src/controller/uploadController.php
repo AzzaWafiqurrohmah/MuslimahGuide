@@ -44,9 +44,9 @@ class uploadController
         $Img = $_FILES['fileInput']['name'];
 
         //move img
-        $targetDirectory = "assets/img/education/";
-        $targetFile = $targetDirectory . basename($Img);
-        move_uploaded_file($_FILES["fileInput"]["tmp_name"], $_SERVER['DOCUMENT_ROOT'] . '/' . $targetFile);
+        $destination_path = getcwd() . DIRECTORY_SEPARATOR . 'assetsWeb' . DIRECTORY_SEPARATOR . 'img' . DIRECTORY_SEPARATOR . 'education' . DIRECTORY_SEPARATOR;
+        $targetFile = $destination_path . basename($Img);
+        move_uploaded_file($_FILES["fileInput"]["tmp_name"], $targetFile);
 
         $title = $_POST['title'];
         $content = $_POST['content'];

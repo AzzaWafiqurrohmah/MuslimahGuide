@@ -46,9 +46,17 @@ class articleController
         $alert = null;
         if(isset($_POST['deleteUser'])) {
             $id = $_POST['education_id_delete'];
-            if($this->educationRepo->delete($id)){
-                $alert = "Dihapus";
+            $education = $this->educationRepo->getById($id);
+            $img = $education->getImg();
+
+            $destination_path = getcwd() . DIRECTORY_SEPARATOR . 'assetsWeb' . DIRECTORY_SEPARATOR . 'img' . DIRECTORY_SEPARATOR . 'education' . DIRECTORY_SEPARATOR;
+            $targetFile = $destination_path . basename($img);
+
+            if(file_exists($targetFile)){
+                unlink($targetFile);
+
             }
+            $this->educationRepo->delete($id);
         }
         $user = $this->sessionService->current();
         $name = $user->getName();
