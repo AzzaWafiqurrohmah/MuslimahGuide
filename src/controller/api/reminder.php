@@ -7,9 +7,11 @@ use MuslimahGuide\Repository\CycleEstRepository;
 use MuslimahGuide\Repository\ReminderRepository;
 use MuslimahGuide\Repository\SessionRepository;
 use MuslimahGuide\Repository\UserRepository;
+use MuslimahGuide\trait\APIResponser;
 
 class reminder
 {
+    use APIResponser;
     private ReminderRepository $reminderRepo;
     private UserRepository $userRepo;
     private SessionRepository $sessionRepo;
@@ -30,19 +32,10 @@ class reminder
         $session = $this->sessionRepo->getById($token);
         if($session){
             $data = $this->reminderRepo->getAll($session->getUserId()->getId());
-            $response = array(
-                'status' => 1,
-                'message' => "Data berhasil didapatkan",
-                'data' => $data
-            );
+            $this->successArray($data, 'Data Tersedia');
         } else{
-            $response = array(
-                'status' => 0,
-                'message' => "token tidak valid"
-            );
+            $this->error('Token tidak valid');
         }
-        header('Content-Type: application/json');
-        echo json_encode($response);
     }
 
     public function getById(){
@@ -51,25 +44,13 @@ class reminder
         $session = $this->sessionRepo->getById($token);
         if($session){
             if($data = $this->reminderRepo->getByIdAPI($reminder_id)){
-                $response = array(
-                    'status' => 1,
-                    'message' => "Data berhasil didapatkan",
-                    'data' => $data
-                );
+                $this->successArray($data, 'Data tersedia');
             } else {
-                $response = array(
-                    'status' => 1,
-                    'message' => "Data tidak ditemukan"
-                );
+                $this->error('Data tidak tersedia');
             }
         } else{
-            $response = array(
-                'status' => 0,
-                'message' => "token tidak valid"
-            );
+            $this->error('Token tidak valid');
         }
-        header('Content-Type: application/json');
-        echo json_encode($response);
     }
 
     public function updateReminder(){
@@ -95,23 +76,12 @@ class reminder
         $reminder->setCycleEst($cycleEst);
         if($session->getUserId()->getId()){
             if($this->reminderRepo->update($reminder)){
-                $response = array(
-                    'status' => 1,
-                    'message' => "Data berhasil diupdate"
-                );
+                $this->success('Data berhasil diupdate');
             } else {
-                $response = array(
-                    'status' => 0,
-                    'message' => "Data gagal diupdate"
-                );
+                $this->error('Data gagal diupdate');
             }
         } else {
-            $response = array(
-                'status' => 0,
-                'message' => "Token tidak sesuai"
-            );
+            $this->error('Data tidak valid');
         }
-        header('Content-Type: application/json');
-        echo json_encode($response);
     }
 }

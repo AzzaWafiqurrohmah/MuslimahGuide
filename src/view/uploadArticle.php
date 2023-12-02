@@ -148,7 +148,7 @@
         <br>
         <br>
         <!-- Horizontal Form -->
-        <form method="post" action="/uploadArticle" enctype="multipart/form-data" onsubmit="QuillContent()">
+        <form method="post" action="/uploadArticle" enctype="multipart/form-data" id="myform" >
           <div class="row mb-3" style="margin-left: 25px;">
             <div class="col-sm-4">
                 <div class="upload-container" style="text-align: center;">
@@ -179,7 +179,7 @@
 
           <div style="text-align: end;">
               <button type="reset" class="btn btn-secondary" style="font-size: 12px;"  >Reset</button>
-              <button type="submit" class="btn btn-primary"  style="font-size: 12px;" >Submit</button>
+              <button type="submit" class="btn btn-primary" id="btn-submit"  style="font-size: 12px;" >Submit</button>
               <input type="hidden" id="content" name="content">
           </div>
 
@@ -189,15 +189,51 @@
     </div>
 
       <script>
-          function QuillContent(event) {
-              var quill = new Quill('#text', {
+          // var quill = new Quill('#text', {
+          //     theme: 'snow'
+          // });
+          // function QuillContent(event) {
+          //
+          //     var quill = new Quill('#text', {
+          //         theme: 'snow'
+          //     });
+          //
+          //     event.preventDefault();
+          //
+          //     var content = quill.getText();
+          //
+          //     $('#content').val(content);
+          // }
+
+          // var quill = document.querySelector('.quill-editor-full');
+          var myForm = document.getElementById('myForm');
+
+          // document.getElementById('btn-submit').on('submit', () => {
+          //     // Get HTML content
+          //     // var html = quill.root.innerHTML;
+          //
+          //     // Copy HTML content in hidden form
+          //     $('#content').val( 'kamuuu' )
+          //
+          //     // Post form
+          //     // myForm.submit();
+          // })
+
+          var quill = new Quill('.quill-editor-full', {
+              theme: 'snow'
+          });
+          document.getElementById('btn-submit').addEventListener('click', function(event) {
+              var quill = new Quill('.quill-editor-full', {
                   theme: 'snow'
               });
-              event.preventDefault();
-              var content = quill.getText();
+              var delta = quill.getContents();
 
-              $('#content').val(content);
-          }
+              // Convert Quill Delta to HTML
+              var html = quill.clipboard.convert(delta);
+              $('#content').val(html);
+          });
+
+
       </script>
 
   </main><!-- End #main -->

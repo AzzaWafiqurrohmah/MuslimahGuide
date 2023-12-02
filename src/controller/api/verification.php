@@ -1,6 +1,6 @@
 <?php
 
-namespace MuslimahGuide\controller;
+namespace MuslimahGuide\controller\api;
 
 use MuslimahGuide\Config\database;
 use MuslimahGuide\Model\verificationRequest;
@@ -8,9 +8,11 @@ use MuslimahGuide\Repository\UserRepository;
 use MuslimahGuide\Repository\VerificationRepository;
 use MuslimahGuide\Service\adminService;
 use MuslimahGuide\Service\verificationService;
+use MuslimahGuide\trait\APIResponser;
 
 class verification
 {
+    use APIResponser;
     private UserRepository $userRepo;
     private adminService $adminService;
     private VerificationRepository $verificationRepo;
@@ -37,22 +39,13 @@ class verification
             $phpmailer = $this->verificationService->sendEmail($email, $response->verification->getUser()->getName(), $response->verification->getCode());
 
             if($phpmailer->send()){
-                $response = array(
-                    'status' => 1,
-                    'message' => 'Kode Berhasil Dikirim',
-                    'verification_id' => $response->verification->getVerificationId()
-                );
+                $this->successValue($response->verification->getVerificationId(), 'kode berhasi dikirm', 'verification_Id' );
             } else{
                 throw new \Exception($phpmailer->ErrorInfo);
             }
         } catch (\Exception $e){
-            $response = array(
-                'status' => 0,
-                'message' => $e->getMessage()
-            );
+            $this->error($e->getMessage());
         }
-        header('Content-Type: application/json');
-        echo json_encode($response);
     }
 
     public function otpVerification(){
@@ -62,24 +55,13 @@ class verification
         $verification = $this->verificationRepo->getById($verification_id);
         if($verification->getCode()){
             if($code == $verification->getCode()){
-                $response = array(
-                    'status' => 1,
-                    'message' => 'Kode Sesuai'
-                );
+                $this->success('Kode sesuai');
             } else {
-                $response = array(
-                    'status' => 0,
-                    'message' => 'Kode Salah'
-                );
+                $this->error('kode salah');
             }
         } else {
-            $response = array(
-                'status' => 0,
-                'message' => 'id tidak ditemukan'
-            );
+            $this->error('id tidak ditemukan');
         }
-        header('Content-Type: application/json');
-        echo json_encode($response);
     }
 
     public function newPassword(){
@@ -89,23 +71,14 @@ class verification
         $verification = $this->verificationRepo->getById($verification_id);
         $user = $verification->getUser();
 
-        $response = [];
         $user->setPassword($firstPassword);
         $this->verificationRepo->delete($verification_id);
 
         if($this->userRepo->update($user)){
-            $response = array(
-                'status' => 1,
-                'message' => 'Password berhasil diperbarui'
-            );
+            $this->success('Password berhasil diperbarui');
         } else {
-            $response = array(
-                'status' => 0,
-                'message' => 'Password gagal diperbarui'
-            );
+            $this->error('Password gagal diperbarui');
         }
-        header('Content-Type: application/json');
-        echo json_encode($response);
     }
 
 }

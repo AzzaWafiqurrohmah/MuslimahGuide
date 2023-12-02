@@ -8,9 +8,11 @@ use MuslimahGuide\Domain\user;
 use MuslimahGuide\Repository\SessionRepository;
 use MuslimahGuide\Repository\UserRepository;
 use MuslimahGuide\Service\sessionService;
+use MuslimahGuide\trait\APIResponser;
 
 class profile
 {
+    use APIResponser;
     private UserRepository $userRepo;
     private SessionRepository $sessionRepo;
     private sessionService $sessionService;
@@ -34,18 +36,10 @@ class profile
             if(!($session )) throw new \Exception('Invalid token');
 
             $user = $this->userRepo->getByIdAPI($session->getUserId()->getId());
-            $response = array(
-                'status' => 1,
-                'data' => $user
-            );
+            $this->successArray($user, 'Data Tersedia');
         } catch (\Exception $exception){
-            $response = array(
-                'status' => 0,
-                'message' => $exception->getMessage()
-            );
+            $this->error($exception->getMessage());
         }
-        header('Content-Type: application/json');
-        echo json_encode($response);
     }
 
     /**
@@ -81,19 +75,14 @@ class profile
 
             $user->setId($session->getUserId()->getId());
             $this->userRepo->update($user);
-            $response = array(
-                'status' => 1,
-                'message' => "Data berhasil diperbarui"
-            );
+            $this->success('Data berhasil diperbarui');
         } catch (\Exception $exception){
             $response = array(
                 'status' => 0,
                 'message' => $exception->getMessage()
             );
+            $this->error($exception->getMessage());
         }
-
-        header('Content-Type: application/json');
-        echo json_encode($response);
     }
 
     public function put_cycle(){
@@ -117,26 +106,13 @@ class profile
             $user = $this->userRepo->getById($user_id);
             $user->setPassword($pass);
             if($this->userRepo->update($user)){
-                $response = array(
-                    'status' => 1,
-                    'message' => "Password berhasil diperbarui"
-                );
+                $this->success('Password berhasil diperbarui');
             } else {
-                $response = array(
-                    'status' => 0,
-                    'message' => "Password Gagal diperbarui"
-                );
+                $this->error('Password gagal diperbarui');
             }
         } else {
-            $response = array(
-                'status' => 0,
-                'message' => "Token tidak ditemukan"
-            );
+            $this->error('Token tidak ditemukan');
         }
-
-
-        header('Content-Type: application/json');
-        echo json_encode($response);
     }
 
     public function signOut(){
@@ -145,17 +121,9 @@ class profile
 
         $res = $this->sessionRepo->findById($token);
         if($res == null){
-            $response = array(
-                'status' => 1,
-                'message' => "Anda berhasil keluar"
-            );
+            $this->success('Anda berhasil keluar');
         } else {
-            $response = array(
-                'status' => 0,
-                'message' => "Token anda tidak sesuai"
-            );
+            $this->error('Token tidak valid');
         }
-        header('Content-Type: application/json');
-        echo json_encode($response);
     }
 }

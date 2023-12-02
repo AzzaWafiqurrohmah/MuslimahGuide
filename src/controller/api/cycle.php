@@ -10,9 +10,11 @@ use MuslimahGuide\Repository\CycleEstRepository;
 use MuslimahGuide\Repository\CycleHistRepository;
 use MuslimahGuide\Repository\SessionRepository;
 use MuslimahGuide\Repository\UserRepository;
+use MuslimahGuide\trait\APIResponser;
 
 class cycle
 {
+    use APIResponser;
 
     private CycleHistRepository $cycleHistRepo;
     private CycleEstRepository $cycleEstRepo;
@@ -59,13 +61,7 @@ class cycle
         $cycleEst = new cycleEst($cycle, $period, $startDateEst->format('Y-m-d H:i:s'), $lastDateEst->format('Y-m-d H:i:s'), $user);
         $this->cycleEstRepo->addAll($cycleEst);
 
-        $response = array(
-            'status' => 1,
-            'message' => "Data tersimpan"
-        );
-        header('Content-Type: application/json');
-        echo json_encode($response);
-
+        $this->success('Data tersimpan');
     }
 
     public function getHistory(){
@@ -75,20 +71,10 @@ class cycle
 
         if($user_id != null){
             $data = $this->cycleHistRepo->getLastCycle($user_id);
-            $response = array(
-                'status' => 1,
-                'message' => "Data Tersedia",
-                'data' => $data
-            );
+            $this->successArray($data, 'Data Tersedia');
         } else {
-            $response = array(
-                'status' => 0,
-                'message' => "Token tidak valid"
-            );
+            $this->error('Token tidak valid');
         }
-
-        header('Content-Type: application/json');
-        echo json_encode($response);
     }
 
     public function getEstimation(){
@@ -98,21 +84,9 @@ class cycle
 
         if($user_id != null){
             $data = $this->cycleEstRepo->getByUserId($user_id);
-            $response = array(
-                'status' => 1,
-                'message' => "Data Tersedia",
-                'data' => $data
-            );
+            $this->successArray($data, 'Data Tersedia');
         } else {
-            $response = array(
-                'status' => 0,
-                'message' => "Token tidak valid"
-            );
+            $this->error('Token tidak valid');
         }
-
-        header('Content-Type: application/json');
-        echo json_encode($response);
     }
-
-
 }

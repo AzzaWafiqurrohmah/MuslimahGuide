@@ -3,7 +3,12 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 use MuslimahGuide\app\router;
 use MuslimahGuide\controller\adminController;
+use MuslimahGuide\controller\api\cycle;
+use MuslimahGuide\controller\api\education;
+use MuslimahGuide\controller\api\prayer;
 use MuslimahGuide\controller\api\profile;
+use MuslimahGuide\controller\api\reminder;
+use MuslimahGuide\controller\api\verification;
 use MuslimahGuide\controller\articleController;
 use MuslimahGuide\controller\dashboardController;
 use MuslimahGuide\controller\editArticleController;
@@ -11,14 +16,9 @@ use MuslimahGuide\controller\homeController;
 use MuslimahGuide\controller\profileController;
 use MuslimahGuide\controller\uploadController;
 use MuslimahGuide\controller\userTableController;
-use MuslimahGuide\controller\verification;
 use MuslimahGuide\controller\verificationController;
 use MuslimahGuide\Middleware\mustLoginMiddleware;
 use MuslimahGuide\Middleware\mustNotLoginMiddleware;
-use MuslimahGuide\controller\api\education;
-use MuslimahGuide\controller\api\cycle;
-use MuslimahGuide\controller\api\prayer;
-use MuslimahGuide\controller\api\reminder;
 
 
 //website

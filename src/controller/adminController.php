@@ -13,9 +13,11 @@ use MuslimahGuide\Repository\SessionRepository;
 use MuslimahGuide\Repository\UserRepository;
 use MuslimahGuide\Service\adminService;
 use MuslimahGuide\Service\sessionService;
+use MuslimahGuide\trait\APIResponser;
 
 class adminController
 {
+    use APIResponser;
     private UserRepository $userRepo;
     private adminService $userService;
     private sessionService $sessionService;
@@ -91,19 +93,10 @@ class adminController
         try {
             $response = $this->userService->login($request);
             $token = $this->sessionService->create($response->user);
-            $response = array(
-                'status' => 1,
-                'message' => 'login berhasil',
-                'token' => $token->getId()
-            );
+            $this->successValue( $token->getId(),"Login Berhasil", 'token');
         } catch (\Exception $exception){
-            $response = array(
-                'status' => 0,
-                'message' => $exception->getMessage()
-            );
+            $this->error($exception->getMessage());
         }
-        header('Content-Type: application/json');
-        echo json_encode($response);
     }
 
     function registerAPI(){
@@ -117,17 +110,10 @@ class adminController
             if(!$adminResponse){
                 throw new \Exception('login gagal');
             }
-            $response = array(
-                'status' => 1,
-                'message' => 'Register berhasil'
-            );
+            $this->success("Register berhasil");
+
         } catch (validationException $exception){
-            $response = array(
-                'status' => 0,
-                'message' => $exception->getMessage()
-            );
+            $this->error($exception->getMessage());
         }
-        header('Content-Type: application/json');
-        echo json_encode($response);
     }
 }

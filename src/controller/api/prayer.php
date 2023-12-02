@@ -6,9 +6,11 @@ use MuslimahGuide\Config\database;
 use MuslimahGuide\Domain\changePrayer;
 use MuslimahGuide\Repository\changePrayerRepository;
 use MuslimahGuide\Repository\CycleHistRepository;
+use MuslimahGuide\trait\APIResponser;
 
 class prayer
 {
+    use APIResponser;
     private changePrayerRepository $changePrayerRepo;
     private CycleHistRepository $cycleHistRepo;
 
@@ -27,54 +29,29 @@ class prayer
         $changePrayer = new changePrayer($prayer, 'no', $cycle);
         $res = $this->changePrayerRepo->addChangePrayer($changePrayer);
         if($res != null){
-            $response = array(
-                'status' => 1,
-                'message' => "Data berhasil ditambahkan"
-            );
+            $this->success('Data berhasil ditambahkan');
         } else {
-            $response = array(
-                'status' => 0,
-                'message' => "Data gagal ditambahkan"
-            );
+            $this->error('Data gagal ditambahkan');
         }
-        header('Content-Type: application/json');
-        echo json_encode($response);
     }
 
     public function getPrayer(){
         $cycleHistory_id = $_GET['cycleHistory_id'];
         $data = $this->changePrayerRepo->getChangePrayer($cycleHistory_id);
         if($data != null){
-            $response = array(
-                'status' => 1,
-                'message' => "Data berhasil ditambahkan",
-                'data' => $data
-            );
+            $this->successArray($data, 'Data tersedia');
         } else {
-            $response = array(
-                'status' => 0,
-                'message' => "cycleHistory_id tidak ditemukan",
-            );
+            $this->error('Data tida tersedia');
         }
-        header('Content-Type: application/json');
-        echo json_encode($response);
     }
 
     public function updatePrayer(){
         $changePrayer_id = $_POST['changePrayer_id'];
 
         if($this->changePrayerRepo->update($changePrayer_id)){
-            $response = array(
-                'status' => 1,
-                'message' => "Data berhasil diupdate",
-            );
+            $this->success('Data berhasil diupdate');
         }else {
-            $response = array(
-                'status' => 0,
-                'message' => "Data Gagal diupdate",
-            );
+            $this->error('Data gagal diupdate');
         }
-        header('Content-Type: application/json');
-        echo json_encode($response);
     }
 }
