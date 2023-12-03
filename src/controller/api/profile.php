@@ -48,7 +48,16 @@ class profile
     public function put_profile(){
         $token = $_POST['token'];
 
-        $profileImg = $_POST['profileImg'];
+        $profileImg = null;
+        if($_POST['profilImg']){
+            $path = getcwd() . DIRECTORY_SEPARATOR . 'assetsWeb' . DIRECTORY_SEPARATOR . 'img' . DIRECTORY_SEPARATOR . 'profile' . DIRECTORY_SEPARATOR;
+            $profileImg = '/images/' . date("d-m-Y") . '-' . time() . '-' . rand(10000, 100000) . '.jpg';
+            $data = base64_decode($_POST['profilImg']);
+
+            file_put_contents($path . $profileImg, $data);
+        }
+
+
         $name = $_POST['name'];
         $birthDate = $_POST['birthDate'];
         $phone = $_POST['phone'];
