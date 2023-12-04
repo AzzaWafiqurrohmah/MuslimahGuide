@@ -49,10 +49,10 @@ class profile
         $token = $_POST['token'];
 
         $profileImg = null;
-        if($_POST['profilImg']){
+        if($_POST['profileImg']){
             $path = getcwd() . DIRECTORY_SEPARATOR . 'assetsWeb' . DIRECTORY_SEPARATOR . 'img' . DIRECTORY_SEPARATOR . 'profile' . DIRECTORY_SEPARATOR;
             $profileImg = '/images/' . date("d-m-Y") . '-' . time() . '-' . rand(10000, 100000) . '.jpg';
-            $data = base64_decode($_POST['profilImg']);
+            $data = base64_decode($_POST['profileImg']);
 
             file_put_contents($path . $profileImg, $data);
         }
