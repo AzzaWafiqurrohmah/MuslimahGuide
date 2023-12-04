@@ -21,9 +21,14 @@ class adminService
     public function login(adminRequest $request) : adminResponse{
         $request->validateUserMobileRequest($request->email, $request->password);
 
-        $user = $this->userRepo->get(["email" => $request->email, "password"=> $request->password]);
+        $user = $this->userRepo->get(["email" => $request->email]);
         if($user == null){
-            throw new validationException("email or password is wrong");
+            throw new validationException("email tidak ditemukan");
+        }
+
+        $user = $this->userRepo->get(["email" => $request->email, "password" => $request->password]);
+        if($user == null){
+            throw new validationException("password tidak sesuai");
         }
 
         $response = new adminResponse();
@@ -59,6 +64,11 @@ class adminService
 
     public function register(adminRequest $request) :adminResponse{
         $request -> validateRegisterRequest($request->email, $request->username, $request->password);
+
+        $user = $this->userRepo->get(["email" => $request->email]);
+        if($user !== null){
+            throw new validationException("email sudah digunakan");
+        }
 
         $user = new user(null,null, null, role::user, null, $request->email, $request->username, $request->password);
         $user->setId($this->userRepo->addAll($user));

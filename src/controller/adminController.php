@@ -94,7 +94,7 @@ class adminController
             $response = $this->userService->login($request);
             $token = $this->sessionService->create($response->user);
             $this->successValue( $token->getId(),"Login Berhasil", 'token');
-        } catch (\Exception $exception){
+        } catch (validationException $exception){
             $this->error($exception->getMessage());
         }
     }
@@ -106,10 +106,7 @@ class adminController
         $request->password = $_POST['password'];
 
         try {
-            $adminResponse = $this->userService->register($request);
-            if(!$adminResponse){
-                throw new \Exception('login gagal');
-            }
+            $this->userService->register($request);
             $this->success("Register berhasil");
 
         } catch (validationException $exception){
