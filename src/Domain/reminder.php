@@ -12,17 +12,15 @@ class reminder
     private ?int $reminder;
     private ?string $time;
     private ?bool $is_on;
-    private user $user_id;
     private cycleEst $cycleEst;
 
-    public function __construct(string $type, ?string $message, ?int $reminder, ?string $time, ?bool $is_on, user $user_id, cycleEst $cycleEst)
+    public function __construct(string $type, ?string $message, ?int $reminder, ?string $time, ?bool $is_on, cycleEst $cycleEst)
     {
         $this->type = $type;
         $this->message = $message;
         $this->reminder = $reminder;
         $this->time = $time;
         $this->is_on = $is_on;
-        $this->user_id = $user_id;
         $this->cycleEst = $cycleEst;
     }
 
@@ -44,9 +42,6 @@ class reminder
     {
         $this->type = $type;
     }
-
-
-
 
     public function setMessage(string $message): void
     {
@@ -93,16 +88,6 @@ class reminder
     public function setIsOn(bool $is_on): void
     {
         $this->is_on = $is_on;
-    }
-
-    public function getUserId(): user
-    {
-        return $this->user_id;
-    }
-
-    public function setUserId(user $user_id): void
-    {
-        $this->user_id = $user_id;
     }
 
     public function getCycleEst(): cycleEst

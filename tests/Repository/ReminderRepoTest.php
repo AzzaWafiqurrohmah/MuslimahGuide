@@ -33,7 +33,7 @@ class ReminderRepoTest extends TestCase
         $this->cycleEst = new cycleEst(25, 7, null, null, $this->user);
         $this->cycleEst->setId($this->cycleEstRepo->addAll($this->cycleEst));
 
-        $this->reminder = new reminder(reminderType::start, 'dsdsjdhjs', null, null, null,  $this->user, $this->cycleEst);
+        $this->reminder = new reminder(reminderType::start, 'dsdsjdhjs', null, null, null, $this->cycleEst);
     }
 
     public function testadd(){
@@ -49,6 +49,7 @@ class ReminderRepoTest extends TestCase
 
         $reminder2 = $this->reminderRepo->getById($result);
 
+        $reminder2->setReminderId($result);
         $reminder2->setCycleEst($this->cycleEst);
         $reminder2->setMessage('haiiii');
 

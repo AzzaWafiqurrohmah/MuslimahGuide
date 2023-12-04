@@ -18,10 +18,10 @@ class ReminderRepository
 
     public function add(reminder $reminder) : ?int{
 
-        $sql = "INSERT INTO reminder(type, cycleEst_id ,user_id) VALUES (?, ?, ?) ";
+        $sql = "INSERT INTO reminder(type, cycleEst_id) VALUES (?, ?) ";
         $statement = $this->connection->prepare($sql);
         $statement->execute([
-            $reminder->getType(), $reminder->getCycleEst()->getId(), $reminder->getUserId()->getId()
+            $reminder->getType(), $reminder->getCycleEst()->getId()
         ]);
 
         $user_id = $this->connection->lastInsertId();
@@ -81,20 +81,16 @@ class ReminderRepository
     }
 
     public function mapToDomain($row) : reminder{
-        $user_id = $row['user_id'];
         $cycleEst_id = $row['cycleEst_id'];
         $cycleEstRepo = new CycleEstRepository(database::getConnection());
-        $userRepo = new UserRepository(database::getConnection());
         $reminder = new reminder(
             $row['type'],
             $row['message'],
             $row['reminderDays'],
             $row['reminder_time'],
             $row['is_on'],
-            $userRepo->getById($user_id),
             $cycleEstRepo->getById($cycleEst_id)
         );
-
         return $reminder;
     }
 
