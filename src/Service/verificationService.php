@@ -42,7 +42,7 @@ class verificationService
     public function emailVerification(verificationRequest $request) :verificationResponse{
         $user = $this->userRepo->get(["email" => $request->email]);
         if($user == null){
-            throw new validationException("email or password is wrong");
+            throw new validationException("email tidak ditemukan");
         }
 
         $uniqueNumber = str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
@@ -76,6 +76,38 @@ class verificationService
         $phpmailer->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
         return $phpmailer;
+    }
+
+    public function otpVerification(verificationRequest $request) :bool{
+        $verification = $this->verificationRepo->getById($request->verification_id);
+        if($verification == null){
+            throw new validationException("verifikasi ID tidak ditemukan");
+        }
+
+        $code = $verification->getCode();
+        if($code == $request->code){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function newPassword(verificationRequest $request) :bool{
+        $verification_id = $_POST['verification_id'];
+        $firstPassword = $_POST['firstPassword'];
+
+        $verification = $this->verificationRepo->getById($request->verification_id);
+        if($verification == null){
+            throw new validationException("verifikasi ID tidak ditemukan");
+        }
+
+        $user = $verification->getUser();
+        $user->setPassword($firstPassword);
+
+        $this->verificationRepo->delete($verification_id);
+
+        $this->userRepo->update($user);
+        return true;
     }
 
 }
