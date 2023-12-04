@@ -5,6 +5,7 @@ namespace MuslimahGuide\controller\api;
 use MuslimahGuide\Config\database;
 use MuslimahGuide\data\role;
 use MuslimahGuide\Domain\user;
+use MuslimahGuide\Exception\validationException;
 use MuslimahGuide\Repository\SessionRepository;
 use MuslimahGuide\Repository\UserRepository;
 use MuslimahGuide\Service\sessionService;
@@ -32,8 +33,7 @@ class profile
             if(!$token) throw new \Exception('Harap login terlebih dahulu');
 
             $session = $this->sessionRepo->findById($token);
-
-            if(!($session )) throw new \Exception('Invalid token');
+            if(!($session )) throw new \Exception('token tidak valid');
 
             $user = $this->userRepo->getByIdAPI($session->getUserId()->getId());
             $this->successArray($user, 'Data Tersedia');
@@ -79,60 +79,50 @@ class profile
             if(!$token) throw new \Exception('Harap login terlebih dahulu');
             $session = $this->sessionRepo->findById($token);
             if(!$session){
-                throw new \Exception('Invalid token');
+                throw new \Exception('token tidak valid');
             }
 
             $user->setId($session->getUserId()->getId());
             $this->userRepo->update($user);
             $this->success('Data berhasil diperbarui');
         } catch (\Exception $exception){
-            $response = array(
-                'status' => 0,
-                'message' => $exception->getMessage()
-            );
             $this->error($exception->getMessage());
         }
-    }
-
-    public function put_cycle(){
-
-    }
-
-    public function get_cycle(){
-
     }
 
     public function post_password(){
         $token = $_POST['token'];
         $pass = $_POST['password'];
-        $response = [];
 
-        $session = $this->sessionRepo->getById($token);
+        try{
+            if(!$token) throw new validationException('Harap login terlebih dahulu');
 
-        if($session !== null){
-            $user_id = $session->getUserId()->getId();
+            $session = $this->sessionRepo->findById($token);
+            if(!($session )) throw new validationException('token tidak valid');
 
-            $user = $this->userRepo->getById($user_id);
+            $user = $this->userRepo->getById($session->getUserId()->getId());
             $user->setPassword($pass);
-            if($this->userRepo->update($user)){
-                $this->success('Password berhasil diperbarui');
-            } else {
-                $this->error('Password gagal diperbarui');
-            }
-        } else {
-            $this->error('Token tidak ditemukan');
+            $this->userRepo->update($user);
+
+            $this->success('Password berhasil diperbarui');
+        }catch (validationException $exception){
+            $this->error($exception->getMessage());
         }
     }
 
     public function signOut(){
         $token = $_POST['token'];
-        $this->sessionRepo->deleteById($token);
 
-        $res = $this->sessionRepo->findById($token);
-        if($res == null){
+        try {
+            if(!$token) throw new validationException('Harap login terlebih dahulu');
+
+            $session = $this->sessionRepo->findById($token);
+            if(!($session )) throw new validationException('token tidak valid');
+
+            $this->sessionRepo->deleteById($token);
             $this->success('Anda berhasil keluar');
-        } else {
-            $this->error('Token tidak valid');
+        } catch (validationException $exception){
+            $this->error($exception->getMessage());
         }
     }
 }
