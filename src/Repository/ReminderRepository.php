@@ -72,7 +72,7 @@ class ReminderRepository
     }
 
     public function getAll(string $id) :?array{
-        $sql = "SELECT reminder.*, cycle_est.start_date, cycle_est.end_date FROM reminder JOIN cycle_est ON reminder.cycleEst_id = cycle_est.cycleEst_id WHERE reminder.user_id = ?";
+        $sql = "SELECT reminder.*, cycle_est.start_date, cycle_est.end_date FROM reminder JOIN cycle_est ON reminder.cycleEst_id = cycle_est.cycleEst_id WHERE cycle_Est.user_id = ?";
          $statement = $this->connection->prepare($sql);
          if($statement->execute([$id])){
              return $statement->fetchAll(\PDO::FETCH_ASSOC);
