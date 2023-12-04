@@ -15,8 +15,12 @@ class SessionRepository
     }
 
     public function save(session $session) : ?session{
-        $statement = $this->connection->prepare("INSERT INTO sessions VALUES (?, ?)");
-        $statement->execute([$session->getId(), $session->getUserId()->getId()]);
+        date_default_timezone_set('Asia/Jakarta');
+        $expiryTime = time() + (5 * 60 * 60); //every 5 hours, 5 hours * 60 minutes * 60 seconds
+        $expiryTimeFormatted = date('Y-m-d H:i:s', $expiryTime);
+
+        $statement = $this->connection->prepare("INSERT INTO sessions VALUES (?, ?, ?)");
+        $statement->execute([$session->getId(), $expiryTimeFormatted ,$session->getUserId()->getId()]);
 
         return $session;
     }
@@ -36,6 +40,16 @@ class SessionRepository
     public function deleteById(string $id) : bool{
         $statement = $this->connection->prepare("DELETE FROM sessions WHERE session_id = ?");
         return $statement->execute([$id]);
+    }
+
+    public function expiredTime(){
+        date_default_timezone_set('Asia/Jakarta');
+        $currentTime = date('Y-m-d H:i:s', time());
+
+        $sql = "DELETE FROM sessions WHERE expiryTime <= ?";
+
+        $statement = $this->connection->prepare($sql);
+        $statement->execute([$currentTime]);
     }
 
     public function getById(string $id) : ?session{
