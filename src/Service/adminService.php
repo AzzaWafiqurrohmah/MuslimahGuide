@@ -19,7 +19,13 @@ class adminService
     }
 
     public function login(adminRequest $request) : adminResponse{
-        $request->validateUserMobileRequest($request->email, $request->password);
+        if($request->email === null){
+            throw new validationException("Harap masukkan email terlebih dahulu");
+        }
+
+        if($request->password === null){
+            throw new validationException("Harap masukkan password terlebih dahulu");
+        }
 
         $user = $this->userRepo->get(["email" => $request->email]);
         if($user == null){
@@ -63,6 +69,18 @@ class adminService
     }
 
     public function register(adminRequest $request) :adminResponse{
+        if($request->email === null){
+            throw new validationException("Harap masukkan email terlebih dahulu");
+        }
+
+        if($request->username === null){
+            throw new validationException("Harap masukkan username terlebih dahulu");
+        }
+
+        if($request->password == null){
+            throw new validationException("Harap masukkan password terlebih dahulu");
+        }
+
         $request -> validateRegisterRequest($request->email, $request->username, $request->password);
 
         $user = $this->userRepo->get(["email" => $request->email]);

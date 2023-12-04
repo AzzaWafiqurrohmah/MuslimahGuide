@@ -87,8 +87,9 @@ class adminController
 
     function loginAPI(){
         $request = new adminRequest();
-        $request->email = $_POST['email'];
-        $request->password = $_POST['password'];
+        $request->email = $_POST['email'] ?? null;
+        $request->password = $_POST['password'] ?? null;
+
 
         try {
             $response = $this->userService->login($request);
@@ -100,10 +101,12 @@ class adminController
     }
 
     function registerAPI(){
+
         $request = new adminRequest();
-        $request->email = $_POST['email'];
-        $request->username = $_POST['username'];
-        $request->password = $_POST['password'];
+        $request->email = $_POST['email'] ?? null;
+        $request->username = $_POST['username'] ?? null;
+        $request->password = $_POST['password'] ?? null;
+
 
         try {
             $this->userService->register($request);
