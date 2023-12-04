@@ -19,14 +19,6 @@ class adminService
     }
 
     public function login(adminRequest $request) : adminResponse{
-        if($request->email === null){
-            throw new validationException("Harap masukkan email terlebih dahulu");
-        }
-
-        if($request->password === null){
-            throw new validationException("Harap masukkan password terlebih dahulu");
-        }
-
         $user = $this->userRepo->get(["email" => $request->email]);
         if($user == null){
             throw new validationException("email tidak ditemukan");
@@ -35,6 +27,10 @@ class adminService
         $user = $this->userRepo->get(["email" => $request->email, "password" => $request->password]);
         if($user == null){
             throw new validationException("password tidak sesuai");
+        }
+
+        if($user->getRole() == "admin"){
+            throw new validationException("Hanya user yang dapat login");
         }
 
         $response = new adminResponse();
@@ -50,6 +46,10 @@ class adminService
             throw new validationException("email or password is wrong");
         }
 
+        if($user->getRole() == "user"){
+            throw new validationException("Hanya admin yang dapat login");
+        }
+
         $response = new adminResponse();
         $response->user = $user;
         return $response;
@@ -63,24 +63,16 @@ class adminService
             throw new validationException("email or password is wrong");
         }
 
+        if($user->getRole() == "user"){
+            throw new validationException("Hanya admin yang dapat login");
+        }
+
         $response = new adminResponse();
         $response->user = $user;
         return $response;
     }
 
     public function register(adminRequest $request) :adminResponse{
-        if($request->email === null){
-            throw new validationException("Harap masukkan email terlebih dahulu");
-        }
-
-        if($request->username === null){
-            throw new validationException("Harap masukkan username terlebih dahulu");
-        }
-
-        if($request->password == null){
-            throw new validationException("Harap masukkan password terlebih dahulu");
-        }
-
         $request -> validateRegisterRequest($request->email, $request->username, $request->password);
 
         $user = $this->userRepo->get(["email" => $request->email]);
