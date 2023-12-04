@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 01, 2023 at 07:49 AM
+-- Generation Time: Dec 04, 2023 at 05:38 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -53,9 +53,10 @@ CREATE TABLE `cycle_est` (
 -- Triggers `cycle_est`
 --
 DELIMITER $$
-CREATE TRIGGER `add_cycleEst(reminder)` AFTER INSERT ON `cycle_est` FOR EACH ROW BEGIN
-UPDATE reminder SET cycleEst_id = NEW.cycleEst_id
-WHERE user_id = NEW.user_id;
+CREATE TRIGGER `add_reminder` AFTER INSERT ON `cycle_est` FOR EACH ROW BEGIN
+        INSERT INTO reminder (type, message, is_on, 			cycleEst_id) VALUES
+        ('period_start', 'Hari pertama siklus menstruasi Anda dimulai', '0', NEW.cycleEst_id),
+        ('period_end', 'Masa haid Anda telah selesai', '0', NEW.cycleEst_id);
 END
 $$
 DELIMITER ;
@@ -96,7 +97,7 @@ CREATE TABLE `educations` (
 INSERT INTO `educations` (`education_id`, `img`, `title`, `contents`, `on_clicked`) VALUES
 (18, 'd7511_ilustrasi.jpeg', 'Apa itu haid?', 'haid yaitu keluarnya darah selama kurun waktu tertentu, dan ketentuan tertentu.\n', 5),
 (25, 'Niqab_Sastra-Arab-UI.jpg', 'kewajiban mengganti sholat', 'setelah siklus haid selesai, perempuan muslimah diwajibkan untuk mengganti sholatnya dengan ketentuan tertentu\n', 0),
-(27, 'Niqab_Sastra-Arab-UI.jpg', 'kenali gejala sebelum menstruasi', 'sebelum menstruasi, biasanya beberapa orang mengalami gejara seperti kram perut dan lainnya\r\n', 8);
+(27, 'Niqab_Sastra-Arab-UI.jpg', 'kenali gejala sebelum menstruasi', 'sebelum menstruasi, biasanya beberapa orang mengalami gejara seperti kram perut dan lainnya\r\n', 9);
 
 -- --------------------------------------------------------
 
@@ -111,8 +112,7 @@ CREATE TABLE `reminder` (
   `reminderDays` int(2) DEFAULT 0,
   `reminder_time` time DEFAULT '08:00:00',
   `is_on` tinyint(1) NOT NULL DEFAULT 1,
-  `cycleEst_id` int(11) DEFAULT NULL,
-  `user_id` int(11) DEFAULT NULL
+  `cycleEst_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -123,6 +123,7 @@ CREATE TABLE `reminder` (
 
 CREATE TABLE `sessions` (
   `session_id` char(15) NOT NULL,
+  `expiryTime` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -163,21 +164,6 @@ INSERT INTO `users` (`user_id`, `profileImg`, `name`, `birthdate`, `role`, `phon
 (643, NULL, NULL, '2003-11-16', 'user', NULL, 'mbul', 'mbul@gmail.com', 'rahasia'),
 (720, NULL, NULL, '2003-11-16', 'user', NULL, 'mbul', 'azza@gmail.com', 'rahasia'),
 (721, NULL, NULL, '2003-11-16', 'user', NULL, 'cici', 'cici@gmail.com', 'rahasia');
-
---
--- Triggers `users`
---
-DELIMITER $$
-CREATE TRIGGER `add_reminder` AFTER INSERT ON `users` FOR EACH ROW BEGIN
-IF NEW.role = 'user' THEN
-        INSERT INTO reminder (type, message, is_on, 			user_id) VALUES
-        ('period_start', 'Hari pertama siklus menstruasi Anda dimulai', '0', NEW.user_id),
-        ('period_end', 'Masa haid Anda telah selesai', '0', NEW.user_id),
-        ('period_late', 'Perhatian! Haid Anda terlambat.', '0', NEW.user_id);
-    END IF;
-END
-$$
-DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -227,7 +213,6 @@ ALTER TABLE `educations`
 --
 ALTER TABLE `reminder`
   ADD PRIMARY KEY (`reminder_id`),
-  ADD KEY `reminder_ibfk_1` (`user_id`),
   ADD KEY `fk_reminder` (`cycleEst_id`);
 
 --
@@ -258,43 +243,43 @@ ALTER TABLE `verifications`
 -- AUTO_INCREMENT for table `change_prayer`
 --
 ALTER TABLE `change_prayer`
-  MODIFY `changePrayer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `changePrayer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `cycle_est`
 --
 ALTER TABLE `cycle_est`
-  MODIFY `cycleEst_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=143;
+  MODIFY `cycleEst_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=145;
 
 --
 -- AUTO_INCREMENT for table `cycle_history`
 --
 ALTER TABLE `cycle_history`
-  MODIFY `cycleHistory_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
+  MODIFY `cycleHistory_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 
 --
 -- AUTO_INCREMENT for table `educations`
 --
 ALTER TABLE `educations`
-  MODIFY `education_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `education_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
 
 --
 -- AUTO_INCREMENT for table `reminder`
 --
 ALTER TABLE `reminder`
-  MODIFY `reminder_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=155;
+  MODIFY `reminder_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=173;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=726;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=732;
 
 --
 -- AUTO_INCREMENT for table `verifications`
 --
 ALTER TABLE `verifications`
-  MODIFY `verification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `verification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- Constraints for dumped tables
@@ -322,8 +307,7 @@ ALTER TABLE `cycle_history`
 -- Constraints for table `reminder`
 --
 ALTER TABLE `reminder`
-  ADD CONSTRAINT `fk_reminder` FOREIGN KEY (`cycleEst_id`) REFERENCES `cycle_est` (`cycleEst_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `reminder_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_reminder` FOREIGN KEY (`cycleEst_id`) REFERENCES `cycle_est` (`cycleEst_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `sessions`
