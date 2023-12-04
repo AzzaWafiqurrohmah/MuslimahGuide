@@ -3,6 +3,7 @@
 namespace MuslimahGuide\controller\api;
 
 use MuslimahGuide\Config\database;
+use MuslimahGuide\Exception\validationException;
 use MuslimahGuide\Repository\EducationRepository;
 use MuslimahGuide\trait\APIResponser;
 
@@ -34,16 +35,19 @@ class education
 
     public function addOnClick(){
         $id = $_POST['id'];
+        try{
+            $education = $this->educationRepo->getById($id);
+            if($education == null){
+                throw new validationException("ID tidak ditemukan");
+            }
 
-        $education = $this->educationRepo->getById($id);
-        $onClick = ($education->getOnClicked() + 1);
-        $education->setEducationId($id);
-        $education->setOnClicked($onClick);
+            $onClick = ($education->getOnClicked() + 1);
+            $education->setEducationId($id);
+            $education->setOnClicked($onClick);
 
-        if($this->educationRepo->addOnClick($education)){
             $this->success('Data berhasil diupdate');
-        } else {
-            $this->success('Data gagal diupdate');
+        } catch (validationException $exception){
+            $this->error($exception->getMessage());
         }
     }
 
