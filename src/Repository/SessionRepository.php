@@ -16,7 +16,7 @@ class SessionRepository
 
     public function save(session $session) : ?session{
         date_default_timezone_set('Asia/Jakarta');
-        $expiryTime = time() + (5 * 60 * 60); //every 5 hours, 5 hours * 60 minutes * 60 seconds
+        $expiryTime = time() + (3 * 60 * 60); //every 5 hours, 5 hours * 60 minutes * 60 seconds
         $expiryTimeFormatted = date('Y-m-d H:i:s', $expiryTime);
 
         $statement = $this->connection->prepare("INSERT INTO sessions VALUES (?, ?, ?)");

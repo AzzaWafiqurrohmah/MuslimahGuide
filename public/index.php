@@ -53,6 +53,7 @@ router::add("WEB", "POST", "/verificationNewPassword", verificationController::c
 //API
 router::add("API", "POST", '/loginAPI', adminController::class, 'loginAPI');
 router::add("API", "POST", '/registerAPI', adminController::class, 'registerAPI');
+router::add("API", "GET", '/session', adminController::class, 'sessionExpired');
 
 router::add("API", "GET", '/profileAPI', profile::class, 'get_profile');
 router::add("API", "POST", '/profileAPI', profile::class, 'put_profile');
@@ -66,6 +67,7 @@ router::add("API", "POST", '/addOnClicked', education::class, 'addOnClick');
 
 router::add("API", "POST", '/question', cycle::class, 'question');
 router::add("API", "GET", '/history', cycle::class, 'getHistory');
+router::add("API", "GET", '/allhistory', cycle::class, 'getAllHistory');
 router::add("API", "GET", '/estimation', cycle::class, 'getEstimation');
 
 router::add("API", "POST",'/prayer', prayer::class, 'addPrayer');

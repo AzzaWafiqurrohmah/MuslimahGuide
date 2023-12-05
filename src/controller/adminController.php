@@ -21,14 +21,15 @@ class adminController
     private UserRepository $userRepo;
     private adminService $userService;
     private sessionService $sessionService;
+    private SessionRepository $sessionRepository;
     public function __construct()
     {
         $connection = database::getConnection();
         $this->userRepo = new UserRepository($connection);
         $this -> userService = new adminService($this->userRepo);
 
-        $sessionRepo = new SessionRepository($connection);
-        $this->sessionService = new sessionService($sessionRepo, $this->userRepo);
+        $this-> sessionRepo = new SessionRepository($connection);
+        $this->sessionService = new sessionService($this ->sessionRepo, $this->userRepo);
     }
 
     function login(){
@@ -115,5 +116,10 @@ class adminController
         } catch (validationException $exception){
             $this->error($exception->getMessage());
         }
+    }
+
+    public function sessionExpired(){
+        $this->sessionRepo->expiredTime();
+        $this->success("Berhasil");
     }
 }
