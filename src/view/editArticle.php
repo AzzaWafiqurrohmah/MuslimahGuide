@@ -195,17 +195,17 @@
     <script>
 
         //alert
-        const alertArticleEdit = document.getElementById('alertArticleEdit').dataset;
-       console.log(alertArticleEdit);
-        if(alertArticleEdit !== 'alert'){
-            Swal.fire({
-                title: 'Artikel Edukasi',
-                text: 'berhasil ' + alertArticleEdit,
-                icon: 'success',
-                confirmButtonText: 'Ok'
-            });
-
-        }
+       //  const alertArticleEdit = document.getElementById('alertArticleEdit').dataset;
+       // console.log(alertArticleEdit);
+       //  if(alertArticleEdit !== 'alert'){
+       //      Swal.fire({
+       //          title: 'Artikel Edukasi',
+       //          text: 'berhasil ' + alertArticleEdit,
+       //          icon: 'success',
+       //          confirmButtonText: 'Ok'
+       //      });
+       //
+       //  }
 
         //quill content
         function QuillContent() {

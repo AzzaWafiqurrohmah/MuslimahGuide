@@ -68,12 +68,7 @@ class articleController
 
         $data = $this->educationRepo->getAll();
 
-        if(isset($_POST['search'])){
-            $input = $_POST['search-input'];
-            $data = $this->educationRepo->search($input);
-        }
 
-        $_SESSION['article'] = $alert;
         view::render('article', [
             'name' => $name,
             'profileImg' => $profileImg,

@@ -36,7 +36,7 @@ class editArticleController
         $data = $this->educationRepo->getById($id);
         $data->setEducationId($id);
 
-        $_SESSION['EditArticle'] = 'hai';
+//        $_SESSION['EditArticle'] = 'hai';
         view::render('editArticle', [
             'name' => $name,
             'profileImg' => $profileImg,
@@ -50,9 +50,28 @@ class editArticleController
         $alert = null;
 
         $img = $_FILES['fileInput-edit']['name'];
+        if($img != null){
+            if($_POST['inputImg'] != null){
+                $img = $_POST['inputImg'];
+
+                $destination_path = getcwd() . DIRECTORY_SEPARATOR . 'assetsWeb' . DIRECTORY_SEPARATOR . 'img' . DIRECTORY_SEPARATOR . 'education' . DIRECTORY_SEPARATOR;
+                $targetFile = $destination_path . basename($img);
+
+                if(file_exists($targetFile)){
+                    unlink($targetFile);
+                }
+            }
+            //move img
+            $destination_path = getcwd() . DIRECTORY_SEPARATOR . 'assetsWeb' . DIRECTORY_SEPARATOR . 'img' . DIRECTORY_SEPARATOR . 'education' . DIRECTORY_SEPARATOR;
+            $targetFile = $destination_path . basename($img);
+            move_uploaded_file($_FILES["fileInput-edit"]["tmp_name"], $targetFile);
+        }
         if($img == null){
             $img = $_POST['inputImg'];
         }
+
+
+
         $title = $_POST['title'];
         $content = $_POST['content'];
 
@@ -61,10 +80,8 @@ class editArticleController
         $this->education->setTitle($title);
         $this->education->setContents($content);
 
-        $_SESSION['EditArticle'] = 'hai';
-        if($this->educationRepo->update($this->education)){
-            $alert = "DiUbah";
-        }
+//        $_SESSION['EditArticle'] = 'hai';
+        $this->educationRepo->update($this->education);
        view::redirect('article');
     }
 }
