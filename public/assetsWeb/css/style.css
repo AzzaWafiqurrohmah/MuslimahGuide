@@ -10,6 +10,51 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
+/*search bar*/
+/* Container untuk search bar */
+/* Formulir pencarian dan anak-anaknya */
+.search-form-custom {
+    border-radius: 5px;
+    overflow: hidden;
+    width: 300px; /* Lebar tetap */
+    margin-bottom: 25px;
+    border: 1px solid #E1E1E1; /* Tambahkan border color */
+}
+
+/* Input teks pencarian */
+.search-form-custom input[type="text"] {
+    width: calc(100% - 20px); /* Agar input menyesuaikan lebar parent (250px) dengan padding 10px di setiap sisi */
+    padding: 10px;
+    margin: 0; /* Menghilangkan default margin */
+    border: none;
+    outline: none;
+}
+
+/* Tombol pencarian */
+.search-form-custom button {
+    background-color: #fff;
+    color: #000;
+    border: none;
+    padding: 10px;
+    margin: 0; /* Menghilangkan default margin */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Efek hover pada tombol pencarian */
+.search-form-custom button:hover {
+    background-color: #E5919C;
+    color: #fff;
+}
+
+/* Icon pencarian (gunakan ikon Bootstrap sebagai contoh) */
+.search-form-custom i {
+    font-size: 1em;
+    margin-right: 0px;
+    margin-bottom: -2px; /* Menyesuaikan tinggi ikon dengan input */
+}
+
+
 /*input code verification*/
 /* Gaya input default */
 .custom-input {
@@ -89,6 +134,12 @@ input {
     transform: translateY(-50%);
     cursor: pointer;
 }
+
+/*.toggle-password .invalid-feedback {*/
+/*    position: absolute;*/
+/*    top: 32%;*/
+/*    right: 30px;*/
+/*}*/
 
 
 /*user table*/
