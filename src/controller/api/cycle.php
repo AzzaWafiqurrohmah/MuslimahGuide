@@ -65,6 +65,19 @@ class cycle
         }
     }
 
+    public function getAllHistory(){
+        $request = new cycleRequest();
+        $request->token = $_GET['token'];
+
+        try {
+            $data = $this->cycleService->getAllHist($request);
+            $this->successArray($data->data, "Data tersedia");
+        } catch (validationException $exception){
+            $this->error($exception->getMessage());
+        }
+    }
+
+
     public function getEstimation(){
         $request = new cycleRequest();
         $request->token = $_GET['token'];

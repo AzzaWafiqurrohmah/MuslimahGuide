@@ -13,6 +13,8 @@ use MuslimahGuide\Repository\CycleHistRepository;
 use MuslimahGuide\Repository\SessionRepository;
 use MuslimahGuide\Repository\UserRepository;
 
+
+
 class cycleService
 {
     private CycleHistRepository $cycleHistRepo;
@@ -101,6 +103,21 @@ class cycleService
             throw new validationException("Data tidak ditemukan");
         }
 
+        $response = new cycleResponse();
+        $response->data = $data;
+        return $response;
+    }
+
+    public function getAllHist(cycleRequest $request) : cycleResponse{
+        $session = $this->sessionRepo->getById($request->token);
+        if($session == null){
+            throw new validationException("Token tidak valid");
+        }
+        $user_id = $session->getUserId()->getId();
+        $data = $this->cycleHistRepo->getAllHistCycle($user_id);
+        if($data == null){
+            throw new validationException("data tidak ditemukan");
+        }
         $response = new cycleResponse();
         $response->data = $data;
         return $response;

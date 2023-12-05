@@ -52,6 +52,16 @@ class CycleHistRepository
         return [];
     }
 
+    public function getAllHistCycle(string $id) :?array{
+        $sql = "SELECT * FROM cycle_history WHERE user_id = ? ORDER BY end_date DESC";
+
+        $statement = $this->connection->prepare($sql);
+        if($statement->execute([$id])){
+            return $statement->fetchAll(\PDO::FETCH_ASSOC);
+        }
+        return [];
+    }
+
     public function mapToDomain($row) :cycleHistory{
         $user_id = $row['user_id'];
         $userRepo = new UserRepository(database::getConnection());
