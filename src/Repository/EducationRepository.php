@@ -81,28 +81,6 @@ class EducationRepository
         return [];
     }
 
-    public function getBy(array $values) :?education{
-        $iterate = 0;
-        $sql = "SELECT * FROM educations WHERE ";
-        $params = [];
-
-        foreach ($values as $valuekey => $value){
-            if($iterate > 0) {
-                $sql .= " AND ";
-            }
-            $params[] = $value;
-            $sql .= $valuekey . " = ?";
-            $iterate++;
-        }
-
-        $statement = $this->connection->prepare($sql);
-        $statement->execute($params);
-
-        foreach ($statement as $row){
-            return $this->mapToDomain($row);
-        }
-        return null;
-    }
 
     public function search($input) :array{
         $sql = "SELECT * FROM educations WHERE title LIKE '%$input%' OR contents LIKE '%$input%'";

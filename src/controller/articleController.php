@@ -60,11 +60,18 @@ class articleController
 
             $this->educationRepo->delete($id);
         }
+
+
         $user = $this->sessionService->current();
         $name = $user->getName();
         $profileImg = $user->getProfileImg();
 
         $data = $this->educationRepo->getAll();
+
+        if(isset($_POST['search'])){
+            $input = $_POST['search-input'];
+            $data = $this->educationRepo->search($input);
+        }
 
         $_SESSION['article'] = $alert;
         view::render('article', [
