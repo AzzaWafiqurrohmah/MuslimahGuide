@@ -78,6 +78,29 @@ class verificationService
         return $phpmailer;
     }
 
+    public function sendEmailUser($email, $subjek, $message){
+        set_time_limit(300); // Menetapkan batas waktu eksekusi ke 300 detik (5 menit)
+        $phpmailer = new PHPMailer();
+        $phpmailer->isSMTP();
+        $phpmailer->Host =$this->Host;
+        $phpmailer->SMTPAuth = $this->SMTPAuth;
+        $phpmailer->Port = $this->Port;
+        $phpmailer->Username = $this->Username;
+        $phpmailer->Password = $this->Password;
+        $phpmailer->SMTPSecure = $this->SMTPSecure;
+
+        $phpmailer->setFrom($this->Username, 'zenFemina');
+        $phpmailer->addAddress('wafiqurrohmahazza@gmail.com', 'admin');     //Add a recipient
+        $phpmailer->addReplyTo($this->Username, 'Information');
+
+        $phpmailer->isHTML(true);                                  //Set email format to HTML
+        $phpmailer->Subject = 'zenfemina feedback';
+        $phpmailer->Body    = 'from : '. $email . '<br> subject : '. $subjek . '<br> message : '. $message;
+        $phpmailer->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+        return $phpmailer;
+    }
+
     public function otpVerification(verificationRequest $request) :bool{
         $verification = $this->verificationRepo->getById($request->verification_id);
         if($verification == null){

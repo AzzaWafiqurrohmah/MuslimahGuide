@@ -227,20 +227,20 @@
                 </div>
             </div>
 
-            <form action="" class="contact__form">
+            <form action="/" method="post" class="contact__form">
                 <div class="contact__inputs">
                     <div class="contact__content">
-                        <input type="email" placeholder=" " class="contact__input">
+                        <input type="email" placeholder=" " class="contact__input" id="email" name="email">
                         <label for="" class="contact__label">Email</label>
                     </div>
 
                     <div class="contact__content">
-                        <input type="text" placeholder=" " class="contact__input">
+                        <input type="text" placeholder=" " class="contact__input" id="subject" name="subject">
                         <label for="" class="contact__label">Subject</label>
                     </div>
 
                     <div class="contact__content contact__area">
-                        <textarea name="message" placeholder=" " class="contact__input"></textarea>
+                        <textarea name="message" placeholder=" " class="contact__input" id="message"></textarea>
                         <label for="" class="contact__label">Message</label>
                     </div>
                 </div>
