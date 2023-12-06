@@ -78,7 +78,9 @@ class adminController
                     $this->sessionService->create($response->user);
                     view::redirect('/dashboard');
                 } catch (validationException $exception){
-                    view::render('/login');
+                    view::render('/login', [
+                        'error' => $exception->getMessage()
+                    ]);
                 }
 
             }

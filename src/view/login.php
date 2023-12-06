@@ -21,6 +21,14 @@
                                     <p class="text-center small">Enter your username & password to login</p>
                                 </div>
 
+                                <?php if(isset($params['error'])) { ?>
+                                    <div class="row">
+                                        <div class="alert alert-danger" role="alert">
+                                            <?= $params['error'] ?>
+                                        </div>
+                                    </div>
+                                <?php } ?>
+
                                 <form class="row g-3 needs-validation" method="post" action="/login" novalidate>
 
                                     <div class="col-12">
