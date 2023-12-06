@@ -148,7 +148,7 @@
         <br>
         <br>
         <!-- Horizontal Form -->
-        <form method="post" action="/uploadArticle" enctype="multipart/form-data" id="myform" >
+        <form method="post" action="/uploadArticle" enctype="multipart/form-data" id="myform" onsubmit="QuillContent()" >
           <div class="row mb-3" style="margin-left: 25px;">
             <div class="col-sm-4">
                 <div class="upload-container" style="text-align: center;">
@@ -189,6 +189,16 @@
     </div>
 
       <script>
+
+          function QuillContent() {
+              var quill = new Quill('#text', {
+                  theme: 'snow'
+              });
+              var content = quill.getText();
+
+              $('#content').val(content);
+          }
+
           // var quill = new Quill('#text', {
           //     theme: 'snow'
           // });
@@ -206,7 +216,7 @@
           // }
 
           // var quill = document.querySelector('.quill-editor-full');
-          var myForm = document.getElementById('myForm');
+          // var myForm = document.getElementById('myForm');
 
           // document.getElementById('btn-submit').on('submit', () => {
           //     // Get HTML content
@@ -219,19 +229,19 @@
           //     // myForm.submit();
           // })
 
-          var quill = new Quill('.quill-editor-full', {
-              theme: 'snow'
-          });
-          document.getElementById('btn-submit').addEventListener('click', function(event) {
-              var quill = new Quill('.quill-editor-full', {
-                  theme: 'snow'
-              });
-              var delta = quill.getContents();
-
-              // Convert Quill Delta to HTML
-              var html = quill.clipboard.convert(delta);
-              $('#content').val(html);
-          });
+          // var quill = new Quill('.quill-editor-full', {
+          //     theme: 'snow'
+          // });
+          // document.getElementById('btn-submit').addEventListener('click', function(event) {
+          //     var quill = new Quill('.quill-editor-full', {
+          //         theme: 'snow'
+          //     });
+          //     var delta = quill.getContents();
+          //
+          //     // Convert Quill Delta to HTML
+          //     var html = quill.clipboard.convert(delta);
+          //     $('#content').val(html);
+          // });
 
 
       </script>
