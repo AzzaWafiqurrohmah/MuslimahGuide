@@ -3,6 +3,7 @@
 namespace MuslimahGuide\controller;
 use MuslimahGuide\Domain\user;
 use MuslimahGuide\Domain\verification;
+use MuslimahGuide\Exception\validationException;
 use MuslimahGuide\Model\verificationRequest;
 use MuslimahGuide\Repository\VerificationRepository;
 
@@ -35,6 +36,11 @@ class verificationController
     }
 
     public function postEmail(){
+        if (isset($_POST['back'])){
+            view::redirect('login');
+            exit();
+        }
+
         $email = $_POST['email'];
 
         $request = new verificationRequest();
@@ -47,10 +53,12 @@ class verificationController
             if($phpmailer->send()){
                 header("Location: /verificationCode?id=" . $response->verification->getVerificationId());
             } else{
-                throw new \Exception($phpmailer->ErrorInfo);
+                throw new validationException($phpmailer->ErrorInfo);
             }
-        } catch (\Exception $e){
-            view::render('verificationEmail');
+        } catch (validationException $e){
+            view::render('verification-email', [
+                'error' => $e->getMessage()
+            ]);
         }
     }
 
@@ -65,11 +73,18 @@ class verificationController
         $verification_id = $_POST['verification_id'];
         $code = $_POST['code'];
 
-        $verification = $this->verificationRepo->getById($verification_id);
-        if($code == $verification->getCode()){
+        try{
+            $verification = $this->verificationRepo->getById($verification_id);
+
+            if($code !== $verification->getCode()){
+                throw new validationException("incorrect code");
+            }
             view::redirect("verificationNewPassword?id=$verification_id");
-        } else {
-            view::render('verificationCode?id=' . $verification_id);
+        }catch (validationException $exception){
+            view::render('verification-code',[
+                'id' => $verification_id,
+                'error' => $exception->getMessage()
+            ]);
         }
     }
 

@@ -18,19 +18,26 @@
                             <div class="card-body">
                                 <div class="pt-4 pb-2" >
                                     <h5 class="text-center pb-0 fs-4" style="padding: 0px; margin-bottom: 10px; font-weight: 600">
-                                        <span class="bi bi-arrow-left float-start" style="text-align: left font-weight: 900; cursor: pointer"></span> Atur ulang kata sandi
+                                        Atur ulang kata sandi
                                     </h5>
-                                    <p style="font-size: 13px; color: #899bbd; padding: 0px 10px; text-align: center; margin-bottom: 30px">
+                                    <p style="font-size: 13px; color: #899bbd; padding: 0px 10px; text-align: center; margin-bottom: 20px">
                                         Masukkan e-mail yang terdaftar, kami akan mengirimkan kode verifikasi untuk atur ulang kata sandi.
                                     </p>
                                 </div>
 
+                                <?php if(isset($params['error'])) { ?>
+                                    <div class="row">
+                                        <div class="alert alert-danger" role="alert">
+                                            <?= $params['error'] ?>
+                                        </div>
+                                    </div>
+                                <?php } ?>
 
 
                                 <form class="row g-3 needs-validation" method="post" action="/verificationEmail" novalidate>
 
                                     <div class="col-12" style="margin-top: 0px; margin-bottom: 20px;">
-                                        <label for="email" class="form-label" style="font-size: 14px; margin-left: 5px">Masukkan Email</label>
+                                        <label for="email" class="form-label" style="font-size: 14px; margin-left: 5px; margin-top: 30px">Masukkan Email</label>
                                         <input type="email" name="email" class="form-control" id="email" required>
                                         <div class="invalid-feedback">Masukkan email yang valid!</div>
                                     </div>
@@ -39,6 +46,14 @@
                                         <button class="btn btn-primary w-100" type="submit" id="manual" name="manual" style="font-size: 14px; padding: 6px" >Kirim kode verifikasi</button>
                                     </div>
                                 </form>
+
+                            <form method="post" action="/verificationEmail">
+                                <div class="button-container" style="text-align: center">
+                                    <button id="back" name="back" class="button-like-link">
+                                        Back to login
+                                    </button>
+                                </div>
+                            </form>
 
                             </div>
                         </div>

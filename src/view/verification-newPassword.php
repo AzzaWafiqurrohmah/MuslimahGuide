@@ -19,7 +19,6 @@
                                 <div class="pt-4 pb-2" >
                                     <h5 class="text-center pb-0 fs-4" style="padding: 0px; margin-bottom: 10px; font-weight: 600">
                                         <a href="/verificationCode?id=<?= $verification_id; ?>" style="color: black">
-                                            <span class="bi bi-arrow-left float-start" style="text-align: left; font-weight: 900; cursor: pointer"></span>
                                             Kata sandi baru
                                         </a>
                                     </h5>

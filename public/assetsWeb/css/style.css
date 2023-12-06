@@ -10,6 +10,41 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
+.button-like-link {
+    font-size: 13px;
+    padding: 5px 10px;
+    text-align: center;
+    align-items: center;
+    margin-bottom: 0px;
+    margin-top: 15px;
+    text-decoration: underline;
+    color: #4154F2;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+
+.alert {
+    --bs-alert-bg: transparent;
+    --bs-alert-padding-x: 1rem;
+    --bs-alert-padding-y: 0.6rem;
+    --bs-alert-margin-bottom: 0rem;
+    --bs-alert-color: inherit;
+    --bs-alert-border-color: transparent;
+    --bs-alert-border: var(--bs-border-width) solid var(--bs-alert-border-color);
+    --bs-alert-border-radius: var(--bs-border-radius);
+    --bs-alert-link-color: inherit;
+    position: relative;
+    padding: var(--bs-alert-padding-y) var(--bs-alert-padding-x);
+    margin-bottom: var(--bs-alert-margin-bottom);
+    color: #58151c;
+    background-color: #f8d7da;
+    border: var(--bs-alert-border);
+    border-radius: var(--bs-alert-border-radius);
+    text-align: center;
+}
+
 /*search bar*/
 /* Container untuk search bar */
 /* Formulir pencarian dan anak-anaknya */

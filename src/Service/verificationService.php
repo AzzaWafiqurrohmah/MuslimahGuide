@@ -42,7 +42,7 @@ class verificationService
     public function emailVerification(verificationRequest $request) :verificationResponse{
         $user = $this->userRepo->get(["email" => $request->email]);
         if($user == null){
-            throw new validationException("email tidak ditemukan");
+            throw new validationException("email tidak terdaftar");
         }
 
         $uniqueNumber = str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
@@ -71,8 +71,8 @@ class verificationService
         $phpmailer->addReplyTo($this->Username, 'Information');
 
         $phpmailer->isHTML(true);                                  //Set email format to HTML
-        $phpmailer->Subject = 'MuslimahGuide VerificationCode';
-        $phpmailer->Body    = 'code anda adalah ' . $code;
+        $phpmailer->Subject = 'zenfemina Verification Code';
+        $phpmailer->Body    = 'Your code is ' . $code;
         $phpmailer->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
         return $phpmailer;

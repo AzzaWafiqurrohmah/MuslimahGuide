@@ -39,14 +39,17 @@ class adminService
     }
 
     public function loginWeb(adminRequest $request) : adminResponse{
-        $request->validateUserMobileRequest($request->username, $request->password);
-
-        $user = $this->userRepo->get(["username" => $request->username, "password"=> $request->password]);
+        $user = $this->userRepo->get(["username" => $request->username]);
         if($user == null){
-            throw new validationException("email or password is wrong");
+            throw new validationException("username tidak ditemukan");
         }
 
-        if($user->getRole() == "user"){
+        $user = $this->userRepo->get(["username" => $request->username, "password" => $request->password]);
+        if($user == null){
+            throw new validationException("password tidak sesuai");
+        }
+
+        if($user->getRole() == "admin"){
             throw new validationException("Hanya admin yang dapat login");
         }
 
