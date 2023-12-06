@@ -49,7 +49,7 @@ class adminService
             throw new validationException("password tidak sesuai");
         }
 
-        if($user->getRole() == "admin"){
+        if($user->getRole() == "user"){
             throw new validationException("Hanya admin yang dapat login");
         }
 
