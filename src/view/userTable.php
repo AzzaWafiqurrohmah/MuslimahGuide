@@ -186,21 +186,19 @@
                                                 </div>
                                             </div>
                                         <div class="col-12">
-                                            <label for="validationCustom01" class="form-label">Email</label>
+                                            <label for="validationCustom01" class="form-label emailValidate">Email</label>
                                             <input type="email" class="form-control" id="validationCustom01" name ="validationCustom01"  required>
-                                            <div class="valid-feedback">
-                                                Looks good!
-                                            </div>
                                             <div class="invalid-feedback">
                                                 Please enter a valid Email!
                                             </div>
+                                            <div class="valid-feedback">
+                                                Looks good!
+                                            </div>
                                         </div>
                                             <div class="col-12">
-                                                <label for="validationCustom02" class="form-label">Password</label>
+                                                <label for="validationCustom02" class="form-label passwordValidate">Password</label>
                                                 <input type="password" class="form-control" id="validationCustom02" name ="validationCustom02"  required>
-                                                <div class="valid-feedback">
-                                                    Looks good!
-                                                </div>
+                                                <div class="invalid-feedback">Please enter your password!</div>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -246,7 +244,7 @@
                             </div>
                             <div class="col-12">
                                 <label for="validationCustom01" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="edit-email" name ="validationCustom01"  required>
+                                <input type="email" class="form-control emailValidate" id="edit-email" name ="validationCustom01"  required>
                                 <div class="valid-feedback">
                                     Looks good!
                                 </div>
@@ -255,7 +253,7 @@
                                 </div>
                             </div>
                             <div class="col-12">
-                                <label for="validationCustom02" class="form-label">Password</label>
+                                <label for="validationCustom02" class="form-label passwordValidate">Password</label>
                                 <input type="password" class="form-control" id="edit-password" name ="validationCustom02"  required>
                                 <div class="valid-feedback">
                                     Looks good!
