@@ -72,17 +72,31 @@ class profileController
         $profileImg = $this->user->getProfileImg();
         $password = $this->user->getPassword();
 
-        $Img = $_FILES['fileUpload']['name'];
-        if($Img != null){
-            $profileImg = $Img;
+        $img = $_FILES['fileUpload']['name'];
+        if($img != null){
+            if($_POST['inputImg'] != null){
+                $img = $_POST['inputImg'];
+
+                $destination_path = getcwd() . DIRECTORY_SEPARATOR . 'assetsWeb' . DIRECTORY_SEPARATOR . 'img' . DIRECTORY_SEPARATOR . 'profile' . DIRECTORY_SEPARATOR;
+                $targetFile = $destination_path . basename($img);
+
+                if(file_exists($targetFile)){
+                    unlink($targetFile);
+                }
+            }
+            //move img
+            $destination_path = getcwd() . DIRECTORY_SEPARATOR . 'assetsWeb' . DIRECTORY_SEPARATOR . 'img' . DIRECTORY_SEPARATOR . 'profile' . DIRECTORY_SEPARATOR;
+            $targetFile = $destination_path . basename($img);
+            move_uploaded_file($_FILES["fileUpload"]["tmp_name"], $targetFile);
+
+            $profileImg = $img;
         }
+
         $fullName = $_POST['fullName'];
         $userName = $_POST['userName'];
         $email = $_POST['email'];
         $phone = $_POST['phone'];
 
-        $targetDirectory = "assets/img/profile/";
-        $targetFile = $targetDirectory . basename($profileImg);
 
         $this->user->setProfileImg($profileImg);
         $this->user->setUsername($userName);
@@ -91,7 +105,6 @@ class profileController
         $this->user->setPhone($phone);
 
         $this->userRepo->update($this->user);
-        move_uploaded_file($_FILES["fileUpload"]["tmp_name"], $_SERVER['DOCUMENT_ROOT'] . '/' . $targetFile);
 
         view::render('profile', [
             'fullName' => $fullName,

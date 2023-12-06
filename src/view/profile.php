@@ -149,7 +149,7 @@
                 <div class="card">
                     <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-                        <img src="assets/img/profile/<?=$profileImg;?>" alt="Profile" class="rounded-circle">
+                        <img src="assetsWeb/img/profile/<?=$profileImg;?>" alt="Profile" class="rounded-circle">
                         <h2><?=$fullName;?></h2>
                         <h3>Admin</h3>
                     </div>
@@ -217,23 +217,25 @@
                                         <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
                                         <div class="col-md-8 col-lg-9">
                                             <img src="assetsWeb/img/profile/<?=$profileImg;?>" id="previewImage" alt=<?=$profileImg;?>>
+                                            <input type="hidden" id="inputImg" name="inputImg" value="<?=$profileImg;?>">
                                             <div class="pt-2">
                                                     <label for="fileUpload" class="custom-button">
                                                        <i  style="background-color: #4085FF; color: white; border-color: #4085FF; padding: 4px 10px; font-size: 12px; border-radius: 5px; cursor: pointer; margin-left: 0px " >Choose File</i>
                                                    </label>
-                                                   <input type="file" id="fileUpload" name="fileUpload" style="display: none;" onchange="handleFileUpload(this)" value="<?=$profileImg;?>">
+                                                   <input type="file" id="fileUpload" name="fileUpload" style="display: none;" onchange="handleFileUploadProfile(this)" value="<?=$profileImg;?>">
                                             </div>
                                         </div>
                                     </div>
 
 
                                     <script>
-                                        function handleFileUpload(input) {
+                                        function handleFileUploadProfile(input) {
                                             const file = input.files[0];
+                                            const previewImage = document.getElementById('previewImage');
+
                                             if (file) {
                                                 const reader = new FileReader();
                                                 reader.onload = function(e) {
-                                                    const previewImage = document.getElementById('previewImage');
                                                     previewImage.setAttribute('src', e.target.result);
                                                 }
                                                 reader.readAsDataURL(file);

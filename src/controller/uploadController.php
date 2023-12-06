@@ -58,7 +58,8 @@ class uploadController
         $name = $user->getName();
         $profileImg = $user->getProfileImg();
 
-        view::render('uploadArticle', [
+        view::render(
+            'uploadArticle', [
             'name' => $name,
             'profileImg' => $profileImg
         ]);
