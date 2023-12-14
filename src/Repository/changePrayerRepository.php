@@ -42,7 +42,7 @@ class changePrayerRepository
     }
 
     public function getChangePrayer(string $cycleHistory_id, String $condition) :?array{
-        $sql = "SELECT * FROM change_prayer WHERE status = ? and cycleHistory_id = ?";
+        $sql = "SELECT change_prayer.*, cycle_history.end_date FROM change_prayer INNER JOIN cycle_history ON change_prayer.cycleHistory_id = cycle_history.cycleHistory_id WHERE change_prayer.status = ? AND change_prayer.cycleHistory_id = ?";
 
         $statement = $this->connection->prepare($sql);
         if($statement->execute([$condition ,$cycleHistory_id])){
