@@ -35,7 +35,7 @@ class cycleService
     public function question(cycleRequest $request) :bool{
         $token = $request->token;
         $birthDate = $request->birthdate;
-        $lastDate = \DateTime::createFromFormat('Y-m-d H:i:s', $request->lastDate, new \DateTimeZone('Asia/Jakarta'));
+        $lastDate = $request->lastDate;
         $cycle = $request->cycle;
         $period = $request->period;
 
@@ -50,29 +50,31 @@ class cycleService
             throw new validationException("user ID tidak ditemukan");
         }
 
+        //set birthdate
         $user->setId($user_id);
         $user->setBirthDate($birthDate);
         $this->userRepo->update($user);
 
-        $date = \DateTime::createFromFormat('Y-m-d H:i:s', $request->lastDate, new \DateTimeZone('Asia/Jakarta'));
-        $startDate = $date->sub(new \DateInterval("P{$period}D"));
-        $cycleHist = new cycleHistory(0, $period, $startDate->format('Y-m-d H:i:s'), $lastDate->format('Y-m-d H:i:s'), $user);
-        $cycleHistory = $this->cycleHistRepo->addAll($cycleHist);
-        if($cycleHistory == null){
-            throw new validationException("cycle history gagal ditambahkan");
-        }
 
+        // set cycleHist
+        $startDate = \DateTime::createFromFormat('Y/m/d H:i:s', $request->lastDate, new \DateTimeZone('Asia/Jakarta'));
+        $startDate->sub(new \DateInterval("P{$period}D"));
+
+        $cycleHist = new cycleHistory(0, $period, $startDate->format('Y-m-d H:i:s'), $lastDate, $user);
+        $this->cycleHistRepo->addAll($cycleHist);
+
+
+        //set cycleEst
         $res = $cycle - $period;
-        $startDateEst = $lastDate->add(new \DateInterval("P{$res}D"));
+        $startDateEst = \DateTime::createFromFormat('Y/m/d H:i:s', $request->lastDate, new \DateTimeZone('Asia/Jakarta'));
+        $startDateEst->add(new \DateInterval("P{$res}D"));
 
-        $newLastDate = \DateTime::createFromFormat('Y-m-d H:i:s', $request->lastDate, new \DateTimeZone('Asia/Jakarta'));
-        $newStartDate = $newLastDate->add(new \DateInterval("P{$res}D"));
-        $lastDateEst = $newStartDate->add(new \DateInterval("P{$period}D"));
-        $cycleEst = new cycleEst($cycle, $period, $startDateEst->format('Y-m-d H:i:s'), $lastDateEst->format('Y-m-d H:i:s'), $user);
-        $cycleEst = $this->cycleEstRepo->addAll($cycleEst);
-        if($cycleEst == null){
-            throw new validationException("cycleEst gagal ditambahkan");
-        }
+        $LastDateEst = \DateTime::createFromFormat('Y/m/d H:i:s', $request->lastDate, new \DateTimeZone('Asia/Jakarta'));
+        $LastDateEst->add(new \DateInterval("P{$res}D"));
+        $LastDateEst->add(new \DateInterval("P{$period}D"));
+
+        $cycleEst = new cycleEst($cycle, $period, $startDateEst->format('Y-m-d H:i:s'), $LastDateEst->format('Y-m-d H:i:s'), $user);
+        $this->cycleEstRepo->addAll($cycleEst);
 
         return true;
     }
@@ -121,6 +123,29 @@ class cycleService
         $response = new cycleResponse();
         $response->data = $data;
         return $response;
+    }
+
+    public function beginCycle(cycleRequest $request){
+        $token = $request->token;
+        $dateNow = $request->datenow;
+        $cycleEst_id = $request->
+
+        $session = $this->sessionRepo->getById($request->token);
+        if($session == null){
+            throw new validationException("token tidak valid");
+        }
+
+        $cycleEst = $this->cycleEstRepo->getById($request->cycleEst_id);
+        if($cycleEst == null){
+            throw new validationException("cycle Est ID tidak valid");
+        }
+
+        if($cycleEst->getStartDate() > $request->datenow){
+            $cycleEst->setStartDate($request->datenow);
+
+
+
+        }
     }
 
 }
