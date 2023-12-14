@@ -42,13 +42,29 @@ class prayerService
         return true;
     }
 
-    public function getPrayer(prayerRequest $request) : prayerResponse{
+    public function getPrayerNo(prayerRequest $request) : prayerResponse{
         $user = $this->sessionRepo->getById($request->token);
         if($user == null){
             throw new validationException("token tidak valid");
         }
 
-        $data = $this->changePrayerRepo->getChangePrayer($request->cycleHistory_id);
+        $data = $this->changePrayerRepo->getChangePrayer( $request->cycleHistory_id, 'no');
+        if($data == null){
+            throw new validationException("cycle history ID tidak valid");
+        }
+
+        $response = new prayerResponse();
+        $response->changeprayer = $data;
+        return $response;
+    }
+
+    public function getPrayerDone(prayerRequest $request) : prayerResponse{
+        $user = $this->sessionRepo->getById($request->token);
+        if($user == null){
+            throw new validationException("token tidak valid");
+        }
+
+        $data = $this->changePrayerRepo->getChangePrayer($request->cycleHistory_id, 'done');
         if($data == null){
             throw new validationException("cycle history ID tidak valid");
         }

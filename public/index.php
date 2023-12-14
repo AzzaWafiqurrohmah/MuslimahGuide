@@ -71,7 +71,8 @@ router::add("API", "GET", '/allhistory', cycle::class, 'getAllHistory');
 router::add("API", "GET", '/estimation', cycle::class, 'getEstimation');
 
 router::add("API", "POST",'/prayer', prayer::class, 'addPrayer');
-router::add("API", "GET", '/prayer', prayer::class, 'getPrayer');
+router::add("API", "GET", '/prayerNo', prayer::class, 'getPrayerNo');
+router::add("API", "GET", '/prayerDone', prayer::class, 'getPrayerDone');
 router::add("API", "POST", '/updatePrayer', prayer::class,'updatePrayer' );
 
 router::add("API", "GET", '/reminderGet', reminder::class, 'getAllReminder');

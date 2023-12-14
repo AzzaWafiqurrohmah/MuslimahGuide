@@ -41,11 +41,11 @@ class changePrayerRepository
         return null;
     }
 
-    public function getChangePrayer(string $cycleHistory_id) :?array{
-        $sql = "SELECT * FROM change_prayer WHERE status = 'no' and cycleHistory_id = ?";
+    public function getChangePrayer(string $cycleHistory_id, String $condition) :?array{
+        $sql = "SELECT * FROM change_prayer WHERE status = ? and cycleHistory_id = ?";
 
         $statement = $this->connection->prepare($sql);
-        if($statement->execute([$cycleHistory_id])){
+        if($statement->execute([$condition ,$cycleHistory_id])){
             return $statement->fetchAll(\PDO::FETCH_ASSOC);
         }
         return [];

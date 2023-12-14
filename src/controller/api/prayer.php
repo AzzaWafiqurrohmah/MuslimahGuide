@@ -44,13 +44,26 @@ class prayer
         }
     }
 
-    public function getPrayer(){
+    public function getPrayerNo(){
         $request = new prayerRequest();
         $request->token = $_GET['token'];
         $request->cycleHistory_id = $_GET['cycleHistory_id'];
 
         try {
-            $data = $this->prayerService->getPrayer($request);
+            $data = $this->prayerService->getPrayerNo($request);
+            $this->successArray($data->changeprayer, "Data tersedia");
+        } catch (validationException $exception){
+            $this->error($exception->getMessage());
+        }
+    }
+
+    public function getPrayerDone(){
+        $request = new prayerRequest();
+        $request->token = $_GET['token'];
+        $request->cycleHistory_id = $_GET['cycleHistory_id'];
+
+        try {
+            $data = $this->prayerService->getPrayerDone($request);
             $this->successArray($data->changeprayer, "Data tersedia");
         } catch (validationException $exception){
             $this->error($exception->getMessage());
