@@ -50,7 +50,7 @@ class prayerService
 
         $data = $this->changePrayerRepo->getChangePrayer( $request->cycleHistory_id, 'no');
         if($data == null){
-            throw new validationException("cycle history ID tidak valid");
+            throw new validationException("Anda tidak memiliki Hutang Sholat");
         }
 
         $response = new prayerResponse();
@@ -66,7 +66,7 @@ class prayerService
 
         $data = $this->changePrayerRepo->getChangePrayer($request->cycleHistory_id, 'done');
         if($data == null){
-            throw new validationException("cycle history ID tidak valid");
+            throw new validationException("Anda tidak memiliki Hutang Sholat yang telah lunas");
         }
 
         $response = new prayerResponse();
