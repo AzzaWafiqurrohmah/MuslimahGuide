@@ -44,7 +44,7 @@ class education
             $onClick = ($education->getOnClicked() + 1);
             $education->setEducationId($id);
             $education->setOnClicked($onClick);
-
+            $this->educationRepo->update($education);
             $this->success('Data berhasil diupdate');
         } catch (validationException $exception){
             $this->error($exception->getMessage());
