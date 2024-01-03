@@ -57,26 +57,25 @@ class cycleService
 
 
         // set cycleHist
-        $startDate = \DateTime::createFromFormat('Y/m/d H:i:s', $request->lastDate, new \DateTimeZone('Asia/Jakarta'));
-        $startDate->sub(new \DateInterval("P{$period}D"));
-
-        $cycleHist = new cycleHistory(0, $period, $startDate->format('Y-m-d H:i:s'), $lastDate, $user);
+        $startDate = $this->dateOperations($request->lastDate, "sub", $period);
+        $cycleHist = new cycleHistory($cycle, $period, $startDate, $lastDate, $user);
         $this->cycleHistRepo->addAll($cycleHist);
 
 
         //set cycleEst
         $res = $cycle - $period;
-        $startDateEst = \DateTime::createFromFormat('Y/m/d H:i:s', $request->lastDate, new \DateTimeZone('Asia/Jakarta'));
-        $startDateEst->add(new \DateInterval("P{$res}D"));
-
-        $LastDateEst = \DateTime::createFromFormat('Y/m/d H:i:s', $request->lastDate, new \DateTimeZone('Asia/Jakarta'));
-        $LastDateEst->add(new \DateInterval("P{$res}D"));
-        $LastDateEst->add(new \DateInterval("P{$period}D"));
-
-        $cycleEst = new cycleEst($cycle, $period, $startDateEst->format('Y-m-d H:i:s'), $LastDateEst->format('Y-m-d H:i:s'), $user);
+        $startDateEst = $this->dateOperations($request->lastDate, "add", $res);
+        $LastDateEst = $this->dateOperations($request->lastDate, "add", $cycle);
+        $cycleEst = new cycleEst($cycle, $period, $startDateEst, $LastDateEst, $user);
         $this->cycleEstRepo->addAll($cycleEst);
 
         return true;
+    }
+
+    public function dateOperations(string $date, string $operation, int $val) :string{
+        $res = \DateTime::createFromFormat('Y/m/d H:i:s', $date, new \DateTimeZone('Asia/Jakarta'));
+        $res->$operation(new \DateInterval("P{$val}D"));
+        return $res->format('Y-m-d H:i:s');
     }
 
     public function getHistory(cycleRequest $request) :cycleResponse{
@@ -128,7 +127,7 @@ class cycleService
     public function beginCycle(cycleRequest $request){
         $token = $request->token;
         $dateNow = $request->datenow;
-        $cycleEst_id = $request->
+        $cycleEst_id = $request->cycleEst_id;
 
         $session = $this->sessionRepo->getById($request->token);
         if($session == null){
