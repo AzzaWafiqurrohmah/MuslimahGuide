@@ -144,9 +144,10 @@ class cycleService
         $lastDateHist = $this->parseDateTime($request->lastDate);
         $dateBegin = $this->parseDateTime($request->dateBegin);
         $cycle = $dateBegin->diff($lastDateHist)->format('%a');
+        $period = $cycleHist->getPeriodLength();
 
         $cycleHist->setId($request->cycleHist_id);
-        $cycleHist->setCycleLength($cycle);
+        $cycleHist->setCycleLength(((int)$cycle + $period));
         $this->cycleHistRepo->update($cycleHist);
 
         //update cycleEst
