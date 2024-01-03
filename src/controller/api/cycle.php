@@ -53,6 +53,23 @@ class cycle
         }
     }
 
+    public function beginCycle(){
+        $request = new cycleRequest();
+        $request->token = $_POST['token'];
+        $request->dateBegin = $_POST['dateBegin'];
+        $request->lastDate = $_POST['lastDateHist'];
+        $request->cycleEst_id = $_POST['cycleEst_id'];
+        $request->cycleHist_id = $_POST['cycleHist_id'];
+
+        try {
+            $this->cycleService->beginCycle($request);
+            $this->success("Data Berhasil Diperbarui");
+        } catch (validationException $exception){
+            $this->error($exception->getMessage());
+        }
+
+    }
+
     public function getHistory(){
         $request = new cycleRequest();
         $request->token = $_GET['token'];

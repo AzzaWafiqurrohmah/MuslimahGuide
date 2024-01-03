@@ -68,6 +68,15 @@ class CycleEstRepository
         return null;
     }
 
+    public function getAll() :array {
+        $sql = "SELECT cycleEst_id, start_date, end_date FROM cycle_est ";
+        $statement = $this->connection->prepare($sql);
+        if($statement->execute()){
+            return $statement->fetchAll(\PDO::FETCH_ASSOC);
+        }
+        return [];
+    }
+
     public function delete(string $id) :bool{
         $sql = "DELETE FROM cycle_est WHERE cycleEst_id = ?";
         $statement = $this->connection->prepare($sql);

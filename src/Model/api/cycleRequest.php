@@ -9,7 +9,9 @@ class cycleRequest
     public string $lastDate;
     public int $cycle;
     public int $period;
-    public string $datenow;
+    public string $dateBegin;
+
 
     public string $cycleEst_id;
+    public string $cycleHist_id;
 }

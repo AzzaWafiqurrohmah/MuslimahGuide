@@ -65,8 +65,7 @@ class cycleService
         //set cycleEst
         $res = $cycle - $period;
         $startDateEst = $this->dateOperations($request->lastDate, "add", $res);
-        $LastDateEst = $this->dateOperations($request->lastDate, "add", $cycle);
-        $cycleEst = new cycleEst($cycle, $period, $startDateEst, $LastDateEst, $user);
+        $cycleEst = new cycleEst($cycle, $period, $startDateEst, null, $user);
         $this->cycleEstRepo->addAll($cycleEst);
 
         return true;
@@ -78,7 +77,8 @@ class cycleService
         return $res->format('Y-m-d H:i:s');
     }
 
-    public function getHistory(cycleRequest $request) :cycleResponse{
+    public function getHistory(cycleRequest $request) :cycleResponse
+    {
         $session = $this->sessionRepo->getById($request->token);
         if($session == null){
             throw new validationException("Token tidak valid");
@@ -125,10 +125,6 @@ class cycleService
     }
 
     public function beginCycle(cycleRequest $request){
-        $token = $request->token;
-        $dateNow = $request->datenow;
-        $cycleEst_id = $request->cycleEst_id;
-
         $session = $this->sessionRepo->getById($request->token);
         if($session == null){
             throw new validationException("token tidak valid");
@@ -139,12 +135,34 @@ class cycleService
             throw new validationException("cycle Est ID tidak valid");
         }
 
-        if($cycleEst->getStartDate() > $request->datenow){
-            $cycleEst->setStartDate($request->datenow);
-
-
-
+        $cycleHist = $this->cycleHistRepo->getById($request->cycleHist_id);
+        if($cycleHist == null){
+            throw new validationException("cycle Est ID tidak valid");
         }
+
+        //update cycleHist
+        $lastDateHist = $this->parseDateTime($request->lastDate);
+        $dateBegin = $this->parseDateTime($request->dateBegin);
+        $cycle = $dateBegin->diff($lastDateHist)->format('%a');
+
+        $cycleHist->setId($request->cycleHist_id);
+        $cycleHist->setCycleLength($cycle);
+        $this->cycleHistRepo->update($cycleHist);
+
+        //update cycleEst
+        $period = $cycleEst->getPeriodLength();
+        $dateBegin->add(new \DateInterval("P{$period}D"));
+
+        $cycleEst->setStartDate($request->dateBegin);
+        $cycleEst->setEndDate($dateBegin->format('Y-m-d H:i:s'));
+        $cycleEst->setId($request->cycleEst_id);
+        $this->cycleEstRepo->update($cycleEst);
+
+    }
+
+    public function parseDateTime(String $date) :\DateTime{
+        $res = \DateTime::createFromFormat('Y/m/d H:i:s', $date, new \DateTimeZone('Asia/Jakarta'));
+        return $res;
     }
 
 }

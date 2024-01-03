@@ -2,6 +2,7 @@
 
 namespace MuslimahGuide\Repository;
 use MuslimahGuide\Config\database;
+use MuslimahGuide\Domain\cycleEst;
 use MuslimahGuide\Domain\cycleHistory;
 
 class CycleHistRepository
@@ -60,6 +61,37 @@ class CycleHistRepository
             return $statement->fetchAll(\PDO::FETCH_ASSOC);
         }
         return [];
+    }
+
+    public function getAvrg(string $column, string $user_id ): int {
+        $sql = "SELECT ? FROM cycle_history WHERE user_id = ? ORDER BY end_date DESC LIMIT 3;";
+        $data = [];
+
+        $statement = $this->connection->prepare($sql);
+        if($statement->execute([$column, $user_id])){
+            $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        }
+        $res = 0;
+        foreach ($data as $value){
+            $res += $value;
+        }
+
+        return ($res/count($data));
+    }
+
+    public function update(cycleHistory $cycle) :bool{
+        $sql = "UPDATE cycle_history SET cycle_length = ?, period_length = ?, start_date = ?, end_date = ? WHERE cycleHistory_id = ?";
+
+        $statement = $this->connection->prepare($sql);
+        $res = $statement->execute([
+            $cycle->getCycleLength(),
+            $cycle->getPeriodLength(),
+            $cycle->getStartDate(),
+            $cycle->getEndDate(),
+            $cycle->getId()
+        ]);
+
+        return $res;
     }
 
     public function mapToDomain($row) :cycleHistory{
