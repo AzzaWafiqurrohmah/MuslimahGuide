@@ -67,6 +67,7 @@ router::add("API", "POST", '/addOnClicked', education::class, 'addOnClick');
 
 router::add("API", "POST", '/question', cycle::class, 'question');
 router::add("API", "POST", '/beginCycle', cycle::class, 'beginCycle');
+router::add("API", "POST", '/completeCycle', cycle::class, 'completeCycle');
 
 router::add("API", "GET", '/history', cycle::class, 'getHistory');
 router::add("API", "GET", '/allhistory', cycle::class, 'getAllHistory');

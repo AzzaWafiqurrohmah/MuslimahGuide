@@ -63,21 +63,32 @@ class CycleHistRepository
         return [];
     }
 
-    public function getAvrg(string $column, string $user_id ): int {
-        $sql = "SELECT ? FROM cycle_history WHERE user_id = ? ORDER BY end_date DESC LIMIT 3;";
+    public function getAvrg(string $column, string $user_id)
+    {
+        $validColumns = ['period_length', 'cycle_length'];
+        if (!in_array($column, $validColumns)) {
+            return 0;
+        }
+
+        // Gabungkan nama kolom ke dalam query SQL dengan menggunakan tanda kutip ganda
+        $sql = "SELECT $column FROM cycle_history WHERE user_id = ? ORDER BY end_date DESC LIMIT 3;";
         $data = [];
 
         $statement = $this->connection->prepare($sql);
-        if($statement->execute([$column, $user_id])){
+        if ($statement->execute([ $user_id])) {
             $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
         }
-        $res = 0;
-        foreach ($data as $value){
-            $res += $value;
+        $first = 0;
+        foreach($data as $r => $val) {
+            foreach ($val as $res => $last){
+                $first += $last;
+            }
         }
 
-        return ($res/count($data));
+        return ($first/count($data));
     }
+
+
 
     public function update(cycleHistory $cycle) :bool{
         $sql = "UPDATE cycle_history SET cycle_length = ?, period_length = ?, start_date = ?, end_date = ? WHERE cycleHistory_id = ?";

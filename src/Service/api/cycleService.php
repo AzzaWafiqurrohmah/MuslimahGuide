@@ -161,6 +161,44 @@ class cycleService
 
     }
 
+    public function completeCycle(cycleRequest $request){
+        $session = $this->sessionRepo->getById($request->token);
+        if($session == null){
+            throw new validationException("token tidak valid");
+        }
+
+        $cycleEst = $this->cycleEstRepo->getById($request->cycleEst_id);
+        if($cycleEst == null){
+            throw new validationException("cycle Est ID tidak valid");
+        }
+
+        //add history
+        $cycleHist = new cycleHistory(
+            $cycleEst->getCycleLength(),
+            $cycleEst->getPeriodLength(),
+            $cycleEst->getStartDate(),
+            $cycleEst->getEndDate(),
+            $cycleEst->getUser_id());
+
+        //update cycle est
+        $periodAvr = $this->cycleHistRepo->getAvrg("period_length", $session->getUserId()->getId());
+        $cycleAvr = $this->cycleHistRepo->getAvrg("cycle_length", $session->getUserId()->getId());
+        $lastVal = $cycleAvr - $periodAvr;
+
+        $cycleEst->setPeriodLength($periodAvr);
+        $cycleEst->setCycleLength($cycleAvr);
+
+        $startDateEst = $this->dateOperations($request->lastDate, "add", $lastVal);
+        $cycleEst->setStartDate($startDateEst);
+        $cycleEst->setEndDate(null);
+
+
+        //setAll
+        $this->cycleHistRepo->addAll($cycleHist);
+        $this->cycleEstRepo->update($cycleEst);
+    }
+
+
     public function parseDateTime(String $date) :\DateTime{
         $res = \DateTime::createFromFormat('Y/m/d H:i:s', $date, new \DateTimeZone('Asia/Jakarta'));
         return $res;

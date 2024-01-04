@@ -67,7 +67,20 @@ class cycle
         } catch (validationException $exception){
             $this->error($exception->getMessage());
         }
+    }
 
+    public function completeCycle(){
+        $request = new cycleRequest();
+        $request->token = $_POST['token'];
+        $request->lastDate = $_POST['lastDate'];
+        $request->cycleEst_id = $_POST['cycleEst_id'];
+
+        try {
+            $this->cycleService->completeCycle($request);
+            $this->success("Data Berhasil Diperbarui");
+        } catch (validationException $exception){
+            $this->error($exception->getMessage());
+        }
     }
 
     public function getHistory(){
