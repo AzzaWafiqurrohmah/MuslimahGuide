@@ -183,6 +183,7 @@ class cycleService
             $cycleEst->getStartDate(),
             $cycleEst->getEndDate(),
             $cycleEst->getUser_id());
+        $this->cycleHistRepo->addAll($cycleHist);
 
         //update cycle est
         $periodAvr = $this->cycleHistRepo->getAvrg("period_length", $session->getUserId()->getId());
@@ -195,10 +196,29 @@ class cycleService
         $startDateEst = $this->dateOperations($request->lastDate, "add", $lastVal);
         $cycleEst->setStartDate($startDateEst);
         $cycleEst->setEndDate(null);
+        $this->cycleEstRepo->update($cycleEst);
+    }
 
+    public function continueCycle(cycleRequest $request){
+        $session = $this->sessionRepo->getById($request->token);
+        if($session == null){
+            throw new validationException("token tidak valid");
+        }
 
-        //setAll
-        $this->cycleHistRepo->addAll($cycleHist);
+        $cycleEst = $this->cycleEstRepo->getById($request->cycleEst_id);
+        if($cycleEst == null){
+            throw new validationException("cycle Est ID tidak valid");
+        }
+
+        $lastPeriod = $cycleEst->getPeriodLength();
+        $addingPeriod = 15 - $lastPeriod;
+        $endDate = $cycleEst->getEndDate();
+
+        $endDate = \DateTime::createFromFormat('Y-m-d H:i:s', $cycleEst->getEndDate(), new \DateTimeZone('Asia/Jakarta'));
+        $endDate->add(new \DateInterval("P{$addingPeriod}D"));
+
+        $cycleEst->setPeriodLength(15);
+        $cycleEst->setEndDate($endDate->format('Y-m-d H:i:s'));
         $this->cycleEstRepo->update($cycleEst);
     }
 

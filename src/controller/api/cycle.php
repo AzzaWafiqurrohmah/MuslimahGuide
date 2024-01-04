@@ -83,6 +83,19 @@ class cycle
         }
     }
 
+    public function continueCycle(){
+        $request = new cycleRequest();
+        $request->token = $_POST['token'];
+        $request->cycleEst_id = $_POST['cycleEst_id'];
+
+        try {
+            $this->cycleService->continueCycle($request);
+            $this->success("Data Berhasil Diperbarui");
+        } catch (validationException $exception){
+            $this->error($exception->getMessage());
+        }
+    }
+
     public function getHistory(){
         $request = new cycleRequest();
         $request->token = $_GET['token'];
