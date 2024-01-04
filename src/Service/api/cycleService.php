@@ -176,12 +176,17 @@ class cycleService
             throw new validationException("cycle Est ID tidak valid");
         }
 
+        $startDate = \DateTime::createFromFormat('Y-m-d H:i:s', $cycleEst->getStartDate(), new \DateTimeZone('Asia/Jakarta'));
+        $lastDate = $this->parseDateTime($request->lastDate);
+        $periodHist = $lastDate->diff($startDate)->format('%a');
+
+
         //add history
         $cycleHist = new cycleHistory(
             $cycleEst->getCycleLength(),
-            $cycleEst->getPeriodLength(),
+            $periodHist,
             $cycleEst->getStartDate(),
-            $cycleEst->getEndDate(),
+            $request->lastDate,
             $cycleEst->getUser_id());
         $this->cycleHistRepo->addAll($cycleHist);
 
