@@ -53,19 +53,21 @@ class cycleService
         //set birthdate
         $user->setId($user_id);
         $user->setBirthDate($birthDate);
-        $this->userRepo->update($user);
 
 
         // set cycleHist
         $startDate = $this->dateOperations($request->lastDate, "sub", $period);
         $cycleHist = new cycleHistory($cycle, $period, $startDate, $lastDate, $user);
-        $this->cycleHistRepo->addAll($cycleHist);
 
 
         //set cycleEst
         $res = $cycle - $period;
         $startDateEst = $this->dateOperations($request->lastDate, "add", $res);
         $cycleEst = new cycleEst($cycle, $period, $startDateEst, null, $user);
+
+        //set all
+        $this->userRepo->update($user);
+        $this->cycleHistRepo->addAll($cycleHist);
         $this->cycleEstRepo->addAll($cycleEst);
 
         return true;
@@ -148,7 +150,6 @@ class cycleService
 
         $cycleHist->setId($request->cycleHist_id);
         $cycleHist->setCycleLength(((int)$cycle + $period));
-        $this->cycleHistRepo->update($cycleHist);
 
         //update cycleEst
         $period = $cycleEst->getPeriodLength();
@@ -157,6 +158,9 @@ class cycleService
         $cycleEst->setStartDate($request->dateBegin);
         $cycleEst->setEndDate($dateBegin->format('Y-m-d H:i:s'));
         $cycleEst->setId($request->cycleEst_id);
+
+        //set all
+        $this->cycleHistRepo->update($cycleHist);
         $this->cycleEstRepo->update($cycleEst);
 
     }
